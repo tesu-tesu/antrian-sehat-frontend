@@ -8,7 +8,7 @@ import React from "react";
 import { Button, Container, Navbar, Form, Alert, Image } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import { login } from "utils/auth";
-import headerImage from '../images/pasien/LOGIN.png';
+import headerImage from '../images/pasien/REGISTER.png';
 import logo from '../images/pasien/logo.png';
 
 const Login = () => {
@@ -36,7 +36,7 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-app">
+    <div className="bg-app" style={{backgroundColor: "#E8F9F3"}}>
       {isLoggedIn && <Redirect to="/dashboard" />}
       {/* <Navbar bg="light" expand="lg">
         <Container>
@@ -50,8 +50,8 @@ const Login = () => {
           <Image src={headerImage} fluid/>
         </Container>
         <Container className="col-lg-3">
-          <div className="mt-5 mb-5 text-center">
-            <Image src={logo} width="50%"/>
+          <div className="mt-3 mb-3">
+            <Image src={logo}/>
           </div>
           <Form>
             <Alert variant="primary">
