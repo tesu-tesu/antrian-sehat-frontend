@@ -7,23 +7,32 @@
 */
 
 import Login from "pages/Login";
+import Register from "pages/Register";
 import Home from "pages/Home";
 import Dashboard from "pages/Dashboard";
 
 export const APP_ROUTE = [
+  // {
+  //   name: "Login",
+  //   path: "/login",
+  //   exact: true,
+  //   component: Login,
+  //   restricted: true,
+  // },
   {
-    name: "Login",
-    path: "/login",
+    name: "Resgister",
+    path: "/register",
     exact: true,
-    component: Login,
+    component: Register,
     restricted: true,
   },
   {
     name: "Home",
     path: "/",
     exact: true,
-    component: Home,
-    restricted: false,
+    // component: Home,
+    component: Login,
+    restricted: true,
   },
   {
     name: "Dashboard",
