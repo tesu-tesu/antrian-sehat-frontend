@@ -7,32 +7,56 @@
 import React from "react";
 import { Button, Row, Container, Navbar, Form, Alert, Image, Col } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
-import { login } from "utils/auth";
+import { setUserLogin } from "utils/auth";
 import headerImage from '../images/pasien/LOGIN 4.png';
 import logo from '../images/pasien/logo.png';
+import axios from "axios";
+import { LOGIN_API } from "constants/urls";
+import Loader from 'react-loader-spinner'
+
 
 const Login = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [error, setError] = React.useState(false);
+  const [errorEmail, setErrorEmail] = React.useState("");
+  const [errorPassword, setErrorPassword] = React.useState("");
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
-  React.useEffect(() => {
-    if (email || password) {
-      setError(false);
-    }
-    return () => {};
-  }, [email, password]);
+  // React.useEffect(() => {
+  //   if (email || password) {
+  //     setError(false);
+  //   }
+  //   return () => {};
+  // }, [email, password]);
 
   const _onSubmit = () => {
-    if (email === "pasien" && password === "123") {
-      login({
+    setLoading(true)
+    axios
+      .post(LOGIN_API, {
         email: email,
+        password: password
+      })
+      .then((res) => {
+        setUserLogin({
+          token: res.access_token,
+          email: res.user.email,
+          role: res.user.role
+        });
+        setIsLoggedIn(true);
+        setLoading(false)
+      })
+      .catch((err) => {
+        // console.log(err.response.data)
+        console.log(err.response.data)
+        if(err.response.data.error){
+          setErrorEmail(err.response.data.error ? err.response.data.error : "");
+        }else{
+          setErrorEmail(err.response.data.email ? err.response.data.email : "");
+        }
+        setErrorPassword(err.response.data.password ? err.response.data.password : "");
+        setLoading(false)
       });
-      setIsLoggedIn(true);
-    } else {
-      setError(true);
-    }
   };
 
   return (
@@ -54,22 +78,18 @@ const Login = () => {
             <Image src={logo} width="50%"/>
           </div>
           <Form>
-            <Alert variant="primary">
-              <span style={{ fontWeight: "bold" }}>Email: </span>
-              pasien,
-              <span style={{ fontWeight: "bold" }}> Password: </span>
-              123
-            </Alert>
-            {error && <Alert variant="danger">Salah bos</Alert>}
-
             <Form.Group controlId="formBasicEmail">
               <Form.Control
                 className="rounded-pill"
                 type="email"
                 placeholder="Email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value)
+                  setErrorEmail("")
+                }}
               />
+            {errorEmail !== "" ? <span className="text-danger ml-2">{errorEmail}</span> : ""}
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
@@ -78,14 +98,27 @@ const Login = () => {
                 type="password"
                 placeholder="Password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value)
+                  setErrorPassword("")
+                }}
               />
+              {errorPassword !== "" ? <span className="text-danger ml-2">{errorPassword}</span> : ""}
             </Form.Group>
             <div className="row justify-content-center mb-5 mt-4">
               <div className="col-md-12">
-                <Button className="rounded-pill" variant="primary" block
+                <Button disabled={loading} className="rounded-pill" variant="primary" block
                 onClick={_onSubmit}>
-                  Login
+                  {loading ? 
+                  <Loader
+                  type="Oval"
+                  color="#FFF"
+                  height={20}
+                  width={20}
+                  />
+                  :
+                  <span>Login</span>
+                  }
                 </Button>
               </div>
             </div>
