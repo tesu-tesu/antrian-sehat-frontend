@@ -4,6 +4,9 @@
     2. Masukin ke array APP_ROUTE, private itu berarti routenya cuman bisa diliat kalo udah login,
        restricted itu berarti routenya gak bisa diliat kalo udah login (Misal kalo aku masuk 
         halaman login padal udah login)
+        
+  - Home untuk pasien yang sudah login
+  - Dashboard untuk admin & superadmin yang sudah login
 */
 
 import Login from "pages/Login";
@@ -27,12 +30,18 @@ export const APP_ROUTE = [
     restricted: true,
   },
   {
+    name: "Login",
+    path: "/login",
+    exact: true,
+    component: Login,
+    restricted: true,
+  },
+  {
     name: "Home",
     path: "/",
     exact: true,
-    // component: Home,
-    component: Login,
-    restricted: true,
+    component: Home,
+    private: true,
   },
   {
     name: "Dashboard",
