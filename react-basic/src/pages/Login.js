@@ -5,10 +5,10 @@
 */
 
 import React from "react";
-import { Button, Container, Navbar, Form, Alert, Image } from "react-bootstrap";
+import { Button, Row, Container, Navbar, Form, Alert, Image, Col } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import { login } from "utils/auth";
-import headerImage from '../images/pasien/LOGIN.png';
+import headerImage from '../images/pasien/LOGIN 4.png';
 import logo from '../images/pasien/logo.png';
 
 const Login = () => {
@@ -25,7 +25,7 @@ const Login = () => {
   }, [email, password]);
 
   const _onSubmit = () => {
-    if (email === "angga.ganteng@email.com" && password === "123") {
+    if (email === "pasien" && password === "123") {
       login({
         email: email,
       });
@@ -36,7 +36,7 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-app">
+    <div className="bg-app pr-3">
       {isLoggedIn && <Redirect to="/dashboard" />}
       {/* <Navbar bg="light" expand="lg">
         <Container>
@@ -45,51 +45,61 @@ const Login = () => {
           </Link>
         </Container>
       </Navbar> */}
-      <div className="row">
-        <Container className="col-lg-9">
+      <Row xs="auto">
+        <div className="col-lg-9 pr-0">
           <Image src={headerImage} fluid/>
-        </Container>
-        <Container className="col-lg-3">
+        </div>
+        <div className="col-lg-3 pl-4" fluid >
           <div className="mt-5 mb-5 text-center">
             <Image src={logo} width="50%"/>
           </div>
           <Form>
             <Alert variant="primary">
               <span style={{ fontWeight: "bold" }}>Email: </span>
-              angga.ganteng@email.com,
+              pasien,
               <span style={{ fontWeight: "bold" }}> Password: </span>
               123
             </Alert>
             {error && <Alert variant="danger">Salah bos</Alert>}
 
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
               <Form.Control
+                className="rounded-pill"
                 type="email"
-                placeholder="Enter email"
+                placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
               <Form.Control
+                className="rounded-pill"
                 type="password"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </Form.Group>
-            <Button variant="primary" onClick={_onSubmit}>
-              Submit
-            </Button>
+            <div className="row justify-content-center mb-5 mt-4">
+              <div className="col-md-12">
+                <Button className="rounded-pill" variant="primary" block
+                onClick={_onSubmit}>
+                  Login
+                </Button>
+              </div>
+            </div>
           </Form>
-        </Container>
-      </div>
+          <div className="row justify-content-center">
+            <div className="col-md-12 text-secondary text-center">
+              Belum punya akun?  
+              <span className="font-weight-bold">
+                <Link to="/register"> daftar</Link>
+              </span>
+            </div>
+          </div>
+        </div>
+      </Row>
     </div>
   );
 };
