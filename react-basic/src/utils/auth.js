@@ -3,18 +3,24 @@
   kalo misal nyimpen token atau yg sensitif2 gitu pake cookies aja lho ya. Kalo sekedar data
   kayak nama user di localStorage aja gpp
 */
+import sessionstorage from 'sessionstorage';
 
+export const setUserLogin = (user) => {
+  sessionstorage.setItem("USER", user);
+  sessionstorage.setItem("USER", user);
+};
 export const login = (user) => {
-  localStorage.setItem("USER", user);
+  sessionstorage.setItem("USER", user);
 };
 
 export const logout = () => {
-  localStorage.removeItem("USER");
+  sessionstorage.removeItem("USER");
 };
 
 export const isLogin = () => {
-  if (localStorage.getItem("USER")) {
+  if (sessionstorage.getItem("USER")) {
     return true;
   }
   return false;
 };
+
