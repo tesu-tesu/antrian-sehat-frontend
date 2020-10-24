@@ -5,15 +5,19 @@
 */
 
 import React from "react";
-import { Button, Row, Container, Form, Image} from "react-bootstrap";
+import { Button, Row, InputGroup, Form, Image} from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import { setUserLogin } from "utils/auth";
 import headerImage from '../images/pasien/LOGIN 4.png';
 import logo from '../images/pasien/logo.png';
 import axios from "axios";
 import { LOGIN_API } from "constants/urls";
-import Loader from 'react-loader-spinner'
-
+import Loader from 'react-loader-spinner';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { faKey, faMailBulk } from '@fortawesome/free-solid-svg-icons';
+library.add(fab, faKey, faMailBulk)
 
 const Login = () => {
   const [email, setEmail] = React.useState("");
@@ -85,30 +89,58 @@ const Login = () => {
           </div>
           <Form>
             <Form.Group controlId="formBasicEmail">
-              <Form.Control
-                className="rounded-pill"
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value)
-                  setErrorEmail("")
-                }}
-              />
+            <InputGroup className="align-items-center"
+                style={{
+                  backgroundColor:"#fff",
+                  borderRadius:10,
+                  }}>
+                  <span className="px-2">
+                    <FontAwesomeIcon icon="mail-bulk" />
+                  </span>
+                  <Form.Control style={{
+                    borderColor:"#fff",
+                    borderTopRightRadius:10,
+                    borderBottomRightRadius:10,
+                    paddingLeft:4
+                  }}
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value)
+                      setErrorEmail("")
+                    }}
+                  />
+              </InputGroup>
+              
             {errorEmail !== "" ? <span className="text-danger ml-2">{errorEmail}</span> : ""}
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
-              <Form.Control
-                className="rounded-pill"
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value)
-                  setErrorPassword("")
-                }}
-              />
+              <InputGroup className="align-items-center"
+                style={{
+                  backgroundColor:"#fff",
+                  borderRadius:10,
+                  }}>
+                  <span className="px-2">
+                    <FontAwesomeIcon icon="key" />
+                  </span>
+                  <Form.Control style={{
+                    borderColor:"#fff",
+                    borderTopRightRadius:10,
+                    borderBottomRightRadius:10,
+                    paddingLeft:4
+                  }}
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value)
+                      setErrorPassword("")
+                    }}
+                  />
+              </InputGroup>
+              
               {errorPassword !== "" ? <span className="text-danger ml-2">{errorPassword}</span> : ""}
             </Form.Group>
             <div className="row justify-content-center mb-5 mt-4">
