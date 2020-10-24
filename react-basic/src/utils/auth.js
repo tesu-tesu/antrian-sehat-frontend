@@ -4,21 +4,29 @@
   kayak nama user di localStorage aja gpp
 */
 import sessionstorage from 'sessionstorage';
+import Cookies from 'js-cookie';
 
 export const setUserLogin = (user) => {
-  sessionstorage.setItem("USER", user);
-  sessionstorage.setItem("USER", user);
+  Cookies.set("USER", user);
 };
 export const login = (user) => {
-  sessionstorage.setItem("USER", user);
+  Cookies.set("USER", user);
 };
 
 export const logout = () => {
-  sessionstorage.removeItem("USER");
+  Cookies.remove("USER");
 };
 
 export const isLogin = () => {
-  if (sessionstorage.getItem("USER")) {
+  if (Cookies.get("USER")) {
+    console.log(JSON.parse(Cookies.get("USER")))
+    return true;
+  }
+  return false;
+};
+
+export const isPasien = () => {
+  if (JSON.parse(Cookies.get("USER")).role === "Pasien") {
     return true;
   }
   return false;
