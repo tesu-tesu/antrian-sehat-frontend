@@ -23,12 +23,15 @@ const Login = () => {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
 
-  // React.useEffect(() => {
-  //   if (email || password) {
-  //     setError(false);
-  //   }
-  //   return () => {};
-  // }, [email, password]);
+  React.useEffect(() => {
+    if (email) {
+      setErrorEmail("");
+    }
+    if(password){
+      setErrorPassword("");
+    }
+    return () => {};
+  }, [email, password]);
 
   const _onSubmit = () => {
     setLoading(true)

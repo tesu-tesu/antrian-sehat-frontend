@@ -19,26 +19,26 @@ export const logout = () => {
 
 export const isLogin = () => {
   if (Cookies.get("USER")) {
-    console.log(Cookies.getJSON("USER"))
+    console.log(isPasien())
     return true;
   }
   return false;
 };
 
 export const isPasien = () => {
-  if (Cookies.getJSON("USER").role === "Pasien") {
+  if (Cookies.getJSON("USER")?.role === "Pasien") {
     return true;
   }
   return false;
 };
 export const isAdmin = () => {
-  if (Cookies.getJSON("USER").role === "Admin") {
+  if (Cookies.getJSON("USER")?.role === "Admin") {
     return true;
   }
   return false;
 };
 export const isSuperAdmin = () => {
-  if (Cookies.getJSON("USER").role === "Super Admin") {
+  if (Cookies.getJSON("USER")?.role === "Super Admin") {
     return true;
   }
   return false;
