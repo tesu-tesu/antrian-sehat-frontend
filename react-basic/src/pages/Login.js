@@ -5,7 +5,7 @@
 */
 
 import React from "react";
-import { Button, Row, Container, Navbar, Form, Alert, Image, Col } from "react-bootstrap";
+import { Button, Row, Container, Form, Image} from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import { setUserLogin } from "utils/auth";
 import headerImage from '../images/pasien/LOGIN 4.png';
@@ -39,22 +39,25 @@ const Login = () => {
       })
       .then((res) => {
         setUserLogin({
-          token: res.access_token,
-          email: res.user.email,
-          role: res.user.role
+          token: res.data.access_token,
+          email: res.data.user.email,
+          role: res.data.user.role
         });
-        setIsLoggedIn(true);
+        setIsLoggedIn(true)
         setLoading(false)
       })
       .catch((err) => {
-        // console.log(err.response.data)
-        console.log(err.response.data)
-        if(err.response.data.error){
-          setErrorEmail(err.response.data.error ? err.response.data.error : "");
-        }else{
-          setErrorEmail(err.response.data.email ? err.response.data.email : "");
+        console.log(err)
+        if(err.response){
+          if(err.response.data?.error){
+            setErrorEmail(err.response.data?.error ? err.response.data.error : "");
+          }else if(err.response.data?.email || err.response.data?.password){
+            setErrorEmail(err.response.data?.email ? err.response.data.email : "");
+            setErrorPassword(err.response.data?.password ? err.response.data.password : "");
+          }
+        } else{
+          setErrorEmail(JSON.stringify(err))
         }
-        setErrorPassword(err.response.data.password ? err.response.data.password : "");
         setLoading(false)
       });
   };
