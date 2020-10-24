@@ -6,7 +6,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -14,4 +13,8 @@ code {
 
 .bg-app{
   background-color: #E8F9F3;
+}
+
+.navbar-user {
+    background-image: linear-gradient(to bottom,#35b6ab 0,#3C96C4 100%); /* override background image gradient w/ flat color */
 }
