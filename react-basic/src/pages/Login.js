@@ -16,8 +16,8 @@ import Loader from 'react-loader-spinner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faKey, faMailBulk } from '@fortawesome/free-solid-svg-icons';
-library.add(fab, faKey, faMailBulk)
+import { faKey, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+library.add(fab, faKey, faEnvelope)
 
 const Login = () => {
   const [email, setEmail] = React.useState("");
@@ -95,7 +95,7 @@ const Login = () => {
                   borderRadius:10,
                   }}>
                   <span className="px-2">
-                    <FontAwesomeIcon icon="mail-bulk" />
+                    <FontAwesomeIcon icon="envelope" />
                   </span>
                   <Form.Control style={{
                     borderColor:"#fff",
