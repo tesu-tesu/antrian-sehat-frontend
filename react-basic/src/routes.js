@@ -55,7 +55,7 @@ export const APP_ROUTE = [
   },
   {
     name: "List Polyclinic of HA",
-    path: "/list-polyclinic",
+    path: "/list-polyclinic/:id_health_agency",
     exact: true,
     component: ListPolyclinic,
     private: true,
