@@ -12,7 +12,7 @@ const ListPolyclinic = () => {
 
   React.useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/admin/health-agency/${health_agency_id}/polyclinic`)
+      .get(GET_POLYCLINIC_OF_HA(health_agency_id))
       .then((res) => {
         setPolyclinics(res.data);
       })
