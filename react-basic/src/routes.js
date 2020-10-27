@@ -43,6 +43,7 @@ export const APP_ROUTE = [
     exact: true,
     component: Home,
     private: true,
+    isPasien: true,
   },
   {
     name: "Dashboard",
@@ -50,6 +51,7 @@ export const APP_ROUTE = [
     exact: true,
     component: Dashboard,
     private: true,
+    isAdmin: true,
   },
   {
     name: "List Polyclinic of HA",
@@ -57,5 +59,6 @@ export const APP_ROUTE = [
     exact: true,
     component: ListPolyclinic,
     private: true,
+    isPasien: true,
   },
 ];
