@@ -7,9 +7,12 @@ import { FaReact } from "react-icons/fa";
 
 const ListPolyclinic = () => {
   const [polyclinics, setPolyclinics] = React.useState([]);
+  //Static Health Agency ID
+  const [health_agency_id, setHealthAgencyId] = React.useState(8);
+
   React.useEffect(() => {
     axios
-      .get(GET_POLYCLINIC_OF_HA)
+      .get(`http://localhost:8000/api/admin/health-agency/${health_agency_id}/polyclinic`)
       .then((res) => {
         setPolyclinics(res.data);
       })
@@ -20,7 +23,6 @@ const ListPolyclinic = () => {
 
   return (
     <div>
-      {console.log(polyclinics)}
       <NavBar></NavBar>
       <Breadcrumb>
         <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
