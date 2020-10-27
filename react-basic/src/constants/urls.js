@@ -9,3 +9,4 @@ export const REGISTER_API =  `${BASE_URL}/auth/register`;
 
 export const GET_FILMS = "https://ghibliapi.herokuapp.com/films";
 
+export const GET_POLYCLINIC_OF_HA = `${BASE_URL}/admin/health-agency/6/polyclinic`;

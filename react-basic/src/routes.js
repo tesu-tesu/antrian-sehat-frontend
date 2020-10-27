@@ -13,6 +13,7 @@ import Login from "pages/Login";
 import Register from "pages/Register";
 import Home from "pages/Home";
 import Dashboard from "pages/Dashboard";
+import ListPolyclinic  from "pages/ListPolyclinic";
 
 export const APP_ROUTE = [
   // {
@@ -48,6 +49,13 @@ export const APP_ROUTE = [
     path: "/dashboard",
     exact: true,
     component: Dashboard,
+    private: true,
+  },
+  {
+    name: "List Polyclinic of HA",
+    path: "/list-polyclinic",
+    exact: true,
+    component: ListPolyclinic,
     private: true,
   },
 ];
