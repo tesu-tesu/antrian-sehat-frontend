@@ -263,7 +263,7 @@ const Register = () => {
             <div className="col-md-12 text-secondary text-center">
               Sudah punya akun? 
               <span className="font-weight-bold">
-                <Link to="/register"> Sign In</Link>
+                <Link to="/login"> Sign In</Link>
               </span>
             </div>
           </div>
