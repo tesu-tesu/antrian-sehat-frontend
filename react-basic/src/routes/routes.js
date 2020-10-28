@@ -16,13 +16,6 @@ import Dashboard from "pages/Dashboard";
 import ListPolyclinic  from "pages/ListPolyclinic";
 
 export const APP_ROUTE = [
-  // {
-  //   name: "Login",
-  //   path: "/login",
-  //   exact: true,
-  //   component: Login,
-  //   restricted: true,
-  // },
   {
     name: "Resgister",
     path: "/register",
