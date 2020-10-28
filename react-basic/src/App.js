@@ -8,6 +8,8 @@ import { createBrowserHistory } from "history";
 import { APP_ROUTE } from "./routes";
 import PrivateRoute from "components/PrivateRoute";
 import PublicRoute from "components/PublicRoute";
+import PasienRoute from "components/PasienRoute";
+import AdminRoute from "components/AdminRoute";
 
 export const history = createBrowserHistory();
 
@@ -17,14 +19,27 @@ const App = () => {
       <Switch>
         {APP_ROUTE.map((value, index) => {
           if (value.private) {
-            return (
-              <PrivateRoute
-                key={value.name}
-                component={value.component}
-                path={value.path}
-                exact={value.exact}
-              />
-            );
+            if(value.isPasien){
+              return (
+                <PasienRoute
+                  key={value.name}
+                  component={value.component}
+                  path={value.path}
+                  exact={value.exact}
+                  isPasien={value.isPasien}
+                />
+              );
+            }else{
+              return (
+                <AdminRoute
+                  key={value.name}
+                  component={value.component}
+                  path={value.path}
+                  exact={value.exact}
+                  isAdmin={value.isAdmin}
+                />
+              );
+            }
           } else {
             return (
               <PublicRoute
