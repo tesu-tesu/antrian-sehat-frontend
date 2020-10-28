@@ -5,8 +5,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { createBrowserHistory } from "history";
-import { APP_ROUTE } from "./routes";
-import PrivateRoute from "components/PrivateRoute";
+import { APP_ROUTE } from "./routes/routes";
 import PublicRoute from "components/PublicRoute";
 import PasienRoute from "components/PasienRoute";
 import AdminRoute from "components/AdminRoute";
