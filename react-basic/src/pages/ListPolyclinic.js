@@ -14,6 +14,7 @@ const ListPolyclinic = () => {
   let { id_health_agency } = useParams();
 
   React.useEffect(() => {
+    console.log("jwt header: "+JWT_HEADER)
     axios
       .get(GET_POLYCLINIC_OF_HA(id_health_agency),  { 
         headers: {"Authorization" : `Bearer ${JWT_HEADER}`} 
