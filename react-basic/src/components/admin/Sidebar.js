@@ -220,7 +220,7 @@ class Sidebar extends React.Component {
             <Nav className="mb-md-3" navbar>
               <NavItem>
                 <NavLink style={{fontWeight:"600"}} href="/puskesmas">
-                <span className="mr-1">
+                <span className="">
                   <img src={puskesmasIcon} fluid/>
                 </span>
                 <NavLink>Puskesmas</NavLink>
@@ -228,7 +228,7 @@ class Sidebar extends React.Component {
               </NavItem>
               <NavItem>
                 <NavLink style={{fontWeight:"600"}} href="/list-pasien">
-                <span className="mx-1">
+                <span className="">
                   <img src={listIcon} fluid/>
                 </span>
                 <NavLink>Antrian Pasien</NavLink>
@@ -236,7 +236,7 @@ class Sidebar extends React.Component {
               </NavItem>
               <NavItem>
                 <NavLink style={{fontWeight:"600"}} href="/list-poly">
-                <span className="mx-1">
+                <span className="">
                   <img src={clinicIcon} fluid/>
                 </span>
                 <NavLink>Poliklinik</NavLink>

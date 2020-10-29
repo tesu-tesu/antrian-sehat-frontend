@@ -32,7 +32,15 @@ class AdminContainer extends React.Component {
           <Container className="mt--8" fluid>
             <Row>
               <Col className="ml-3 mb-2 bg-transparent font-weight-bold text-white" xl="12">
-                Home {">"}
+                <Link className="text-white" to="/dashboard">
+                  <span>
+                    <i className="ni ni-shop mr-2" />
+                    Home 
+                  </span>
+                </Link>
+                <span className="mx-1">
+                  {">"}
+                </span>
               </Col>
               <Col className="mb-5 mb-xl-0" xl="12">
                 <Card className="bg-gradient-white shadow">
