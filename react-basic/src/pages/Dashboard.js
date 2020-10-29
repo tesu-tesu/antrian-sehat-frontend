@@ -25,6 +25,9 @@ import { logout } from "utils/auth";
 import axios from "axios";
 import { GET_FILMS } from "constants/urls";
 
+import AdminContainer from "components/admin/AdminContainer.js";
+
+
 const Dashboard = () => {
   const history = useHistory();
   const [loading, setLoading] = React.useState(true);
@@ -53,29 +56,10 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Navbar bg="light" expand="lg">
-        <Container>
-          <Link to="/">
-            <Navbar.Brand color="white">Dashboard</Navbar.Brand>
-          </Link>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ml-auto">
-              <Button variant="primary" onClick={_onLogout}>
-                Logout
-              </Button>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-      <Jumbotron>
-        <Container>
-          <h1>Dashboard</h1>
-          <p>
-            Jadi ini ceritanya halaman yang cuma bisa diliat kalo udah login
-          </p>
-        </Container>
-      </Jumbotron>
+      <AdminContainer>
+
+      </AdminContainer>
+      
       <Container>
         {loading ? (
           <Row>

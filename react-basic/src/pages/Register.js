@@ -13,11 +13,7 @@ import logo from '../images/pasien/logo.png';
 import axios from "axios";
 import { REGISTER_API } from "constants/urls";
 import Loader from 'react-loader-spinner';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faUser, faPhone, faKey, faEnvelope } from '@fortawesome/free-solid-svg-icons';
-library.add(fab, faUser, faPhone, faKey, faEnvelope)
+import { FaEnvelope, FaKey, FaPhone, FaUser } from "react-icons/fa";
 
 const Register = () => {
   const [role, setRole] = React.useState("");
@@ -108,7 +104,7 @@ const Register = () => {
                   borderRadius:10,
                   }}>
                   <span className="px-2">
-                    <FontAwesomeIcon icon="user" />
+                    <FaUser/>
                   </span>
                   <Form.Control style={{
                     borderColor:"#fff",
@@ -136,7 +132,7 @@ const Register = () => {
                   borderRadius:10,
                   }}>
                   <span className="px-2">
-                    <FontAwesomeIcon icon="phone" />
+                    <FaPhone/>
                   </span>
                   <Form.Control style={{
                     borderColor:"#fff",
@@ -164,7 +160,7 @@ const Register = () => {
                   borderRadius:10,
                   }}>
                   <span className="px-2">
-                    <FontAwesomeIcon icon="envelope" />
+                    <FaEnvelope/>
                   </span>
                   <Form.Control style={{
                     borderColor:"#fff",
@@ -192,7 +188,7 @@ const Register = () => {
                   borderRadius:10,
                   }}>
                   <span className="px-2">
-                    <FontAwesomeIcon icon="key" />
+                    <FaKey/>
                   </span>
                   <Form.Control style={{
                     borderColor:"#fff",
@@ -220,7 +216,7 @@ const Register = () => {
                   borderRadius:10,
                   }}>
                   <span className="px-2">
-                    <FontAwesomeIcon icon="key" />
+                    <FaKey/>
                   </span>
                   <Form.Control style={{
                     borderColor:"#fff",
@@ -263,7 +259,7 @@ const Register = () => {
             <div className="col-md-12 text-secondary text-center">
               Sudah punya akun? 
               <span className="font-weight-bold">
-                <Link to="/register"> Sign In</Link>
+                <Link to="/login"> Sign In</Link>
               </span>
             </div>
           </div>

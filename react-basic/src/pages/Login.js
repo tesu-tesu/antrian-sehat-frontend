@@ -13,11 +13,7 @@ import logo from '../images/pasien/logo.png';
 import axios from "axios";
 import { LOGIN_API } from "constants/urls";
 import Loader from 'react-loader-spinner';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faKey, faEnvelope } from '@fortawesome/free-solid-svg-icons';
-library.add(fab, faKey, faEnvelope)
+import { FaEnvelope, FaKey } from "react-icons/fa";
 
 const Login = () => {
   const [email, setEmail] = React.useState("");
@@ -95,7 +91,7 @@ const Login = () => {
                   borderRadius:10,
                   }}>
                   <span className="px-2">
-                    <FontAwesomeIcon icon="envelope" />
+                    <FaEnvelope/>
                   </span>
                   <Form.Control style={{
                     borderColor:"#fff",
@@ -123,7 +119,7 @@ const Login = () => {
                   borderRadius:10,
                   }}>
                   <span className="px-2">
-                    <FontAwesomeIcon icon="key" />
+                    <FaKey/>
                   </span>
                   <Form.Control style={{
                     borderColor:"#fff",
