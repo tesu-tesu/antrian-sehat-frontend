@@ -14,6 +14,7 @@ import Register from "pages/Register";
 import Home from "pages/Home";
 import Dashboard from "pages/Dashboard";
 import ListPolyclinic  from "pages/ListPolyclinic";
+import AdminContainer from "components/admin/AdminContainer";
 
 export const APP_ROUTE = [
   {
@@ -42,7 +43,7 @@ export const APP_ROUTE = [
     name: "Dashboard",
     path: "/dashboard",
     exact: true,
-    component: Dashboard,
+    component: AdminContainer,
     private: true,
     isAdmin: true,
   },
