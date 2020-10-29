@@ -64,4 +64,12 @@ export const APP_ROUTE = [
     private: true,
     isPasien: true,
   },
+  {
+    name: "List Health Agency",
+    path: "/puskesmas",
+    exact: true,
+    component: ListHealthAgency,
+    private: true,
+    isPasien: true,
+  },
 ];
