@@ -1,19 +1,25 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+
 body {
   margin: 5;
   background-color: #F5FAFD;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",  "Poppins"
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.pasien-body{
+  font-family: Poppins;
+}
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", Poppins, monospace;
 }
 
 .bg-app{
-  background-color: #E8F9F3;
+  background-color: #F5FAFD;
 }
 
 .navbar-user {
@@ -22,4 +28,8 @@ code {
 
 .navbar-admin {
   background-image: linear-gradient(to bottom,#3C96C4 0,#27B99C 100%); /* override background image gradient w/ flat color */
+}
+
+.body-title{
+  font-size: xx-large;
 }

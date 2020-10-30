@@ -1,12 +1,12 @@
 import ListPolyclinic  from "pages/ListPolyclinic";
-import Home from "pages/Home";
+import PasienContainer from "components/pasien/PasienContainer";
 
 export const APP_PATIENT_ROUTE = [
   {
     name: "Home",
     path: "/",
     exact: true,
-    component: Home,
+    component: PasienContainer,
     private: true,
     isPasien: true,
   },
