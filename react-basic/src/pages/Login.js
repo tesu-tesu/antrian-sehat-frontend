@@ -8,7 +8,7 @@ import React from "react";
 import { Button, Row, InputGroup, Form, Image} from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import { setUserLogin } from "utils/auth";
-import headerImage from '../images/pasien/LOGIN 4.png';
+import headerImage from '../images/pasien/LOGIN.png';
 import logo from '../images/pasien/logo.png';
 import axios from "axios";
 import { LOGIN_API } from "constants/urls";
@@ -82,8 +82,12 @@ const Login = () => {
         </Container>
       </Navbar> */}
       <Row xs="auto">
-        <div className="col-lg-9 pr-0">
-          <Image src={headerImage} fluid/>
+      <div className="col-md-9 px-0 d-none d-sm-block">
+          <Image src={headerImage} style={{
+            width:"100%",
+            height:"100vh",
+            objectPosition:"cover",
+          }}/>
         </div>
         <div className="col-lg-3 pl-4" fluid >
           <div className="mt-5 mb-5 text-center">
