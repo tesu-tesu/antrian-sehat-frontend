@@ -73,7 +73,7 @@ const Login = () => {
 
   return (
     <div className="bg-app pr-3">
-      {isLoggedIn && <Redirect to="/" />}
+      {isLoggedIn && <Redirect to="/admin/dashboard" />}
       {/* <Navbar bg="light" expand="lg">
         <Container>
           <Link to="/">
