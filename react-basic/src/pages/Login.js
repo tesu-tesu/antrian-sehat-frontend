@@ -33,6 +33,12 @@ const Login = () => {
     return () => {};
   }, [email, password]);
 
+  const _enterPressed = (event) => {
+    if (event.key === 'Enter') {
+      _onSubmit();
+    }
+  }
+
   const _onSubmit = () => {
     setLoading(true)
     axios
@@ -106,6 +112,9 @@ const Login = () => {
                       setEmail(e.target.value)
                       setErrorEmail("")
                     }}
+                    onKeyPress={(e) => {
+                      _enterPressed(e)
+                    }}
                   />
               </InputGroup>
               
@@ -133,6 +142,9 @@ const Login = () => {
                     onChange={(e) => {
                       setPassword(e.target.value)
                       setErrorPassword("")
+                    }}
+                    onKeyPress={(e) => {
+                      _enterPressed(e)
                     }}
                   />
               </InputGroup>
