@@ -89,8 +89,12 @@ const Register = () => {
     <div className="bg-app pr-3">
       {isLoggedIn && <Redirect to="/dashboard" />}
       <Row xs="auto">
-        <div className="col-lg-9 pr-0">
-          <Image src={headerImage} fluid/>
+        <div className="col-md-9 px-0 d-none d-sm-block">
+          <Image src={headerImage} style={{
+            width:"100%",
+            height:"100vh",
+            objectPosition:"cover",
+          }}/>
         </div>
         <div className="col-lg-3 pl-4" fluid >
           <div className="mt-5 mb-5 text-center">
