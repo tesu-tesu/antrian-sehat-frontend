@@ -41,23 +41,15 @@ const App = () => {
           );
         })};
         {APP_ROUTE.map((value, index) => {
-          if (value.private) {
-            if(value.isPasien){
-              //
-            }else{
-              //
-            }
-          } else {
-            return (
-              <PublicRoute
-                key={value.name}
-                restricted={value.restricted}
-                path={value.path}
-                component={value.component}
-                exact={value.exact}
-              />
-            );
-          }
+          return (
+            <PublicRoute
+              key={value.name}
+              restricted={value.restricted}
+              path={value.path}
+              component={value.component}
+              exact={value.exact}
+            />
+          );
         })};
       </Switch>
     </Router>
