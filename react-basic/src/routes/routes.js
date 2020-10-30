@@ -11,20 +11,10 @@
 
 import Login from "pages/Login";
 import Register from "pages/Register";
-import Home from "pages/Home";
-import Dashboard from "pages/Dashboard";
-import ListPolyclinic  from "pages/ListPolyclinic";
 
 export const APP_ROUTE = [
-  // {
-  //   name: "Login",
-  //   path: "/login",
-  //   exact: true,
-  //   component: Login,
-  //   restricted: true,
-  // },
   {
-    name: "Resgister",
+    name: "Register",
     path: "/register",
     exact: true,
     component: Register,
@@ -36,26 +26,5 @@ export const APP_ROUTE = [
     exact: true,
     component: Login,
     restricted: true,
-  },
-  {
-    name: "Home",
-    path: "/",
-    exact: true,
-    component: Home,
-    private: true,
-  },
-  {
-    name: "Dashboard",
-    path: "/dashboard",
-    exact: true,
-    component: Dashboard,
-    private: true,
-  },
-  {
-    name: "List Polyclinic of HA",
-    path: "/list-polyclinic",
-    exact: true,
-    component: ListPolyclinic,
-    private: true,
   },
 ];

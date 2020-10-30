@@ -13,11 +13,7 @@ import logo from '../images/pasien/logo.png';
 import axios from "axios";
 import { LOGIN_API } from "constants/urls";
 import Loader from 'react-loader-spinner';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faKey, faEnvelope } from '@fortawesome/free-solid-svg-icons';
-library.add(fab, faKey, faEnvelope)
+import { FaEnvelope, FaKey } from "react-icons/fa";
 
 const Login = () => {
   const [email, setEmail] = React.useState("");
@@ -36,6 +32,12 @@ const Login = () => {
     }
     return () => {};
   }, [email, password]);
+
+  const _enterPressed = (event) => {
+    if (event.key === 'Enter') {
+      _onSubmit();
+    }
+  }
 
   const _onSubmit = () => {
     setLoading(true)
@@ -71,7 +73,7 @@ const Login = () => {
 
   return (
     <div className="bg-app pr-3">
-      {isLoggedIn && <Redirect to="/dashboard" />}
+      {isLoggedIn && <Redirect to="/admin/dashboard" />}
       {/* <Navbar bg="light" expand="lg">
         <Container>
           <Link to="/">
@@ -95,7 +97,7 @@ const Login = () => {
                   borderRadius:10,
                   }}>
                   <span className="px-2">
-                    <FontAwesomeIcon icon="envelope" />
+                    <FaEnvelope/>
                   </span>
                   <Form.Control style={{
                     borderColor:"#fff",
@@ -110,6 +112,9 @@ const Login = () => {
                       setEmail(e.target.value)
                       setErrorEmail("")
                     }}
+                    onKeyPress={(e) => {
+                      _enterPressed(e)
+                    }}
                   />
               </InputGroup>
               
@@ -123,7 +128,7 @@ const Login = () => {
                   borderRadius:10,
                   }}>
                   <span className="px-2">
-                    <FontAwesomeIcon icon="key" />
+                    <FaKey/>
                   </span>
                   <Form.Control style={{
                     borderColor:"#fff",
@@ -137,6 +142,9 @@ const Login = () => {
                     onChange={(e) => {
                       setPassword(e.target.value)
                       setErrorPassword("")
+                    }}
+                    onKeyPress={(e) => {
+                      _enterPressed(e)
                     }}
                   />
               </InputGroup>
