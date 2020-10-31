@@ -82,7 +82,7 @@ const Login = () => {
         </Container>
       </Navbar> */}
       <Row xs="auto">
-      <div className="col-md-9 px-0 d-none d-sm-block">
+      <div className="col-lg-9 px-0 d-none d-sm-block">
           <Image src={headerImage} style={{
             width:"100%",
             height:"100vh",
