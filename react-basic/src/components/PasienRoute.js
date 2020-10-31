@@ -17,7 +17,7 @@ const PasienRoute = ({ component: Component, ...rest }) => {
         isLogin() ? 
             !isPasien() ?
                 <>
-                    <Redirect to="/" />
+                    <Redirect to="/admin/dashboard" />
                     <Component {...props} />
                 </>
             :
