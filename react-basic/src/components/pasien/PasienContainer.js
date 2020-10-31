@@ -5,12 +5,13 @@
 import React from "react";
 import { Card, Container, Row, Col, Breadcrumb } from "react-bootstrap";
 import NavBar from "components/NavBar";
+import FooterBar from "../FooterBar";
 
 const PasienContainer = (props) => {
   return (
     <>
         <div className="header">
-        <NavBar></NavBar>
+        <NavBar/>
         </div>
         <div className="pasien-body">
             <Breadcrumb className="mx-3 mt-2" style={{
@@ -39,6 +40,9 @@ const PasienContainer = (props) => {
                         </Card.Body>
                 </Card>
             </div>
+        </div>
+        <div className="footer">
+            <FooterBar/>
         </div>
     </>
   );
