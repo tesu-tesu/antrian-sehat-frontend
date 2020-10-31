@@ -11,10 +11,15 @@
 
 import Login from "pages/Login";
 import Register from "pages/Register";
+import Home from "pages/Home";
+import Dashboard from "pages/Dashboard";
+import ListPolyclinic  from "pages/ListPolyclinic";
+import AdminContainer from "components/admin/AdminContainer";
+import ListHealthAgency from "../pages/ListHealthAgency";
 
 export const APP_ROUTE = [
   {
-    name: "Register",
+    name: "Resgister",
     path: "/register",
     exact: true,
     component: Register,
@@ -26,5 +31,45 @@ export const APP_ROUTE = [
     exact: true,
     component: Login,
     restricted: true,
+  },
+  {
+    name: "Home",
+    path: "/",
+    exact: true,
+    component: Home,
+    private: true,
+    isPasien: true,
+  },
+  {
+    name: "Dashboard",
+    path: "/dashboard",
+    exact: true,
+    component: AdminContainer,
+    private: true,
+    isAdmin: true,
+  },
+  {
+    name: "List Polyclinic of HA",
+    path: "/list-polyclinic/:id_health_agency",
+    exact: true,
+    component: ListPolyclinic,
+    private: true,
+    isPasien: true,
+  },
+  {
+    name: "List Health Agency",
+    path: "/health-agency",
+    exact: true,
+    component: ListHealthAgency,
+    private: true,
+    isPasien: true,
+  },
+  {
+    name: "List Health Agency",
+    path: "/puskesmas",
+    exact: true,
+    component: ListHealthAgency,
+    private: true,
+    isPasien: true,
   },
 ];
