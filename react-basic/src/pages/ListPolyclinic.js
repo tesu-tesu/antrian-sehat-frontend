@@ -5,6 +5,7 @@ import axios from "axios";
 import { Row, Col, Card, Container, Breadcrumb } from "react-bootstrap";
 import { FaReact } from "react-icons/fa";
 import { useParams } from "react-router";
+import MasterLayout from "components/pasien/PasienContainer"
 
 const ListPolyclinic = () => {
   const [polyclinics, setPolyclinics] = React.useState([]);
@@ -14,6 +15,7 @@ const ListPolyclinic = () => {
   let { id_health_agency } = useParams();
 
   React.useEffect(() => {
+    console.log("jwt header: "+JWT_HEADER)
     axios
       .get(GET_POLYCLINIC_OF_HA(id_health_agency),  { 
         headers: {"Authorization" : `Bearer ${JWT_HEADER}`} 
@@ -26,49 +28,34 @@ const ListPolyclinic = () => {
       });
   }, []);
 
-  return (
-    <div>
-      <NavBar></NavBar>
-      <Breadcrumb>
-        <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
-        <Breadcrumb.Item href="https://getbootstrap.com/docs/4.0/components/breadcrumb/">
-          Library
-        </Breadcrumb.Item>
-        <Breadcrumb.Item active>Data</Breadcrumb.Item>
-      </Breadcrumb>
-      <div className="mx-5">
-        <h2>Daftar Poli</h2>
-      </div>
-      <Container className="mt-4">
-        <Card>
+  const props = {
+    title: 'List Poliklinik', 
+    breadcrumb: 'List Poli',
+    content: <Row>
+    {polyclinics.map((polyclinic,key) => {
+      return (
+        <Card 
+          key={key} 
+          className="mx-3 text-center mx-auto"
+          style={{
+            backgroundColor : "#F0F5FE"
+          }}
+        >
           <Card.Body>
-            <Row>
-              {polyclinics.map((polyclinic,key) => {
-                return (
-                  <Card 
-                    key={key} 
-                    className="mx-3 text-center mx-auto"
-                    style={{
-                      backgroundColor : "#F0F5FE"
-                    }}
-                  >
-                    <Card.Body>
-                      <FaReact
-                        style={{
-                          fontSize : "30px"
-                        }}
-                      />
-                      <p className="mt-3">{polyclinic.poly_master.name}</p>
-                    </Card.Body>
-                  </Card>
-                );
-              })}
-            </Row>
+            <FaReact
+              style={{
+                fontSize : "30px"
+              }}
+            />
+            <p className="mt-3">{polyclinic.poly_master.name}</p>
           </Card.Body>
         </Card>
-      </Container>
-    </div>
-  );
+      );
+    })}
+  </Row>
+  };
+  return <MasterLayout {...props} />;
+
 };
 
 export default ListPolyclinic;
