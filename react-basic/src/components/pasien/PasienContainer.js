@@ -3,6 +3,7 @@
 */
 
 import React from "react";
+import { FaHome, IconName } from "react-icons/fa";
 import { Card, Container, Row, Col, Breadcrumb } from "react-bootstrap";
 import NavBar from "components/NavBar";
 import FooterBar from "../FooterBar";
@@ -14,17 +15,24 @@ const PasienContainer = (props) => {
         <NavBar/>
         </div>
         <div className="pasien-body">
-            <Breadcrumb className="mx-3 mt-2" style={{
-                borderRadius: "20px",
-                backgroundColor: "#fff"
+            <Breadcrumb bsPrefix className="mx-3 mt-2" style={{
+                borderRadius: "30px",
+                paddingTop: "15px",
+                paddingBottom: "20px",
+                backgroundColor: "#EBF5F7"
             }}>
-                <Breadcrumb.Item href="/">
+                <Breadcrumb.Item href="/" style={{
+                    float: "left",
+                }}>
                     <span>
-                        <i className="ni ni-shop mr-2" />
+                        <FaHome></FaHome>
+                        <i className="mr-2" />
                         Home
                     </span>
                 </Breadcrumb.Item>
-                <Breadcrumb.Item active>
+                <Breadcrumb.Item active style={{
+                    float: "left",
+                }}>
                     {props.breadcrumb}
                 </Breadcrumb.Item>
             </Breadcrumb>
@@ -32,7 +40,7 @@ const PasienContainer = (props) => {
                 {props.title}
             </div>
             <div className="mx-4 mt-3">
-                <Card className="mx-lg-4" style={{
+                <Card className="mx-lg-4 border-light" style={{
                         borderRadius: "15px"
                     }}>
                         <Card.Body>
@@ -49,3 +57,4 @@ const PasienContainer = (props) => {
 };
 
 export default PasienContainer;
+
