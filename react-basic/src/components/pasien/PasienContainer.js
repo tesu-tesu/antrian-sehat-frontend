@@ -36,7 +36,7 @@ const PasienContainer = (props) => {
                     {props.breadcrumb}
                 </Breadcrumb.Item>
             </Breadcrumb>
-            <div className="body-title mx-4">
+            <div className="body-title ml-5 mt-2">
                 {props.title}
             </div>
             <div className="mx-4 mt-3">
