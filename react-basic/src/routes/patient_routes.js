@@ -2,6 +2,7 @@ import ListPolyclinic  from "pages/ListPolyclinic";
 import ListHealthAgency  from "pages/ListHealthAgency";
 import PasienContainer from "components/pasien/PasienContainer";
 import Home from "pages/Home";
+import HealthAgencies from "pages/HealthAgencies";
 
 export const APP_PATIENT_ROUTE = [
   {
@@ -21,16 +22,16 @@ export const APP_PATIENT_ROUTE = [
     isPasien: true,
   },
   {
-    name: "List Health Agency",
-    path: "/health-agency",
+    name: "All Health Agencies",
+    path: "/health-agencies",
     exact: true,
-    component: ListHealthAgency,
+    component: HealthAgencies,
     private: true,
     isPasien: true,
   },
   {
-    name: "List Health Agency",
-    path: "/puskesmas",
+    name: "Get Health Agency",
+    path: "/health-agency/:id_health_agency",
     exact: true,
     component: ListHealthAgency,
     private: true,
