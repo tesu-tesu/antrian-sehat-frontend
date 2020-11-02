@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Card, Row} from "react-bootstrap";
 import Axios from "axios";
-import {GET_HEALTH_AGENCY, JWT_HEADER} from "../constants/urls";
+import {GET_ONE_HEALTH_AGENCY, JWT_HEADER} from "../constants/urls";
 import {useParams} from "react-router";
 import {FaHospital} from "react-icons/fa";
 import MasterLayout from "../components/pasien/PasienContainer";
@@ -16,7 +16,7 @@ const ListHealthAgency = () => {
             console.log(JWT_HEADER)
             setIsLoading(true);
             await Axios
-                .get(GET_HEALTH_AGENCY(id_health_agency), {
+                .get(GET_ONE_HEALTH_AGENCY(id_health_agency), {
                     headers: {"Authorization": `Bearer ${JWT_HEADER}`}
                 }).then(r => {
                     setHealthAgencies(r.data);

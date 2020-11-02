@@ -1,39 +1,34 @@
 import React from "react";
-import NavBar from "../components/NavBar";
-import { GET_POLYCLINIC_OF_HA, JWT_HEADER } from "constants/urls";
+import { GET_ALL_HEALTH_AGENCIES, JWT_HEADER } from "constants/urls";
 import axios from "axios";
-import { Row, Col, Card, Container, Breadcrumb } from "react-bootstrap";
+import { Row, Card } from "react-bootstrap";
 import { FaReact } from "react-icons/fa";
 import { useParams } from "react-router";
 import MasterLayout from "components/pasien/PasienContainer"
 
-const ListPolyclinic = () => {
-  const [polyclinics, setPolyclinics] = React.useState([]);
-  //Static Health Agency ID
-  //const [, setHealthAgencyId] = React.useState(8);
+const HealthAgencies = () => {
+  const [healthAgencies, setHealthAgencies] = React.useState([]);
 
-  let { id_health_agency } = useParams();
-
-  React.useEffect(() => {
-    console.log("jwt header: "+JWT_HEADER)
+  React.useEffect(() => {    
     axios
-      .get(GET_POLYCLINIC_OF_HA(id_health_agency),  { 
+      .get(GET_ALL_HEALTH_AGENCIES(),  { 
         headers: {"Authorization" : `Bearer ${JWT_HEADER}`} 
       })
       .then((res) => {
-        setPolyclinics(res.data);
+          console.log(res)
+        setHealthAgencies(res.data)
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err)
       });
   }, []);
 
   const props = {
-    title: 'List Poliklinik', 
-    breadcrumb: 'List Poli',
+    title: 'Health Agencies', 
+    breadcrumb: 'Health Agencies',
     content: 
     <Row>
-    {polyclinics.map((polyclinic,key) => {
+    {healthAgencies.map((healthAgency,key) => {
       return (
         <Card 
           key={key} 
@@ -49,7 +44,7 @@ const ListPolyclinic = () => {
                 fontSize : "30px"
               }}
             />
-            <p className="mt-3">{polyclinic.poly_master.name}</p>
+            <p className="mt-3">{healthAgency.name}</p>
           </Card.Body>
         </Card>
       );
@@ -60,4 +55,4 @@ const ListPolyclinic = () => {
 
 };
 
-export default ListPolyclinic;
+export default HealthAgencies;
