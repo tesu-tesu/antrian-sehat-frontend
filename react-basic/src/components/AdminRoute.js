@@ -14,15 +14,18 @@ const AdminRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) =>
-        isLogin() ? 
-            !isAdmin() ?
-                <>
-                    <Redirect to="/" />
-                    <Component {...props} />
-                </>
-            :
-                <Component {...props} />
-        : <Redirect to="/login" />
+        isLogin() ? (
+          !isAdmin() ? (
+            <>
+              <Redirect to="/pasien" />
+              <Component {...props} />
+            </>
+          ) : (
+            <Component {...props} />
+          )
+        ) : (
+          <Redirect to="/login" />
+        )
       }
     />
   );

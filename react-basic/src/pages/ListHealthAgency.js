@@ -1,72 +1,68 @@
-import React, {useEffect, useState} from 'react';
-import {Card, Row} from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Card, Row } from "react-bootstrap";
 import Axios from "axios";
-import {GET_ONE_HEALTH_AGENCY, JWT_HEADER} from "../constants/urls";
-import {useParams} from "react-router";
-import {FaHospital} from "react-icons/fa";
-import MasterLayout from "../components/pasien/PasienContainer";
+import { GET_ONE_HEALTH_AGENCY, JWT_HEADER } from "../constants/urls";
+import { useParams } from "react-router";
+import { FaHospital } from "react-icons/fa";
 
 const ListHealthAgency = () => {
-    const [healthAgencies, setHealthAgencies] = useState([]);
-    let {id_health_agency} = useParams();
-    const [isLoading, setIsLoading] = useState(false);
+  const [healthAgencies, setHealthAgencies] = useState([]);
+  let { id_health_agency } = useParams();
+  const [isLoading, setIsLoading] = useState(false);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            console.log(JWT_HEADER)
-            setIsLoading(true);
-            await Axios
-                .get(GET_ONE_HEALTH_AGENCY(id_health_agency), {
-                    headers: {"Authorization": `Bearer ${JWT_HEADER}`}
-                }).then(r => {
-                    setHealthAgencies(r.data);
-                }).catch(e => console.log(e))
-            setIsLoading(false);
-        };
-        fetchData()
-        //setIsLoading(false);
-    }, []);
-
-
-    const props = {
-        title: 'Daftar Puskesmas',
-        breadcrumb: 'daftar puskesmas',
-        content:
-            <Row>
-                {
-                    isLoading ? (
-                        <div>..is loading</div>
-                    ) : (
-                        healthAgencies.map((
-                            healthAgency, key) => {
-                                return (
-                                    <Card
-                                        key={key}
-                                        className="mx-3 text-center mx-auto"
-                                        style={{
-                                            backgroundColor: "#F0F5FE"
-                                        }}
-                                    >
-                                        {/*                                    <Card.Header>
-                                        <img src={healthAgency.image} className="card-img" alt="image"/>
-                                    </Card.Header>*/}
-                                        <Card.Body>
-                                            <FaHospital
-                                                style={{
-                                                    fontSize: "30px"
-                                                }}
-                                            />
-                                            <p className="mt-3">{healthAgency.name}</p>
-                                        </Card.Body>
-                                    </Card>
-                                );
-                            }
-                        )
-                    )
-                }
-            </Row>
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      await Axios.get(GET_ONE_HEALTH_AGENCY(id_health_agency), {
+        headers: { Authorization: `Bearer ${JWT_HEADER}` },
+      })
+        .then((r) => {
+          setHealthAgencies(r.data);
+        })
+        .catch((e) => console.log(e));
+      setIsLoading(false);
     };
-    return <MasterLayout {...props} />;
+    fetchData();
+    //setIsLoading(false);
+  }, []);
+
+  return (
+    <div className="mx-4 mt-3">
+      <Card
+        className="mx-lg-4 border-light"
+        style={{
+          borderRadius: "15px",
+        }}
+      >
+        <Card.Body>
+          <Row>
+            {isLoading ? (
+              <div>..is loading</div>
+            ) : (
+              <Card
+                className="mx-3 text-center mx-auto"
+                style={{
+                  backgroundColor: "#F0F5FE",
+                }}
+              >
+                {/*                                    <Card.Header>
+                    <img src={healthAgency.image} className="card-img" alt="image"/>
+                </Card.Header>*/}
+                <Card.Body>
+                  <FaHospital
+                    style={{
+                      fontSize: "30px",
+                    }}
+                  />
+                  <p className="mt-3">{healthAgencies.name}</p>
+                </Card.Body>
+              </Card>
+            )}
+          </Row>
+        </Card.Body>
+      </Card>
+    </div>
+  );
 };
 
 export default ListHealthAgency;
