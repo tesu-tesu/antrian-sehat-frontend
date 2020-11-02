@@ -14,13 +14,28 @@ import { Switch, useLocation, Redirect } from "react-router-dom";
 const PasienContainer = (props) => {
   const location = useLocation();
 
+  const getPathName = (path) => {
+    let lastPart = path.split("/");
+    let pathName = lastPart.reduce(function (a, b) {
+      //get longest string in element of path
+      return a.length > b.length ? a : b;
+    });
+    pathName = pathName.split("-");
+
+    for (let i = 0; i < pathName.length; i++) {
+      pathName[i] = pathName[i].charAt(0).toUpperCase() + pathName[i].slice(1);
+    }
+
+    return pathName.join(" ");
+  };
+
   return (
     <>
       <div className="header">
         <NavBar />
       </div>
       <div className="pasien-body">
-        {location.pathname !== "/" && (
+        {location.pathname !== "/pasien" && (
           <>
             <Breadcrumb
               bsPrefix
@@ -50,10 +65,12 @@ const PasienContainer = (props) => {
                   float: "left",
                 }}
               >
-                {props.breadcrumb}
+                {getPathName(location.pathname)}
               </Breadcrumb.Item>
             </Breadcrumb>
-            <div className="body-title ml-5 mt-2">{props.title}</div>
+            <div className="body-title ml-5 mt-2">
+              {getPathName(location.pathname)}
+            </div>
           </>
         )}
 

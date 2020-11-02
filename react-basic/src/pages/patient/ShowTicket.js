@@ -26,7 +26,6 @@ const ShowTicket = () => {
 
   return (
     <div className="mx-4 mt-3">
-      {console.log(currentWaitingLists)}
       <Card
         className="mx-lg-4 border-light p-3"
         style={{
@@ -49,11 +48,15 @@ const ShowTicket = () => {
                 >
                   <Card.Body>
                     <Card.Text>
-                      <QRCode value={currentWaitingList.barcode} /><br/>
-                      {currentWaitingList.registered_date}<br/>
-                      No. Antrian : {currentWaitingList.order_number}/ 
-                        {currentWaitingList.latest_number}<br/>
-                      {currentWaitingList.health_agency}<br/>
+                      <QRCode value={currentWaitingList.barcode} />
+                      <br />
+                      {currentWaitingList.registered_date}
+                      <br />
+                      No. Antrian : {currentWaitingList.order_number}/
+                      {currentWaitingList.latest_number}
+                      <br />
+                      {currentWaitingList.health_agency}
+                      <br />
                       {currentWaitingList.polyclinic}
                     </Card.Text>
                   </Card.Body>
@@ -79,11 +82,15 @@ const ShowTicket = () => {
                 >
                   <Card.Body>
                     <Card.Text>
-                      <QRCode value={futureWaitingList.barcode} /><br/>
-                      {futureWaitingList.registered_date}<br/>
-                      No. Antrian : {futureWaitingList.order_number}/ 
-                        {futureWaitingList.latest_number}<br/>
-                      {futureWaitingList.health_agency}<br/>
+                      <QRCode value={futureWaitingList.barcode} />
+                      <br />
+                      {futureWaitingList.registered_date}
+                      <br />
+                      No. Antrian : {futureWaitingList.order_number}/
+                      {futureWaitingList.latest_number}
+                      <br />
+                      {futureWaitingList.health_agency}
+                      <br />
                       {futureWaitingList.polyclinic}
                     </Card.Text>
                   </Card.Body>
@@ -109,11 +116,15 @@ const ShowTicket = () => {
                 >
                   <Card.Body>
                     <Card.Text>
-                      <QRCode value={historyWaitingList.barcode} /><br/>
-                      {historyWaitingList.registered_date}<br/>
-                      No. Antrian : {historyWaitingList.order_number}/ 
-                        {historyWaitingList.latest_number}<br/>
-                      {historyWaitingList.health_agency}<br/>
+                      <QRCode value={historyWaitingList.barcode} />
+                      <br />
+                      {historyWaitingList.registered_date}
+                      <br />
+                      No. Antrian : {historyWaitingList.order_number}/
+                      {historyWaitingList.latest_number}
+                      <br />
+                      {historyWaitingList.health_agency}
+                      <br />
                       {historyWaitingList.polyclinic}
                     </Card.Text>
                   </Card.Body>
