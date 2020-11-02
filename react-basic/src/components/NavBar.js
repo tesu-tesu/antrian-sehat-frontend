@@ -29,9 +29,9 @@ return (
         <Navbar.Toggle aria-controls="menu-navbar" />
         <Navbar.Collapse id="menu-navbar" className="ml-5">
             <Nav className="ml-auto">
-                <Nav.Link className="text-light font-weight-bold mr-5" href="/puskesmas">Puskesmas</Nav.Link>
-                <Nav.Link className="text-light font-weight-bold mr-5" href="/listpoly">List Poly</Nav.Link>
-                <Nav.Link className="text-light font-weight-bold mr-5" href="/history">History</Nav.Link>
+                <Nav.Link className="text-light font-weight-bold mr-5" href="/health-agencies">Puskesmas</Nav.Link>
+                <Nav.Link className="text-light font-weight-bold mr-5" href="/poly-masters">List Poly</Nav.Link>
+                <Nav.Link className="text-light font-weight-bold mr-5" href="/histories">History</Nav.Link>
                 <Nav.Link className="text-light font-weight-bold mr-5" href="/artikel">Artikel</Nav.Link>
             </Nav>
             <Nav className="mx-auto">
