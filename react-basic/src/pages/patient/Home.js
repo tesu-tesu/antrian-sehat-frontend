@@ -1,12 +1,12 @@
 import React from "react";
 import { Button, Container, Card, Col, Row, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import PlusImage from "../images/pasien/plus.png";
-import ListTiket from "../images/pasien/list tiket.png";
-import HumanSit from "../images/pasien/human sit rev.png";
-import Patient from "../images/pasien/patient.png";
-import Instancies from "../images/pasien/instancies.png";
-import RightArrow from "../images/pasien/right arrow.png";
+import PlusImage from "../../images/pasien/plus.png";
+import ListTiket from "../../images/pasien/list tiket.png";
+import HumanSit from "../../images/pasien/human sit rev.png";
+import Patient from "../../images/pasien/patient.png";
+import Instancies from "../../images/pasien/instancies.png";
+import RightArrow from "../../images/pasien/right arrow.png";
 
 const Home = () => {
   return (
