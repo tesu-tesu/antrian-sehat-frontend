@@ -38,6 +38,7 @@ import {
 import puskesmasIcon from 'images/admin/puskesmas.png';
 import clinicIcon from 'images/admin/clinic.png';
 import listIcon from 'images/admin/list.png';
+import qrScan from 'images/admin/search.png';
 
 var ps;
 
@@ -240,6 +241,14 @@ class Sidebar extends React.Component {
                   <img src={clinicIcon} fluid/>
                 </span>
                 <NavLink>Poliklinik</NavLink>
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink style={{fontWeight:"600"}} href="/admin/scan-qr">
+                <span className="">
+                  <img src={qrScan} fluid/>
+                </span>
+                <NavLink>Scan QR</NavLink>
                 </NavLink>
               </NavItem>
             </Nav>

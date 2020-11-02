@@ -1,13 +1,13 @@
 import AdminContainer from "components/admin/AdminContainer";
-import Home from "pages/patient/Home";
+import ScanQR from "pages/admin/ScanQR";
 
 export const APP_ADMIN_ROUTE = [
-  //   {
-  //     name: "Admin",
-  //     path: "/admin",
-  //     exact: true,
-  //     component: Home,
-  //     private: true,
-  //     isAdmin: true,
-  //   },
+    {
+      name: "QR Scan",
+      path: "/admin/scan-qr",
+      exact: true,
+      component: ScanQR,
+      private: true,
+      isAdmin: true,
+    },
 ];
