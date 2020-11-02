@@ -1,4 +1,3 @@
-
 import React from "react";
 
 // reactstrap components
@@ -12,20 +11,19 @@ import {
   FormGroup,
   Navbar,
   Nav,
-  Media
+  Media,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { logout } from "utils/auth";
 
 const Header = () => {
-
   const history = useHistory();
 
   const onLogout = () => {
     logout();
     history.replace("/");
-  }
+  };
 
   return (
     <>
@@ -33,12 +31,11 @@ const Header = () => {
         <Container fluid>
           <Link
             className="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
-            to="/"
-          >
-          </Link>
+            to="/pasien"
+          ></Link>
           <Form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
             <div className="text-white font-weight-bold mr-2">
-                Nama Puskesmas - Role
+              Nama Puskesmas - Role
             </div>
             <FormGroup className="mb-0">
               {/* <InputGroup className="input-group-alternative">
@@ -71,9 +68,7 @@ const Header = () => {
               <DropdownToggle className="pr-0" nav>
                 <Media className="align-items-center">
                   <span className="avatar avatar-sm rounded-circle">
-                    <img
-                      alt="..."
-                    />
+                    <img alt="..." />
                   </span>
                   <Media className="ml-2 d-none d-lg-block">
                     <span className="mb-0 text-sm font-weight-bold">
@@ -100,16 +95,13 @@ const Header = () => {
           </Nav>
         </Container>
       </Navbar>
-      <div className="header navbar-admin pb-8 pt-8 pt-lg-8" style={{
-      }}>
+      <div className="header navbar-admin pb-8 pt-8 pt-lg-8" style={{}}>
         <Container fluid>
-          <div className="header-body">
-            {/* Card stats */}
-          </div>
+          <div className="header-body">{/* Card stats */}</div>
         </Container>
       </div>
     </>
   );
-}
+};
 
 export default Header;

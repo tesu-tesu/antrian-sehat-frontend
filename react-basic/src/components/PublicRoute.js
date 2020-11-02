@@ -16,10 +16,11 @@ const PublicRoute = ({ component: Component, restricted, ...rest }) => {
       {...rest}
       render={(props) =>
         isLogin() && restricted ? (
-          isPasien() ?
-          <Redirect to="/" />
-          :
-          <Redirect to="/dashboard" />
+          isPasien() ? (
+            <Redirect to="/pasien" />
+          ) : (
+            <Redirect to="/admin" />
+          )
         ) : (
           <Component {...props} />
         )

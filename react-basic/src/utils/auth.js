@@ -4,7 +4,7 @@
   kayak nama user di localStorage aja gpp
 */
 // import sessionstorage from 'sessionstorage';
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 export const setUserLogin = (user) => {
   Cookies.set("USER", user);
@@ -19,7 +19,6 @@ export const logout = () => {
 
 export const isLogin = () => {
   if (Cookies.get("USER")) {
-    console.log(isPasien())
     return true;
   }
   return false;
@@ -43,4 +42,3 @@ export const isSuperAdmin = () => {
   }
   return false;
 };
-

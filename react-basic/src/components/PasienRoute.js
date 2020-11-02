@@ -14,15 +14,18 @@ const PasienRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) =>
-        isLogin() ? 
-            !isPasien() ?
-                <>
-                    <Redirect to="/admin/dashboard" />
-                    <Component {...props} />
-                </>
-            :
-                <Component {...props} />
-        : <Redirect to="/login" />
+        isLogin() ? (
+          !isPasien() ? (
+            <>
+              <Redirect to="/admin" />
+              <Component {...props} />
+            </>
+          ) : (
+            <Component {...props} />
+          )
+        ) : (
+          <Redirect to="/login" />
+        )
       }
     />
   );

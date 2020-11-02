@@ -11,15 +11,12 @@
 
 import Login from "pages/Login";
 import Register from "pages/Register";
-import Home from "pages/Home";
-import Dashboard from "pages/Dashboard";
-import ListPolyclinic  from "pages/ListPolyclinic";
+import PasienContainer from "components/pasien/PasienContainer";
 import AdminContainer from "components/admin/AdminContainer";
-import ListHealthAgency from "../pages/ListHealthAgency";
 
 export const APP_ROUTE = [
   {
-    name: "Resgister",
+    name: "Register",
     path: "/register",
     exact: true,
     component: Register,
@@ -31,5 +28,21 @@ export const APP_ROUTE = [
     exact: true,
     component: Login,
     restricted: true,
+  },
+  {
+    name: "Master Layout Admin",
+    path: "/admin",
+    // exact: true, //di false karena ada nested Switch di dalamnya AdminCOntainer
+    component: AdminContainer,
+    private: true,
+    isAdmin: true,
+  },
+  {
+    name: "Master Layout Pasien",
+    path: "/pasien",
+    // exact: true, //di false karena ada nested Switch di dalamnya PasienCOntainer
+    component: PasienContainer,
+    private: true,
+    isPasien: true,
   },
 ];

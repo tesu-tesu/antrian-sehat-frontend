@@ -3,7 +3,12 @@
 */
 
 import React from "react";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Redirect,
+  Route,
+} from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { APP_ROUTE } from "./routes/routes";
 import { APP_ADMIN_ROUTE } from "./routes/admin_routes";
@@ -18,28 +23,6 @@ const App = () => {
   return (
     <Router>
       <Switch>
-      {APP_ADMIN_ROUTE.map((value, index) => {
-          return (
-            <AdminRoute
-              key={value.name}
-              component={value.component}
-              path={value.path}
-              exact={value.exact}
-              isAdmin={value.isAdmin}
-            />
-          );
-        })};
-        {APP_PATIENT_ROUTE.map((value, index) => {
-          return (
-            <PasienRoute
-              key={value.name}
-              component={value.component}
-              path={value.path}
-              exact={value.exact}
-              isPasien={value.isPasien}
-            />
-          );
-        })};
         {APP_ROUTE.map((value, index) => {
           return (
             <PublicRoute
@@ -50,7 +33,10 @@ const App = () => {
               exact={value.exact}
             />
           );
-        })};
+        })}
+        <Route path="/">
+          <Redirect to="/login" />
+        </Route>
       </Switch>
     </Router>
   );
