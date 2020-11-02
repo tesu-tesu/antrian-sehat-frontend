@@ -21,8 +21,16 @@ export const APP_PATIENT_ROUTE = [
     isPasien: true,
   },
   {
-    name: "Health Agency",
+    name: "List Health Agency",
     path: "/health-agency",
+    exact: true,
+    component: ListHealthAgency,
+    private: true,
+    isPasien: true,
+  },
+  {
+    name: "List Health Agency",
+    path: "/puskesmas",
     exact: true,
     component: ListHealthAgency,
     private: true,
