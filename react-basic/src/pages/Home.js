@@ -118,6 +118,7 @@ const Home = () => {
             </Container>
           </div>
           <div className="mt-3 mb-4">
+            <Container>
               <Card className="mx-lg-4" style={{ borderRadius: "15px"}}>
                     <Card.Body>
                       <div className="d-flex justify-content-end mr-4 pr-4" style={{fontSize: "40px"}}>
@@ -144,7 +145,8 @@ const Home = () => {
                         </Col>
                       </Row>
                     </Card.Body>
-              </Card>
+                </Card>
+              </Container>
           </div>
       </Container>
       
