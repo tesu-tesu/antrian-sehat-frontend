@@ -1,7 +1,7 @@
-import ListPolyclinic from "pages/ListPolyclinic";
-import ListHealthAgency from "pages/ListHealthAgency";
-import Home from "pages/Home";
-import HealthAgencies from "pages/HealthAgencies";
+import ListPolyclinic from "pages/patient/ListPolyclinic";
+import ListHealthAgency from "pages/patient/ListHealthAgency";
+import Home from "pages/patient/Home";
+import HealthAgencies from "pages/patient/HealthAgencies";
 
 export const APP_PATIENT_ROUTE = [
   {

@@ -1,5 +1,5 @@
 import AdminContainer from "components/admin/AdminContainer";
-import Home from "pages/Home";
+import Home from "pages/patient/Home";
 
 export const APP_ADMIN_ROUTE = [
   //   {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Row } from "react-bootstrap";
 import Axios from "axios";
-import { GET_ONE_HEALTH_AGENCY, JWT_HEADER } from "../constants/urls";
+import { GET_ONE_HEALTH_AGENCY, JWT_HEADER } from "../../constants/urls";
 import { useParams } from "react-router";
 import { FaHospital } from "react-icons/fa";
 
