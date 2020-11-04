@@ -15,7 +15,7 @@ export const APP_PATIENT_ROUTE = [
   },
   {
     name: "List Polyclinic of HA",
-    path: "/pasien/list-polyclinic/:id_health_agency",
+    path: "/pasien/list-poliklinik/:id_health_agency",
     exact: true,
     component: ListPolyclinic,
     private: true,
@@ -23,7 +23,7 @@ export const APP_PATIENT_ROUTE = [
   },
   {
     name: "All Health Agencies",
-    path: "/pasien/health-agencies",
+    path: "/pasien/puskesmas",
     exact: true,
     component: HealthAgencies,
     private: true,
@@ -31,7 +31,7 @@ export const APP_PATIENT_ROUTE = [
   },
   {
     name: "Get Health Agency",
-    path: "/pasien/health-agency/:id_health_agency",
+    path: "/pasien/puskesmas/:id_health_agency",
     exact: true,
     component: ListHealthAgency,
     private: true,

@@ -42,13 +42,13 @@ const NavBar = () => {
           <Nav className="ml-auto">
             <Link
               className="text-light nav-link font-weight-bold mr-5"
-              to="/pasien/health-agencies"
+              to="/pasien/puskesmas"
             >
               Puskesmas
             </Link>
             <Link
               className="text-light nav-link font-weight-bold mr-5"
-              to="/pasien/poly-masters"
+              to="/pasien/polimaster"
             >
               List Poly
             </Link>
