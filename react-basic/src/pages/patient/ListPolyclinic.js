@@ -1,5 +1,4 @@
 import React from "react";
-import NavBar from "../../components/NavBar";
 import { GET_POLYCLINIC_OF_HA, JWT_HEADER } from "constants/urls";
 import axios from "axios";
 import { Row, Col, Card } from "react-bootstrap";
@@ -29,13 +28,13 @@ const ListPolyclinic = () => {
   return (
     <div className="mx-4 mt-3">
       <Card
-        className="mx-lg-4 border-light"
+        className="border-light"
         style={{
           borderRadius: "15px",
         }}
       >
         <Card.Body>
-          <Row>
+          <Row className="d-flex align-items-center justify-content-around">
             {polyclinics.map((polyclinic, key) => {
               return (
                 <Card
@@ -44,6 +43,7 @@ const ListPolyclinic = () => {
                   style={{
                     backgroundColor: "#F0F5FE",
                     width: "180px",
+                    borderRadius: "15px",
                   }}
                 >
                   <Card.Body>
