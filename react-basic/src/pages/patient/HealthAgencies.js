@@ -70,7 +70,7 @@ const HealthAgencies = () => {
         }}
       >
         <Card.Body>
-          <Row className="align-items-between">
+          <Row className="d-flex align-items-center justify-content-center">
             {healthAgencies && renderData()}
           </Row>
           <Row className="float-right mt-4">
