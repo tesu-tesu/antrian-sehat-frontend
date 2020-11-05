@@ -3,6 +3,7 @@ import ListHealthAgency from "pages/patient/ListHealthAgency";
 import Home from "pages/patient/Home";
 import HealthAgencies from "pages/patient/HealthAgencies";
 import ShowTicket from "pages/patient/ShowTicket";
+import Polymasters from "pages/patient/Polyclinics";
 
 export const APP_PATIENT_ROUTE = [
   {
@@ -26,6 +27,14 @@ export const APP_PATIENT_ROUTE = [
     path: "/pasien/puskesmas",
     exact: true,
     component: HealthAgencies,
+    private: true,
+    isPasien: true,
+  },
+  {
+    name: "All Polymasters",
+    path: "/pasien/polimaster",
+    exact: true,
+    component: Polymasters,
     private: true,
     isPasien: true,
   },
