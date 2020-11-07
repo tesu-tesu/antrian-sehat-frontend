@@ -54,6 +54,7 @@ const Login = () => {
         });
         setIsLoggedIn(true);
         setLoading(false);
+        window.location = "/";
       })
       .catch((err) => {
         console.log(err);
@@ -79,7 +80,6 @@ const Login = () => {
 
   return (
     <div className="bg-app pr-3">
-      {isLoggedIn && <Redirect to="/" />}
       {/* <Navbar bg="light" expand="lg">
         <Container>
           <Link to="/pasien">

@@ -29,7 +29,7 @@ const NavBar = () => {
   return (
     <>
       <Navbar className="navbar-user" expand="lg">
-        <Navbar.Brand href="/" className="mr-auto">
+        <Navbar.Brand href="/pasien" className="mr-auto">
           <img
             alt=""
             src={logoNavbar}

@@ -114,7 +114,7 @@ const Home = () => {
                         Lihat daftar puskesmas
                       </div>
                       <div>
-                        <Link to="/health-agencies">
+                        <Link to="/pasien/puskesmas">
                           <Image
                             roundedCircle
                             className="float-right"
@@ -157,7 +157,7 @@ const Home = () => {
                         Lihat daftar poliklinik
                       </div>
                       <div>
-                        <Link to="/list-polymaster">
+                        <Link to="/pasien/polimaster">
                           <Image
                             roundedCircle
                             className="float-right"
