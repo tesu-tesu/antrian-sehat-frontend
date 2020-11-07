@@ -1,8 +1,9 @@
 import React from "react";
 import { GET_ALL_HEALTH_AGENCIES, JWT_HEADER } from "constants/urls";
 import axios from "axios";
+import { Link, Redirect } from "react-router-dom";
 import { Row, Col, Card } from "react-bootstrap";
-import { FaReact } from "react-icons/fa";
+import { FaHospital } from "react-icons/fa";
 import Pagination from "react-js-pagination";
 
 const HealthAgencies = () => {
@@ -32,8 +33,6 @@ const HealthAgencies = () => {
   };
 
   const renderData = () => {
-    // var { data, current_page, per_page, total } = healthAgencies;
-
     return healthAgencies.map((healthAgency, key) => {
       // console.log("key: ", healthAgency.id); //use id to send selected HA card
       return (
@@ -47,14 +46,16 @@ const HealthAgencies = () => {
               borderRadius: "15px",
             }}
           >
-            <Card.Body>
-              <FaReact
-                style={{
-                  fontSize: "30px",
-                }}
-              />
-              <p className="mt-3">{healthAgency.name}</p>
-            </Card.Body>
+            <Link to={`/pasien/polyclinic-schedule/${healthAgency.id}`}>
+              <Card.Body>
+                <FaHospital
+                  style={{
+                    fontSize: "30px",
+                  }}
+                />
+                <p className="mt-3">{healthAgency.name}</p>
+              </Card.Body>
+            </Link>
           </Card>
         </Col>
       );
