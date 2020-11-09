@@ -6,8 +6,8 @@ import {
 } from "constants/urls";
 import axios from "axios";
 import { Row, Col, Card, Table, Button } from "react-bootstrap";
-import { FaReact } from "react-icons/fa";
 import { useParams } from "react-router";
+import defaultHA from "../../images/health-agency/default.png";
 
 const PolyclinicSchedules = () => {
   const [polyclinics, setPolyclinics] = React.useState([]);
@@ -69,7 +69,7 @@ const PolyclinicSchedules = () => {
           year: "numeric",
         })
         .replace(/ /g, " ");
-      console.log(formattedDate);
+
       return (
         <th className="text-center">
           {day}
@@ -90,7 +90,14 @@ const PolyclinicSchedules = () => {
         <Card.Body>
           <Row className="">
             <Col className="mt-2" lg="3">
-              Address: {healthAgency.address}
+              <div>
+                <Card.Img
+                  variant="top"
+                  src={healthAgency.image ? healthAgency.image : defaultHA}
+                  width="100px"
+                />
+              </div>
+              <div className="text-center">Address: {healthAgency.address}</div>
             </Col>
             <Col lg="9">
               <Card
@@ -118,9 +125,10 @@ const PolyclinicSchedules = () => {
                               {polyclinic.poly_master.name}
                             </td>
                             {days.map((day, index) => {
-                              polyclinic.sorted.map((schedule, idx) => {
-                                if (schedule.day == index) {
-                                  // console.log(index);
+                              var sign = 0;
+                              return polyclinic.sorted.map((schedule, idx) => {
+                                if (schedule.day === index) {
+                                  sign = 1;
                                   return (
                                     <td className="text-center">
                                       <div>
@@ -131,15 +139,23 @@ const PolyclinicSchedules = () => {
                                       <div>{schedule.time_open}</div>
                                     </td>
                                   );
-                                } else {
-                                  return <td>-</td>;
+                                }
+
+                                if (
+                                  //match value with last item of polyclinic.sorted in index 'day'
+                                  schedule.day ==
+                                  polyclinic.sorted[
+                                    polyclinic.sorted.length - 1
+                                  ].day
+                                ) {
+                                  if (sign == 0) {
+                                    return <td className="text-center">-</td>;
+                                  }
                                 }
                               });
                             })}
                           </tr>
                         );
-                      } else {
-                        return <td></td>;
                       }
                     })}
                   </tbody>
