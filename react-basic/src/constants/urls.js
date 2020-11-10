@@ -28,7 +28,7 @@ export const GET_POLYCLINIC_OF_HA = (id_health_agency) =>
 export const GET_ONE_HEALTH_AGENCY = (id_health_agency) =>
   `${BASE_URL}/admin/health-agency/${id_health_agency}`;
 export const GET_WAITING_LIST = () => `${BASE_URL}/user/get-waiting-list`;
-export const GET_CURRENT_WAITING_LIST = () => `${BASE_URL}/user/get-current-waiting-list`;
+export const GET_NEAREST_WAITING_LIST = () => `${BASE_URL}/user/show-nearest-waiting-list`;
 export const GET_WAITING_LIST_BY_SCHEDULE = (schedule, date) =>
   `${BASE_URL}/user/get-waiting-list/${schedule}/${date}`;
 export const BOOK_WAITING_LIST = () =>
