@@ -7,8 +7,25 @@ import HumanSit from "../../images/pasien/human sit rev.png";
 import Patient from "../../images/pasien/patient.png";
 import Instancies from "../../images/pasien/instancies.png";
 import RightArrow from "../../images/pasien/right arrow.png";
+import axios from "axios";
+import { GET_CURRENT_WAITING_LIST, JWT_HEADER } from "constants/urls";
 
 const Home = () => {
+  const [currentWaitingList, setCurrentWaitingList] = React.useState([]);
+
+  React.useEffect(() => {
+    axios
+      .get(GET_CURRENT_WAITING_LIST(), {
+        headers: { Authorization: `Bearer ${JWT_HEADER}` },
+      })
+      .then((res) => {
+        setCurrentWaitingList(res.data.waiting_list);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <>
       <Container className="pasien-body py-2">
@@ -42,7 +59,8 @@ const Home = () => {
                       <Row className="ha-name">Puskesmas</Row>
                       <Row className="poli-name">Poliklinik</Row>
                       <Row className="ha-name">
-                        02 / <span className="text-success">06</span>
+                        {currentWaitingList.current_number} / 
+                        <span className="text-success">{currentWaitingList.latest_number}</span>
                       </Row>
                     </Col>
                     <Card body>
@@ -55,7 +73,7 @@ const Home = () => {
                           style={{ fontSize: "27pt" }}
                           className="text-primary"
                         >
-                          01
+                          {currentWaitingList.order_number}
                         </Col>
                       </Row>
                     </Card>
