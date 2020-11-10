@@ -8,14 +8,14 @@ import Patient from "../../images/pasien/patient.png";
 import Instancies from "../../images/pasien/instancies.png";
 import RightArrow from "../../images/pasien/right arrow.png";
 import axios from "axios";
-import { GET_CURRENT_WAITING_LIST, JWT_HEADER } from "constants/urls";
+import { GET_NEAREST_WAITING_LIST, JWT_HEADER } from "constants/urls";
 
 const Home = () => {
   const [currentWaitingList, setCurrentWaitingList] = React.useState([]);
 
   React.useEffect(() => {
     axios
-      .get(GET_CURRENT_WAITING_LIST(), {
+      .get(GET_NEAREST_WAITING_LIST(), {
         headers: { Authorization: `Bearer ${JWT_HEADER}` },
       })
       .then((res) => {
