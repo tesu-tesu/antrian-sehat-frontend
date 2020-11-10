@@ -5,7 +5,7 @@ import {
   GET_ONE_HEALTH_AGENCY,
 } from "constants/urls";
 import axios from "axios";
-import { Row, Col, Card, Table, Button } from "react-bootstrap";
+import { Row, Col, Card, Table, Button, Spinner } from "react-bootstrap";
 import { useParams } from "react-router";
 import defaultHA from "../../images/health-agency/default.png";
 
@@ -23,32 +23,38 @@ const PolyclinicSchedules = () => {
     "Sabtu",
   ]);
   const [currentDate, setCurrentDate] = React.useState(new Date());
+  const [isLoading, setIsLoading] = React.useState(0);
 
   let { id_health_agency } = useParams();
 
   React.useEffect(() => {
-    axios
-      .get(GET_ONE_HEALTH_AGENCY(id_health_agency), {
-        headers: { Authorization: `Bearer ${JWT_HEADER}` },
-      })
-      .then((res) => {
-        setHealthAgency(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const fetchData = async () => {
+      setIsLoading(true);
+      await axios
+        .get(GET_ONE_HEALTH_AGENCY(id_health_agency), {
+          headers: { Authorization: `Bearer ${JWT_HEADER}` },
+        })
+        .then((res) => {
+          setHealthAgency(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
 
-    axios
-      .get(GET_POLYCLINIC_OF_HA(id_health_agency), {
-        headers: { Authorization: `Bearer ${JWT_HEADER}` },
-      })
-      .then((res) => {
-        console.log(res.data);
-        setPolyclinics(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      axios
+        .get(GET_POLYCLINIC_OF_HA(id_health_agency), {
+          headers: { Authorization: `Bearer ${JWT_HEADER}` },
+        })
+        .then((res) => {
+          console.log(res.data);
+          setPolyclinics(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      setIsLoading(false);
+    };
+    fetchData();
 
     setSchedule();
   }, []);
@@ -87,83 +93,95 @@ const PolyclinicSchedules = () => {
           borderRadius: "15px",
         }}
       >
-        <Card.Body>
-          <Row className="">
-            <Col className="mt-2" lg="3">
-              <div>
-                <Card.Img
-                  variant="top"
-                  src={healthAgency.image ? healthAgency.image : defaultHA}
-                  width="100px"
-                />
-              </div>
-              <div className="text-center">Address: {healthAgency.address}</div>
-            </Col>
-            <Col lg="9">
-              <Card
-                body
-                style={{
-                  borderRadius: "12px",
-                }}
-              >
-                <h4>
-                  {healthAgency.name}: Pilih Jadwal dan Lakukan Pendaftaran
-                </h4>
-                <Table striped hover responsive>
-                  <thead>
-                    <tr>
-                      <th>Nama Poliklinik</th>
-                      {currentDate && printDays()}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {polyclinics.map((polyclinic, key) => {
-                      if (polyclinic) {
-                        return (
-                          <tr>
-                            <td className="font-weight-600">
-                              {polyclinic.poly_master.name}
-                            </td>
-                            {days.map((day, index) => {
-                              var sign = 0;
-                              return polyclinic.sorted.map((schedule, idx) => {
-                                if (schedule.day === index) {
-                                  sign = 1;
-                                  return (
-                                    <td className="text-center">
-                                      <div>
-                                        <Button size="sm" variant="primary">
-                                          Daftar
-                                        </Button>
-                                      </div>
-                                      <div>{schedule.time_open}</div>
-                                    </td>
-                                  );
-                                }
+        {isLoading ? (
+          <Spinner animation="grow" variant="info" className="mx-auto">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+        ) : (
+          <Card.Body>
+            <Row className="">
+              <Col className="mt-2" lg="3">
+                <div>
+                  <Card.Img
+                    variant="top"
+                    src={healthAgency.image ? healthAgency.image : defaultHA}
+                    width="100px"
+                  />
+                </div>
+                <div className="text-center">
+                  Address: {healthAgency.address}
+                </div>
+              </Col>
+              <Col lg="9">
+                <Card
+                  body
+                  style={{
+                    borderRadius: "12px",
+                  }}
+                >
+                  <h4>
+                    {healthAgency.name}: Pilih Jadwal dan Lakukan Pendaftaran
+                  </h4>
+                  <Table striped hover responsive>
+                    <thead>
+                      <tr>
+                        <th>Nama Poliklinik</th>
+                        {currentDate && printDays()}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {polyclinics.map((polyclinic, key) => {
+                        if (polyclinic) {
+                          return (
+                            <tr>
+                              <td className="font-weight-600">
+                                {polyclinic.poly_master.name}
+                              </td>
+                              {days.map((day, index) => {
+                                var sign = 0;
+                                return polyclinic.sorted.map(
+                                  (schedule, idx) => {
+                                    if (schedule.day === index) {
+                                      sign = 1;
+                                      return (
+                                        <td className="text-center">
+                                          <div>
+                                            <Button size="sm" variant="primary">
+                                              Daftar
+                                            </Button>
+                                          </div>
+                                          <div>{schedule.time_open}</div>
+                                        </td>
+                                      );
+                                    }
 
-                                if (
-                                  //match value with last item of polyclinic.sorted in index 'day'
-                                  schedule.day ==
-                                  polyclinic.sorted[
-                                    polyclinic.sorted.length - 1
-                                  ].day
-                                ) {
-                                  if (sign == 0) {
-                                    return <td className="text-center">-</td>;
+                                    if (
+                                      //match value with last item of polyclinic.sorted in index 'day'
+                                      schedule.day ==
+                                      polyclinic.sorted[
+                                        polyclinic.sorted.length - 1
+                                      ].day
+                                    ) {
+                                      if (sign == 0) {
+                                        return (
+                                          <td className="text-center">-</td>
+                                        );
+                                      }
+                                    }
                                   }
-                                }
-                              });
-                            })}
-                          </tr>
-                        );
-                      }
-                    })}
-                  </tbody>
-                </Table>
-              </Card>
-            </Col>
-          </Row>
-        </Card.Body>
+                                );
+                              })}
+                            </tr>
+                          );
+                        }
+                      })}
+                    </tbody>
+                  </Table>
+                </Card>
+              </Col>
+            </Row>
+          </Card.Body>
+        )}
       </Card>
     </div>
   );

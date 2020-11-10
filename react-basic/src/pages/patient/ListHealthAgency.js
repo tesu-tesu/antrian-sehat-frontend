@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Row } from "react-bootstrap";
+import { Card, Row, Spinner } from "react-bootstrap";
 import Axios from "axios";
 import { GET_ONE_HEALTH_AGENCY, JWT_HEADER } from "../../constants/urls";
 import { useParams } from "react-router";
@@ -37,7 +37,9 @@ const ListHealthAgency = () => {
         <Card.Body>
           <Row>
             {isLoading ? (
-              <div>..is loading</div>
+              <Spinner animation="grow" variant="info" className="mx-auto">
+                <span className="sr-only">Loading...</span>
+              </Spinner>
             ) : (
               <Card
                 className="mx-3 text-center mx-auto"
