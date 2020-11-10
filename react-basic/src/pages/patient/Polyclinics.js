@@ -1,7 +1,7 @@
 import React from "react";
 import { GET_ALL_POLYMASTERS, JWT_HEADER } from "constants/urls";
 import axios from "axios";
-import { Row, Col, Card } from "react-bootstrap";
+import { Row, Col, Card, Spinner } from "react-bootstrap";
 import { FaReact } from "react-icons/fa";
 import Pagination from "react-js-pagination";
 
@@ -10,12 +10,14 @@ const Polymasters = () => {
   const [currentPage, setCurrentPage] = React.useState("");
   const [perPage, setPerPage] = React.useState("");
   const [total, setTotal] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(0);
 
   React.useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async (page_number = 1) => {
+    setIsLoading(true);
     await axios
       .get(GET_ALL_POLYMASTERS(page_number), {
         headers: { Authorization: `Bearer ${JWT_HEADER}` },
@@ -29,6 +31,7 @@ const Polymasters = () => {
       .catch((err) => {
         console.log(err);
       });
+    setIsLoading(false);
   };
 
   const renderData = () => {
@@ -69,23 +72,29 @@ const Polymasters = () => {
           borderRadius: "15px",
         }}
       >
-        <Card.Body>
-          <Row className="d-flex align-items-center justify-content-around">
-            {polymasters && renderData()}
-          </Row>
-          <Row className="float-right mt-4">
-            <Pagination
-              activePage={currentPage}
-              onChange={(e) => fetchData(e)}
-              totalItemsCount={total}
-              itemsCountPerPage={perPage}
-              itemClass="page-item"
-              linkClass="page-link"
-              firstPageText="<<"
-              lastPageText=">>"
-            />
-          </Row>
-        </Card.Body>
+        {isLoading ? (
+          <Spinner animation="grow" variant="info" className="mx-auto">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+        ) : (
+          <Card.Body>
+            <Row className="d-flex align-items-center justify-content-around">
+              {polymasters && renderData()}
+            </Row>
+            <Row className="float-right mt-4">
+              <Pagination
+                activePage={currentPage}
+                onChange={(e) => fetchData(e)}
+                totalItemsCount={total}
+                itemsCountPerPage={perPage}
+                itemClass="page-item"
+                linkClass="page-link"
+                firstPageText="<<"
+                lastPageText=">>"
+              />
+            </Row>
+          </Card.Body>
+        )}
       </Card>
     </div>
   );

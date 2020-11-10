@@ -1,14 +1,27 @@
 import React from "react";
-import { GET_WAITING_LIST_BY_SCHEDULE, BOOK_WAITING_LIST, JWT_HEADER, GET_RESIDENCE_NUMBER } from "constants/urls";
+import {
+  GET_WAITING_LIST_BY_SCHEDULE,
+  BOOK_WAITING_LIST,
+  JWT_HEADER,
+  GET_RESIDENCE_NUMBER,
+} from "constants/urls";
 import axios from "axios";
-import { Button, Container, Card, Col, Row, Image, Form, InputGroup } from "react-bootstrap";
+import {
+  Button,
+  Container,
+  Card,
+  Col,
+  Row,
+  Image,
+  Form,
+  InputGroup,
+  Spinner,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import PlusImage from "../../images/pasien/plus.png";
-import {useParams} from "react-router";
-
+import { useParams } from "react-router";
 
 const BookWaitingList = () => {
-
   React.useEffect(() => {
     fetchData();
   }, []);
@@ -22,28 +35,31 @@ const BookWaitingList = () => {
   const [currentWaitingList, setCurrentWaitingList] = React.useState("");
   const [totalWaitingList, setTotalWaitingList] = React.useState("");
   const [residenceNumber, setResidenceNumber] = React.useState("");
-  
+  const [isLoading, setIsLoading] = React.useState(0);
+
   const getResidenceNumber = async () => {
+    setIsLoading(true);
     await axios
-    .get(GET_RESIDENCE_NUMBER(), {
-      headers: { Authorization: `Bearer ${JWT_HEADER}` },
-    })
-    .then((res) => {
-      setResidenceNumber(res.data.residence_number);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+      .get(GET_RESIDENCE_NUMBER(), {
+        headers: { Authorization: `Bearer ${JWT_HEADER}` },
+      })
+      .then((res) => {
+        setResidenceNumber(res.data.residence_number);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+      setIsLoading(false);
   };
-  
-  const onChooseSelf = ((event) => {
-    if(event.target.value == "1") {
+
+  const onChooseSelf = (event) => {
+    if (event.target.value == "1") {
       getResidenceNumber();
     } else {
       setResidenceNumber("");
     }
-  });
-  
+  };
+
   const fetchData = async () => {
     await axios
       .get(GET_WAITING_LIST_BY_SCHEDULE(schedule_id, date), {
@@ -60,37 +76,49 @@ const BookWaitingList = () => {
   return (
     <div className="mx-4 mt-3">
       <Container className="pasien-body py-2">
-            <Card
-              className="mx-lg-4 border border-0"
-              style={{
-                borderRadius: "20px",
-              }}
-            >
-              <Card.Body className="justify-content-between text-capitalize bg-white rounded">
-                <Row>
-                  <Col lg="6">
-                    <div className="card-body">
-                      <div>
-                        <h3>Puskesmas Klampis</h3>
-                        <h4>Poli Umum</h4>
-                        <p>Date</p>
-                      </div>
-                      <br></br>
-                      <div>
-                        <p>Antrian Saat Ini</p>
-                        <p style={{marginTop: "0px"}}>Sedang Diperiksa/Antrian Terakhir</p>
-                        <h3>02/06</h3>
-                      </div>
+        <Card
+          className="mx-lg-4 border border-0"
+          style={{
+            borderRadius: "20px",
+          }}
+        >
+          <Card.Body className="justify-content-between text-capitalize bg-white rounded">
+            {isLoading ? (
+              <Spinner animation="grow" variant="info" className="mx-auto">
+                <span className="sr-only">Loading...</span>
+              </Spinner>
+            ) : (
+              <Row>
+                <Col lg="6">
+                  <div className="card-body">
+                    <div>
+                      <h3>Puskesmas Klampis</h3>
+                      <h4>Poli Umum</h4>
+                      <p>Date</p>
                     </div>
-                  </Col>
+                    <br></br>
+                    <div>
+                      <p>Antrian Saat Ini</p>
+                      <p style={{ marginTop: "0px" }}>
+                        Sedang Diperiksa/Antrian Terakhir
+                      </p>
+                      <h3>02/06</h3>
+                    </div>
+                  </div>
+                </Col>
 
-                  <Col lg="6" className="d-flex align-items-center">
-                  <Form style={{
-                    padding: "20px"
-                  }}>
-                    <Form.Group controlId="exampleForm.ControlSelect1" >
+                <Col lg="6" className="d-flex align-items-center">
+                  <Form
+                    style={{
+                      padding: "20px",
+                    }}
+                  >
+                    <Form.Group controlId="exampleForm.ControlSelect1">
                       <Form.Label>Pilih Pendaftar</Form.Label>
-                      <Form.Control as="select" onChange={onChooseSelf.bind(this)}>
+                      <Form.Control
+                        as="select"
+                        onChange={onChooseSelf.bind(this)}
+                      >
                         <option>Pilih Pendaftar</option>
                         <option value="1">Diri Sendiri</option>
                         <option value="2">Orang Lain</option>
@@ -98,7 +126,12 @@ const BookWaitingList = () => {
                     </Form.Group>
                     <Form.Group controlId="exampleForm.ControlInput1">
                       <Form.Label>Masukkan NIK</Form.Label>
-                      <Form.Control type="text" disabled={residenceNumber? true : false} placeholder="Masukkan NIK" value={residenceNumber? residenceNumber : ""} />
+                      <Form.Control
+                        type="text"
+                        disabled={residenceNumber ? true : false}
+                        placeholder="Masukkan NIK"
+                        value={residenceNumber ? residenceNumber : ""}
+                      />
                     </Form.Group>
                     <div className="row justify-content-center mb-5 mt-4">
                       <div className="col-md-12">
@@ -108,16 +141,15 @@ const BookWaitingList = () => {
                           block
                           // onClick={_onSubmit}
                         >
-                          <Image
-                              width="80px"
-                              src={PlusImage}
-                          />
-                          <span style={{paddingLeft:"20px"}}>Daftar Antrian</span>
+                          <Image width="80px" src={PlusImage} />
+                          <span style={{ paddingLeft: "20px" }}>
+                            Daftar Antrian
+                          </span>
                         </Button>
                       </div>
                     </div>
                   </Form>
-                    {/* <div>
+                  {/* <div>
                       <Link to="/show-tickets">
                         <Image
                           className="float-left"
@@ -127,10 +159,11 @@ const BookWaitingList = () => {
                         />
                       </Link>
                     </div> */}
-                  </Col>
-                </Row>
-              </Card.Body>
-            </Card>
+                </Col>
+              </Row>
+            )}
+          </Card.Body>
+        </Card>
       </Container>
     </div>
   );
