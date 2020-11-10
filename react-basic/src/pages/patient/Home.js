@@ -90,7 +90,7 @@ const Home = () => {
                           src={HumanSit}
                         />
                       </span>
-                      <Link to="/show-tickets">
+                      <Link to="/pasien/show-ticket">
                         <Image
                           className="float-left"
                           style={{ marginTop: "-30%", marginLeft: "30%" }}

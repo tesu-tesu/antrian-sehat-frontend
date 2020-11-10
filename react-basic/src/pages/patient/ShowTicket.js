@@ -69,7 +69,7 @@ const ShowTicket = () => {
         {/* FutureWaitingList */}
         <Card.Title>Antrian Kedepan</Card.Title>
         <Card.Body>
-          <Row className="d-flex align-items-center justify-content-around">
+          <Row>
             {futureWaitingLists.map((futureWaitingList, key) => {
               return (
                 <Card
