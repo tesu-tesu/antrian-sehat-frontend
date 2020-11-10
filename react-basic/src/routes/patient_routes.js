@@ -5,6 +5,7 @@ import HealthAgencies from "pages/patient/HealthAgencies";
 import ShowTicket from "pages/patient/ShowTicket";
 import Polymasters from "pages/patient/Polyclinics";
 import PolyclinicSchedule from "pages/patient/PolyclinicSchedules";
+import BookWaitingList from "pages/patient/BookWaitingList";
 
 export const APP_PATIENT_ROUTE = [
   {
@@ -60,6 +61,14 @@ export const APP_PATIENT_ROUTE = [
     path: "/pasien/polyclinic-schedule/:id_health_agency",
     exact: true,
     component: PolyclinicSchedule,
+    private: true,
+    isPasien: true,
+  },
+  {
+    name: "Daftar Antrian",
+    path: "/pasien/book-waiting-list/:schedule_id/:date",
+    exact: true,
+    component: BookWaitingList,
     private: true,
     isPasien: true,
   },

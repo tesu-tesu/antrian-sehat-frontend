@@ -29,5 +29,10 @@ export const GET_ONE_HEALTH_AGENCY = (id_health_agency) =>
   `${BASE_URL}/admin/health-agency/${id_health_agency}`;
 export const GET_WAITING_LIST = () => `${BASE_URL}/user/get-waiting-list`;
 export const GET_CURRENT_WAITING_LIST = () => `${BASE_URL}/user/get-current-waiting-list`;
+export const GET_WAITING_LIST_BY_SCHEDULE = (schedule, date) =>
+  `${BASE_URL}/user/get-waiting-list/${schedule}/${date}`;
+export const BOOK_WAITING_LIST = () =>
+  `${BASE_URL}/admin/waiting-list/create`;
+export const GET_RESIDENCE_NUMBER = () => `${BASE_URL}/user/get-residence-number`;
 
-//ADMIN API
+  //ADMIN API
