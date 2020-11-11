@@ -1,6 +1,7 @@
 import React from "react";
 import { GET_ALL_POLYMASTERS, JWT_HEADER } from "constants/urls";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { Row, Col, Card, Spinner } from "react-bootstrap";
 import { FaReact } from "react-icons/fa";
 import Pagination from "react-js-pagination";
@@ -50,6 +51,7 @@ const Polymasters = () => {
               borderRadius: "15px",
             }}
           >
+            <Link to={`/pasien/puskesmas/${polymaster.id}`}>
             <Card.Body>
               <FaReact
                 style={{
@@ -58,6 +60,7 @@ const Polymasters = () => {
               />
               <p className="mt-3">{polymaster.name}</p>
             </Card.Body>
+          </Link>
           </Card>
         </Col>
       );
