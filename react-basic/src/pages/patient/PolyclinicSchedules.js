@@ -6,6 +6,7 @@ import {
 } from "constants/urls";
 import axios from "axios";
 import { Row, Col, Card, Table, Button, Spinner } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import defaultHA from "../../images/health-agency/default.png";
 
@@ -146,9 +147,16 @@ const PolyclinicSchedules = () => {
                                       return (
                                         <td className="text-center">
                                           <div>
-                                            <Button size="sm" variant="primary">
-                                              Daftar
-                                            </Button>
+                                            <Link
+                                              to={`/pasien/book-waiting-list/${schedule.id}/${schedule.date}`}
+                                            >
+                                              <Button
+                                                size="sm"
+                                                variant="primary"
+                                              >
+                                                Daftar
+                                              </Button>
+                                            </Link>
                                           </div>
                                           <div>{schedule.time_open}</div>
                                         </td>
