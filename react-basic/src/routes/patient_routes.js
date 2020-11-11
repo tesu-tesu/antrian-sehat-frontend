@@ -6,6 +6,7 @@ import HistoryWaitingList from "pages/patient/HistoryWaitingList";
 import Polymasters from "pages/patient/Polyclinics";
 import PolyclinicSchedule from "pages/patient/PolyclinicSchedules";
 import BookWaitingList from "pages/patient/BookWaitingList";
+import ListHAofPoly from "pages/patient/ListHAofPoly";
 
 export const APP_PATIENT_ROUTE = [
   {
@@ -21,6 +22,14 @@ export const APP_PATIENT_ROUTE = [
     path: "/pasien/list-poliklinik/:id_health_agency",
     exact: true,
     component: ListPolyclinic,
+    private: true,
+    isPasien: true,
+  },
+  {
+    name: "List HA of Polyclinic",
+    path: "/pasien/puskesmas/:id_polyclinic",
+    exact: true,
+    component: ListHAofPoly,
     private: true,
     isPasien: true,
   },

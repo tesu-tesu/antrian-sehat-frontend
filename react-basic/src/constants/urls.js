@@ -23,6 +23,8 @@ export const GET_ALL_HEALTH_AGENCIES = (page_number) =>
 export const GET_ALL_POLYMASTERS = (page_number) =>
   `${BASE_URL}/admin/poly-master?page=${page_number}`;
 
+export const GET_HA_OF_POLYCLINIC = (id_polyclinic) =>
+  `${BASE_URL}/user/health-agency/${id_polyclinic}`;
 export const GET_POLYCLINIC_OF_HA = (id_health_agency) =>
   `${BASE_URL}/admin/health-agency/${id_health_agency}/polyclinic`;
 export const GET_ONE_HEALTH_AGENCY = (id_health_agency) =>
