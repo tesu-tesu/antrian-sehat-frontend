@@ -2,7 +2,7 @@ import ListPolyclinic from "pages/patient/ListPolyclinic";
 import ListHealthAgency from "pages/patient/ListHealthAgency";
 import Home from "pages/patient/Home";
 import HealthAgencies from "pages/patient/HealthAgencies";
-import ShowTicket from "pages/patient/ShowTicket";
+import HistoryWaitingList from "pages/patient/HistoryWaitingList";
 import Polymasters from "pages/patient/Polyclinics";
 import PolyclinicSchedule from "pages/patient/PolyclinicSchedules";
 import BookWaitingList from "pages/patient/BookWaitingList";
@@ -50,9 +50,9 @@ export const APP_PATIENT_ROUTE = [
   // },
   {
     name: "Show Ticket",
-    path: "/pasien/show-ticket",
+    path: "/pasien/riwayat-antrian",
     exact: true,
-    component: ShowTicket,
+    component: HistoryWaitingList,
     private: true,
     isPasien: true,
   },

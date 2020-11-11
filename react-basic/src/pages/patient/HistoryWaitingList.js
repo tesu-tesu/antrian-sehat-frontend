@@ -4,7 +4,7 @@ import axios from "axios";
 import { Row, Col, Card, Spinner } from "react-bootstrap";
 import { GET_WAITING_LIST, JWT_HEADER } from "constants/urls";
 
-const ShowTicket = () => {
+const HistoryWaitingList = () => {
   const [currentWaitingLists, setCurrentWaitingLists] = React.useState([]);
   const [futureWaitingLists, setFutureWaitingLists] = React.useState([]);
   const [historyWaitingLists, setHistoryWaitingLists] = React.useState([]);
@@ -163,4 +163,4 @@ const ShowTicket = () => {
   );
 };
 
-export default ShowTicket;
+export default HistoryWaitingList;
