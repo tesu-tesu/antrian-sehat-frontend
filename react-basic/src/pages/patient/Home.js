@@ -116,7 +116,7 @@ const Home = () => {
                             src={HumanSit}
                           />
                         </span>
-                        <Link to="/pasien/show-ticket">
+                        <Link to="/pasien/riwayat-antrian">
                           <Image
                             className="float-left"
                             style={{ marginTop: "-30%", marginLeft: "30%" }}
