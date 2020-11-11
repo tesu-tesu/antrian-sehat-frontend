@@ -30,10 +30,13 @@ const Home = () => {
           headers: { Authorization: `Bearer ${JWT_HEADER}` },
         })
         .then((res) => {
-          if(res.data.waiting_list == null)
-            setCurrentWaitingList({ "current_number" : 0,  "latest_number" : 0, "order_number" : 0});
-          else
-            setCurrentWaitingList(res.data.waiting_list);
+          if (res.data.waiting_list == null)
+            setCurrentWaitingList({
+              current_number: 0,
+              latest_number: 0,
+              order_number: 0,
+            });
+          else setCurrentWaitingList(res.data.waiting_list);
         })
         .catch((err) => {
           console.log(err);
@@ -71,7 +74,7 @@ const Home = () => {
                       >
                         <div className="card-body">Daftar antrian</div>
                         <div>
-                          <Link to="/daftar-antrian">
+                          <Link to="/pasien/puskesmas">
                             <Image width="85px" src={PlusImage} />
                           </Link>
                         </div>
