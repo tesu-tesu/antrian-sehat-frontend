@@ -219,30 +219,30 @@ class Sidebar extends React.Component {
             <h6 className="navbar-heading text-muted">Menu</h6>
             {/* Navigation */}
             <Nav className="mb-md-3" navbar>
-              <NavItem>
+              {/* <NavItem>
                 <NavLink style={{fontWeight:"600"}} href="/puskesmas">
                 <span className="">
                   <img src={puskesmasIcon} fluid/>
                 </span>
                 <NavLink>Puskesmas</NavLink>
                 </NavLink>
-              </NavItem>
+              </NavItem> */}
               <NavItem>
-                <NavLink style={{fontWeight:"600"}} href="/list-pasien">
+                <NavLink style={{fontWeight:"600"}} href="/admin/waiting-list">
                 <span className="">
                   <img src={listIcon} fluid/>
                 </span>
                 <NavLink>Antrian Pasien</NavLink>
                 </NavLink>
               </NavItem>
-              <NavItem>
+              {/* <NavItem>
                 <NavLink style={{fontWeight:"600"}} href="/list-poly">
                 <span className="">
                   <img src={clinicIcon} fluid/>
                 </span>
                 <NavLink>Poliklinik</NavLink>
                 </NavLink>
-              </NavItem>
+              </NavItem> */}
               <NavItem>
                 <NavLink style={{fontWeight:"600"}} href="/admin/scan-qr">
                 <span className="">
