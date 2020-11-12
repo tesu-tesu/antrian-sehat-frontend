@@ -1,5 +1,5 @@
 import React from "react";
-
+import Cookies from "js-cookie";
 // reactstrap components
 import {
   Container,
@@ -35,7 +35,7 @@ const Header = () => {
           ></Link>
           <Form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
             <div className="text-white font-weight-bold mr-2">
-              Nama Puskesmas - Role
+              Role - Nama Puskesmas
             </div>
             <FormGroup className="mb-0">
               {/* <InputGroup className="input-group-alternative">
@@ -59,7 +59,6 @@ const Header = () => {
                 right
               >
                 <DropdownItem>Action</DropdownItem>
-                <DropdownItem>Another action</DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>Something else here</DropdownItem>
               </DropdownMenu>
@@ -72,7 +71,7 @@ const Header = () => {
                   </span>
                   <Media className="ml-2 d-none d-lg-block">
                     <span className="mb-0 text-sm font-weight-bold">
-                      Jessica Jones
+                      {Cookies.getJSON("USER")?.email}
                     </span>
                   </Media>
                 </Media>
