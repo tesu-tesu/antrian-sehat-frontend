@@ -47,7 +47,6 @@ const PolyclinicSchedules = () => {
           headers: { Authorization: `Bearer ${JWT_HEADER}` },
         })
         .then((res) => {
-          console.log(res.data);
           setPolyclinics(res.data);
         })
         .catch((err) => {
