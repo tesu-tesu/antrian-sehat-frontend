@@ -83,17 +83,27 @@ const Home = () => {
 
                     <Col lg="5" className="pl-6 py-1">
                       <Col style={{ fontSize: "22pt" }}>
-                        <Row className="ha-name">Puskesmas</Row>
-                        <Row className="poli-name">Poliklinik</Row>
                         <Row className="ha-name">
+                          {currentWaitingList.health_agency}
+                        </Row>
+                        <Row className="poli-name">
+                          {currentWaitingList.polyclinic}
+                        </Row>
+                        <Row className="waiting-list-number">
                           {currentWaitingList.current_number} /
                           <span className="text-success">
                             {currentWaitingList.latest_number}
                           </span>
+                          <span
+                            className="text-dark ml-1"
+                            style={{ fontSize: "15px" }}
+                          >
+                            (sedang diperiksa / antrian sekarang)
+                          </span>
                         </Row>
                       </Col>
                       <Card body>
-                        <Row className="mt-4 pr-2 align-items-center">
+                        <Row className="p-0 mt-4 align-items-center">
                           <Col md="8" style={{ fontSize: "25pt" }}>
                             antrian anda
                           </Col>
@@ -106,7 +116,7 @@ const Home = () => {
                           </Col>
                         </Row>
                       </Card>
-                      <div className="mt-1">(Antrian terbaru)</div>
+                      <div className="mt-1">(Antrian terbaru hari ini)</div>
                     </Col>
 
                     <Col lg="3" className="ml-2 d-flex align-items-center">
