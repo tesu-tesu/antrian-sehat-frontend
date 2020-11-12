@@ -3,6 +3,7 @@ import QRCode from "qrcode.react";
 import axios from "axios";
 import { Row, Col, Card, Spinner } from "react-bootstrap";
 import { GET_WAITING_LIST, JWT_HEADER } from "constants/urls";
+import { Link } from "react-router-dom";
 
 const HistoryWaitingList = () => {
   const [currentWaitingLists, setCurrentWaitingLists] = React.useState([]);
@@ -49,29 +50,53 @@ const HistoryWaitingList = () => {
             <Row>
               {currentWaitingLists.map((currentWaitingList, key) => {
                 return (
-                  <Card
-                    key={key}
-                    className="text-center mx-3"
-                    style={{
-                      backgroundColor: "#F0F5FE",
-                      width: "180px",
-                    }}
-                  >
-                    <Card.Body>
-                      <Card.Text>
-                        <QRCode value={currentWaitingList.barcode} />
-                        <br />
-                        {currentWaitingList.registered_date}
-                        <br />
-                        No. Antrian : {currentWaitingList.order_number}/
-                        {currentWaitingList.latest_number}
-                        <br />
-                        {currentWaitingList.health_agency}
-                        <br />
-                        {currentWaitingList.polyclinic}
-                      </Card.Text>
-                    </Card.Body>
-                  </Card>
+                  <Col lg="4" md="4" sm="4" className="mb-3" key={key}>
+                    <Link
+                      to="#"
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      <Card
+                        className="mx-3"
+                        style={{
+                          backgroundColor: "#F0F5FE",
+                          borderRadius: "15px",
+                        }}
+                      >
+                        <Card.Body>
+                          <Row>
+                            <Col>
+                              <b>{currentWaitingList.residence_number}</b>
+                            </Col>
+                            {console.log(currentWaitingList)}
+                            <Col>
+                              <p>
+                                No Antrian : {currentWaitingList.order_number}
+                              </p>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col>
+                              <b>{currentWaitingList.health_agency}</b>
+                            </Col>
+                            <Col>
+                              <p>
+                                Saat ini : {currentWaitingList.current_number} /{" "}
+                                {currentWaitingList.latest_number}
+                              </p>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col>
+                              <b>{currentWaitingList.polyclinic}</b>
+                            </Col>
+                            <Col>
+                              <p>{currentWaitingList.registered_date}</p>
+                            </Col>
+                          </Row>
+                        </Card.Body>
+                      </Card>
+                    </Link>
+                  </Col>
                 );
               })}
             </Row>
@@ -89,30 +114,51 @@ const HistoryWaitingList = () => {
             <Row>
               {futureWaitingLists.map((futureWaitingList, key) => {
                 return (
-                  <Card
-                    key={key}
-                    className="text-center mx-3"
-                    style={{
-                      backgroundColor: "#F0F5FE",
-                      width: "180px",
-                      borderRadius: "15px",
-                    }}
-                  >
-                    <Card.Body>
-                      <Card.Text>
-                        <QRCode value={futureWaitingList.barcode} />
-                        <br />
-                        {futureWaitingList.registered_date}
-                        <br />
-                        No. Antrian : {futureWaitingList.order_number}/
-                        {futureWaitingList.latest_number}
-                        <br />
-                        {futureWaitingList.health_agency}
-                        <br />
-                        {futureWaitingList.polyclinic}
-                      </Card.Text>
-                    </Card.Body>
-                  </Card>
+                  <Col lg="4" md="4" sm="4" className="mb-3" key={key}>
+                    <Link
+                      to="#"
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      <Card
+                        className="mx-3"
+                        style={{
+                          backgroundColor: "#F0F5FE",
+                          borderRadius: "15px",
+                        }}
+                      >
+                        <Card.Body>
+                          <Row>
+                            <Col>
+                              <b>{futureWaitingList.residence_number}</b>
+                            </Col>
+                            <Col>
+                              <p>
+                                No Antrian : {futureWaitingList.order_number}
+                              </p>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col>
+                              <b>{futureWaitingList.health_agency}</b>
+                            </Col>
+                            <Col>
+                              <p>
+                                Saat ini : - / {futureWaitingList.latest_number}
+                              </p>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col>
+                              <b>{futureWaitingList.polyclinic}</b>
+                            </Col>
+                            <Col>
+                              <p>{futureWaitingList.registered_date}</p>
+                            </Col>
+                          </Row>
+                        </Card.Body>
+                      </Card>
+                    </Link>
+                  </Col>
                 );
               })}
             </Row>
@@ -130,29 +176,51 @@ const HistoryWaitingList = () => {
             <Row>
               {historyWaitingLists.map((historyWaitingList, key) => {
                 return (
-                  <Card
-                    key={key}
-                    className="text-center mx-3"
-                    style={{
-                      backgroundColor: "#F0F5FE",
-                      width: "180px",
-                    }}
-                  >
-                    <Card.Body>
-                      <Card.Text>
-                        <QRCode value={historyWaitingList.barcode} />
-                        <br />
-                        {historyWaitingList.registered_date}
-                        <br />
-                        No. Antrian : {historyWaitingList.order_number}/
-                        {historyWaitingList.latest_number}
-                        <br />
-                        {historyWaitingList.health_agency}
-                        <br />
-                        {historyWaitingList.polyclinic}
-                      </Card.Text>
-                    </Card.Body>
-                  </Card>
+                  <Col lg="4" md="4" sm="4" className="mb-3" key={key}>
+                    <Link
+                      to="#"
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      <Card
+                        className="mx-3"
+                        style={{
+                          backgroundColor: "#F0F5FE",
+                          borderRadius: "15px",
+                        }}
+                      >
+                        <Card.Body>
+                          <Row>
+                            <Col>
+                              <b>{historyWaitingList.residence_number}</b>
+                            </Col>
+                            <Col>
+                              <p>
+                                No Antrian : {historyWaitingList.order_number}
+                              </p>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col>
+                              <b>{historyWaitingList.health_agency}</b>
+                            </Col>
+                            <Col>
+                              <span className="text-primary">
+                                Sudah Diperiksa
+                              </span>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col>
+                              <b>{historyWaitingList.polyclinic}</b>
+                            </Col>
+                            <Col>
+                              <p>{historyWaitingList.registered_date}</p>
+                            </Col>
+                          </Row>
+                        </Card.Body>
+                      </Card>
+                    </Link>
+                  </Col>
                 );
               })}
             </Row>
