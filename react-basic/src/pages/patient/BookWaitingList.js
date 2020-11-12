@@ -5,8 +5,6 @@ import {Button, Container, Card, Col, Row, Image, Form, Spinner } from "react-bo
 import PlusImage from "../../images/pasien/plus.png";
 import {useParams} from "react-router";
 import InvalidScheduleDate from "./InvalidScheduleDate";
-import { set } from "js-cookie";
-
 
 const BookWaitingList = () => {
   React.useEffect(() => {
@@ -28,7 +26,7 @@ const BookWaitingList = () => {
   const [errorDate, setErrorDate] = React.useState("");
   const [errorSchedule, setErrorSchedule] = React.useState("");
   const [errorResidenceNumber, setErrorResidenceNumber] = React.useState("");
-  const [isSelf, setIsSelf] = React.useState("");
+  const [isSelf, setIsSelf] = React.useState(0);
   const [isLoading, setIsLoading] = React.useState(0);
 
   const getResidenceNumber = async () => {
@@ -104,10 +102,6 @@ const BookWaitingList = () => {
       });
   };
 
-  const onInvalid = (message) => {
-    return InvalidScheduleDate(message);
-  }
-
   return (
     <div className="mx-4 mt-3">
       <Container className="pasien-body py-2">
@@ -121,7 +115,9 @@ const BookWaitingList = () => {
           <Spinner animation="grow" variant="info" className="mx-auto">
             <span className="sr-only">Loading...</span>
           </Spinner>
-        ) : invalidMessage ? onInvalid(invalidMessage) : (
+        ) : invalidMessage ? 
+        (<InvalidScheduleDate message={invalidMessage}/>) 
+        : (
           <Card.Body className="justify-content-between text-capitalize bg-white rounded">
             <Row>
               <Col lg="6">
