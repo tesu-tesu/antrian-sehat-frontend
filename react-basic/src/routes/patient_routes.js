@@ -27,7 +27,7 @@ export const APP_PATIENT_ROUTE = [
   },
   {
     name: "List HA of Polyclinic",
-    path: "/pasien/puskesmas/:id_polyclinic",
+    path: "/pasien/puskesmas/:id_polymaster",
     exact: true,
     component: ListHAofPoly,
     private: true,
