@@ -4,7 +4,6 @@ import {FaRegSadTear} from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const InvalidScheduleDate = (props) => {
-    
     return (
             <Card.Body className="d-flex align-items-center justify-content-center bg-white rounded">
                 <Row className="justify-content-md-center">
@@ -22,7 +21,7 @@ const InvalidScheduleDate = (props) => {
                             /></div>
                         <h5 className="text-center">{props.message}</h5>
                         <div className="d-flex align-items-center">
-                            <Link to="{`/pasien/`}" style={{margin: 'auto'}}>
+                            <Link to={`/pasien/`} style={{margin: 'auto'}}>
                                 <div>Kembali ke halaman awal</div>
                             </Link>
                             {/* <Button variant="primary" style={{margin: 'auto'}}>Kembali ke halaman sebelumnya</Button> */}
