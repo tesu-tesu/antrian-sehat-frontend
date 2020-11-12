@@ -22,7 +22,7 @@ const InvalidScheduleDate = (props) => {
                             /></div>
                         <h5 className="text-center">{props.message}</h5>
                         <div className="d-flex align-items-center">
-                            <Link to="{`/pasien/`}" style={{margin: 'auto'}}>
+                            <Link to={`/pasien/`} style={{margin: 'auto'}}>
                                 <div>Kembali ke halaman awal</div>
                             </Link>
                             {/* <Button variant="primary" style={{margin: 'auto'}}>Kembali ke halaman sebelumnya</Button> */}
