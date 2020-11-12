@@ -3,7 +3,7 @@ import {Card, Col, Row} from "react-bootstrap";
 import {FaRegSadTear} from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const InvalidScheduleDate = (message) => {
+const InvalidScheduleDate = (props) => {
     
     return (
             <Card.Body className="d-flex align-items-center justify-content-center bg-white rounded">
@@ -20,7 +20,7 @@ const InvalidScheduleDate = (message) => {
                                 margin: "auto"
                             }}
                             /></div>
-                        <h5 className="text-center">{message}</h5>
+                        <h5 className="text-center">{props.message}</h5>
                         <div className="d-flex align-items-center">
                             <Link to="{`/pasien/`}" style={{margin: 'auto'}}>
                                 <div>Kembali ke halaman awal</div>
