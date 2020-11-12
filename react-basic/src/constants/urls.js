@@ -46,3 +46,5 @@ export const GET_ADMIN_WAITING_LIST_OF_HA = (page_number) =>
   `${BASE_URL}/admin/health-agency/waiting-list?page=${page_number}`;
 export const POST_CHANGE_STATUS = (id_waiting_list, status) =>
   `${BASE_URL}/admin/health-agency/change-status/${id_waiting_list}/${status}`;
+export const POST_CHECK_QRCODE = (qrcode) =>
+  `${BASE_URL}/admin/health-agency/check-patient-qrcode/${qrcode}`;
