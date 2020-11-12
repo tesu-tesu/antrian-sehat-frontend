@@ -11,5 +11,14 @@ export const APP_ADMIN_ROUTE = [
       private: true,
       isAdmin: true,
     },
+    {
+        name: "Error Page",
+        path: "/admin/*",
+        exact: true,
+        component: ErrorPage,
+        private: true,
+        isAdmin: true,
+        isNotFound: true,
+    },
 
 ];

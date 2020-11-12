@@ -7,7 +7,7 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { isLogin, isPasien, isAdmin } from "utils/auth";
 
-const PasienRoute = ({ component: Component, ...rest }) => {
+const PasienRoute = ({ component: Component, isNotFound, ...rest }) => {
   return (
     // Show the component only when the user is logged in
     // Otherwise, redirect the user to /signin page
@@ -15,14 +15,21 @@ const PasienRoute = ({ component: Component, ...rest }) => {
       {...rest}
       render={(props) =>
         isLogin() ? (
-          !isPasien() ? (
-            <>
-              <Redirect to="/admin" />
-              <Component {...props} />
-            </>
-          ) : (
-            <Component {...props} />
-          )
+            !isNotFound ? (
+                !isPasien() ? (
+                    <>
+                        <Redirect to="/admin" />
+                        <Component {...props} />
+                    </>
+                ) : (
+                    <Component {...props} />
+                )
+            ) : (
+                <>
+                    <Redirect to="/error" />
+                    <Component {...props} />
+                </>
+            )
         ) : (
           <Redirect to="/login" />
         )

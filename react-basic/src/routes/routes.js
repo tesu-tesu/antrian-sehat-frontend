@@ -59,6 +59,7 @@ export const APP_ROUTE = [
     component: ErrorPage,
     private: true,
     exact: true,
+    isNotFound: true,
   },
   {
     name: "Error Page not found",
@@ -66,6 +67,6 @@ export const APP_ROUTE = [
     component: ErrorPage,
     private: true,
     exact: true,
-    isPasien: true,
+    isNotFound: true,
   }
 ];

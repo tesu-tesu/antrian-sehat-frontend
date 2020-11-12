@@ -56,6 +56,7 @@ class AdminContainer extends React.Component {
                             path={value.path}
                             exact={value.exact}
                             isAdmin={value.isAdmin}
+                            isNotFound={value.isNotFound}
                           />
                         );
                       })}

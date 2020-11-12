@@ -32,6 +32,7 @@ const App = () => {
               path={value.path}
               component={value.component}
               exact={value.exact}
+              isNotFound={value.isNotFound}
             />
           );
         })}
