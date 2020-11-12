@@ -95,10 +95,10 @@ const Home = () => {
                             {currentWaitingList.latest_number}
                           </span>
                           <span
-                            className="text-dark ml-1"
+                            className="text-dark ml-2 d-flex align-items-center"
                             style={{ fontSize: "15px" }}
                           >
-                            (sedang diperiksa / antrian sekarang)
+                            (sedang diperiksa / antrian terakhir)
                           </span>
                         </Row>
                       </Col>
