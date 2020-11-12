@@ -54,7 +54,7 @@ const NavBar = () => {
             </Link>
             <Link
               className="text-light nav-link font-weight-bold mr-5"
-              to="/pasien/show-ticket"
+              to="/pasien/riwayat-antrian"
             >
               History
             </Link>
