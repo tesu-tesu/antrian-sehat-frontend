@@ -31,6 +31,13 @@ export const APP_ROUTE = [
     restricted: true,
   },
   {
+    name: "Login",
+    path: "/",
+    exact: true,
+    component: Login,
+    restricted: true,
+  },
+  {
     name: "Master Layout Admin",
     path: "/admin",
     // exact: true, //di false karena ada nested Switch di dalamnya AdminCOntainer
@@ -45,6 +52,13 @@ export const APP_ROUTE = [
     component: PasienContainer,
     private: true,
     isPasien: true,
+  },
+  {
+    name: "Error Page not found",
+    path: "/*",
+    component: ErrorPage,
+    private: true,
+    exact: true,
   },
   {
     name: "Error Page not found",

@@ -38,9 +38,6 @@ const App = () => {
         <Route path="/">
           <Redirect to="/login" />
         </Route>
-        <Route exact path='*'>
-          <Redirect to="/error" />
-        </Route>
       </Switch>
     </Router>
   );
