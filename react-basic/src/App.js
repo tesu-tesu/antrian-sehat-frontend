@@ -16,6 +16,7 @@ import { APP_PATIENT_ROUTE } from "./routes/patient_routes";
 import PublicRoute from "components/PublicRoute";
 import PasienRoute from "components/PasienRoute";
 import AdminRoute from "components/AdminRoute";
+import ErrorPage from "./pages/404Pages/ErrorPage";
 
 export const history = createBrowserHistory();
 
@@ -36,6 +37,9 @@ const App = () => {
         })}
         <Route path="/">
           <Redirect to="/login" />
+        </Route>
+        <Route exact path='*'>
+          <Redirect to="/error" />
         </Route>
       </Switch>
     </Router>

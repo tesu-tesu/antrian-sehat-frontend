@@ -13,6 +13,7 @@ import Login from "pages/Login";
 import Register from "pages/Register";
 import PasienContainer from "components/pasien/PasienContainer";
 import AdminContainer from "components/admin/AdminContainer";
+import ErrorPage from "../pages/404Pages/ErrorPage";
 
 export const APP_ROUTE = [
   {
@@ -45,4 +46,12 @@ export const APP_ROUTE = [
     private: true,
     isPasien: true,
   },
+  {
+    name: "Error Page not found",
+    path: "/error",
+    component: ErrorPage,
+    private: true,
+    exact: true,
+    isPasien: true,
+  }
 ];

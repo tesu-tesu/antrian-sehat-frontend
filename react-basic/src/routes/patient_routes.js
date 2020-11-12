@@ -6,6 +6,7 @@ import HistoryWaitingList from "pages/patient/HistoryWaitingList";
 import Polymasters from "pages/patient/Polyclinics";
 import PolyclinicSchedule from "pages/patient/PolyclinicSchedules";
 import BookWaitingList from "pages/patient/BookWaitingList";
+import ErrorPage from "../pages/404Pages/ErrorPage";
 
 export const APP_PATIENT_ROUTE = [
   {
@@ -72,4 +73,5 @@ export const APP_PATIENT_ROUTE = [
     private: true,
     isPasien: true,
   },
+
 ];
