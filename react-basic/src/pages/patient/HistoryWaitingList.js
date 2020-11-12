@@ -222,7 +222,7 @@ const HistoryWaitingList = () => {
                                   </Col>
                                   <Col>
                                     <span className="text-primary">
-                                      Sudah Diperiksa
+                                      {historyWaitingList.status}
                                     </span>
                                   </Col>
                                 </Row>
