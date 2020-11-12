@@ -43,9 +43,9 @@ class AdminContainer extends React.Component {
               </Col>
               <Col className="mb-5 mb-xl-0" xl="12">
                 <Card className="bg-gradient-white shadow">
-                  <CardHeader className="bg-transparent mx-1">
-                    <Row className="align-items-center">Title</Row>
-                  </CardHeader>
+                <CardHeader className=" bg-transparent">
+                  <h3 className=" mb-0">Title</h3>
+                </CardHeader>
                   <CardBody>
                     <Switch>
                       {APP_ADMIN_ROUTE.map((value, index) => {

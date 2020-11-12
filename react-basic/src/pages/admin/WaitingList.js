@@ -100,22 +100,22 @@ const WaitingList = () => {
     fetchData();
   }, []);
 
-  const cancelBtn = ($id) => {
-    validation($id, 4);
+  const cancelBtn = (id) => {
+    validation(id, 4);
   };
 
-  const proccessBtn = ($id) => {
-    validation($id, 2);
+  const proccessBtn = (id) => {
+    validation(id, 2);
   };
 
-  const doneBtn = ($id) => {
-    validation($id, 3);
+  const doneBtn = (id) => {
+    validation(id, 3);
   };
 
-  const validation = ($id, $status) => {
+  const validation = (id, status) => {
     axios
       .post(
-        POST_CHANGE_STATUS($id, $status),
+        POST_CHANGE_STATUS(id, status),
         {},
         { headers: { Authorization: `Bearer ${JWT_HEADER}` } }
       )
