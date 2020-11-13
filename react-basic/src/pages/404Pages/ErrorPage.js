@@ -3,6 +3,7 @@ import NavBar from "../../components/NavBar";
 import headerImage from "images/pasien/human sit.png";
 import FooterBar from "../../components/FooterBar";
 import Header from "../../components/admin/Header";
+import {Link} from "react-router-dom";
 
 ErrorPage.propTypes = {
 
@@ -29,7 +30,7 @@ function ErrorPage(props) {
                                         <h4 className="description text-default">Sepertinya Anda tersesat.</h4>
                                     </div>
                                     <div className="btn-wrapper text-center px--3">
-                                        <Link href="/"
+                                        <Link to="/"
                                            className="btn btn-neutral mb-3 mb-sm-0">
                                             <span className="btn-inner--text">Back To Home</span>
                                         </Link>
