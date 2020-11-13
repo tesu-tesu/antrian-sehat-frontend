@@ -5,7 +5,7 @@ import {Button, Container, Card, Col, Row, Image, Form, Spinner } from "react-bo
 import PlusImage from "../../images/pasien/plus.png";
 import {useParams} from "react-router";
 import InvalidScheduleDate from "./InvalidScheduleDate";
-import ModalShow from "./ModalShow";
+import ModalShowQR from "../../components/pasien/ModalShowQR";
 
 const BookWaitingList = () => {
   React.useEffect(() => {
@@ -25,18 +25,16 @@ const BookWaitingList = () => {
     })
     .replace(/ /g, " ");
 
-  const [healthAgency, setHealthAgency] = React.useState("");
-  const [polyclinic, setPolyclinic] = React.useState("");
-  const [regDate, setRegDate] = React.useState("");
   const [day, setDay] = React.useState("");
-  const [currentWaitingList, setCurrentWaitingList] = React.useState("");
-  const [totalWaitingList, setTotalWaitingList] = React.useState("");
-  const [residenceNumber, setResidenceNumber] = React.useState("");
+  const [polyclinic, setPolyclinic] = React.useState("");
+  const [waitingList, setWaitingList] = React.useState();
+  const [healthAgency, setHealthAgency] = React.useState("");
   const [invalidMessage, setInvalidMessage] = React.useState("");
-  const [orderNumber, setOrderNumber] = React.useState("");
+  const [residenceNumber, setResidenceNumber] = React.useState("");
+  const [totalWaitingList, setTotalWaitingList] = React.useState("");
+  const [currentWaitingList, setCurrentWaitingList] = React.useState("");
   const [successMessage, setSuccessMessage] = React.useState("");
   const [errorDate, setErrorDate] = React.useState("");
-  const [QR, setQR] = React.useState("");
   const [errorSchedule, setErrorSchedule] = React.useState("");
   const [errorResidenceNumber, setErrorResidenceNumber] = React.useState("");
   const [isSelf, setIsSelf] = React.useState(0);
@@ -76,7 +74,6 @@ const BookWaitingList = () => {
         setHealthAgency(res.data.waiting_list.health_agency);
         setPolyclinic(res.data.waiting_list.polyclinic);
         setDay(res.data.waiting_list.day);
-        setRegDate(res.data.waiting_list.registered_date);
         setCurrentWaitingList(res.data.waiting_list.current_number);
         setTotalWaitingList(res.data.waiting_list.latest_number);
         setErrorResidenceNumber("");
@@ -97,13 +94,7 @@ const BookWaitingList = () => {
         residence_number: residenceNumber,
       }, {headers: { Authorization: `Bearer ${JWT_HEADER}` }})
       .then((res) => {
-        setHealthAgency(res.data.waiting_list.health_agency);
-        setPolyclinic(res.data.waiting_list.polyclinic);
-        setRegDate(res.data.waiting_list.registered_date);
-        setOrderNumber(res.data.waiting_list.order_number);
-        setTotalWaitingList(res.data.waiting_list.latest_number);
-        setQR(res.data.waiting_list.barcode);
-        setResidenceNumber(res.data.waiting_list.residenceNumber);
+        setWaitingList(res.data.waiting_list);
         setSuccessMessage(res.data.message);
         setIsSuccess(true);
       })
@@ -210,16 +201,14 @@ const BookWaitingList = () => {
 
   return (
     <div className="mx-4 mt-3">
-      {isSuccess? (<ModalShow
+      {isSuccess? (
+      <ModalShowQR
+      waitingList={waitingList}
+      show={isSuccess}
+      closable={false}
       message={successMessage}
-      residenceNumber={residenceNumber}
-      registeredDate={regDate}
-      qr={QR}
-      ordNumber={orderNumber}
-      total={totalWaitingList}
-      ha={healthAgency}
-      poly={polyclinic}
-      />) : ('')}
+      linkto={`/pasien`}
+    />) : ('')}
       <Container className="pasien-body py-2">
         <Card
           className="mx-lg-4 border border-0"

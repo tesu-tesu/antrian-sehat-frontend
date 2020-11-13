@@ -1,7 +1,6 @@
 import React from "react";
 import QRCode from "qrcode.react";
 import logo from "../../images/logo.png";
-import axios from "axios";
 
 const QRCodes = (props) => {
 return (
