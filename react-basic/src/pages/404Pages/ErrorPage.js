@@ -1,18 +1,15 @@
-import React from 'react';
+import React from "react";
 import NavBar from "../../components/NavBar";
-import headerImage from "images/pasien/human sit.png";
 import FooterBar from "../../components/FooterBar";
+import { Link } from "react-router-dom";
 import Header from "../../components/admin/Header";
-import {Link} from "react-router-dom";
 
-ErrorPage.propTypes = {
-
-};
+ErrorPage.propTypes = {};
 
 function ErrorPage(props) {
-    return (
-        <div>
-{/*            {!props.isAdmin ?  (
+  return (
+    <div>
+      {/*            {!props.isAdmin ?  (
                     <Header/>
                 ) : (
                     <NavBar/>
@@ -40,10 +37,14 @@ function ErrorPage(props) {
                         </div>
                     </div>
                 </div>
+              </div>
             </div>
-            <FooterBar/>
+          </div>
         </div>
-    );
+      </div>
+      <FooterBar />
+    </div>
+  );
 }
 
 export default ErrorPage;
