@@ -7,6 +7,7 @@ import Polymasters from "pages/patient/Polyclinics";
 import PolyclinicSchedule from "pages/patient/PolyclinicSchedules";
 import BookWaitingList from "pages/patient/BookWaitingList";
 import ListHAofPoly from "pages/patient/ListHAofPoly";
+import ErrorPage from "../pages/404Pages/ErrorPage";
 
 export const APP_PATIENT_ROUTE = [
   {
@@ -80,5 +81,14 @@ export const APP_PATIENT_ROUTE = [
     component: BookWaitingList,
     private: true,
     isPasien: true,
+  },
+  {
+    name: "Error Page",
+    path: "/pasien/*",
+    exact: true,
+    component: ErrorPage,
+    private: true,
+    isPasien: true,
+    isNotFound: true,
   },
 ];

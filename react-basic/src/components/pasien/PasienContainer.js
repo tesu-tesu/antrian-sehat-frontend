@@ -54,7 +54,7 @@ const PasienContainer = (props) => {
                 }}
               >
                 <span>
-                  <FaHome></FaHome>
+                  <FaHome/>
                   <i className="mr-2" />
                   Home
                 </span>
@@ -83,6 +83,7 @@ const PasienContainer = (props) => {
                 path={value.path}
                 exact={value.exact}
                 isPasien={value.isPasien}
+                isNotFound={value.isNotFound}
               />
             );
           })}

@@ -25,7 +25,7 @@ class AdminContainer extends React.Component {
           }}
         />
         <div className="main-content" ref="mainContent">
-          <Header></Header>
+          <Header/>
 
           <Container className="mt--8" fluid>
             <Row>
@@ -56,6 +56,7 @@ class AdminContainer extends React.Component {
                             path={value.path}
                             exact={value.exact}
                             isAdmin={value.isAdmin}
+                            isNotFound={value.isNotFound}
                           />
                         );
                       })}
