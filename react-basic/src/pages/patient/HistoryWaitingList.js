@@ -1,15 +1,17 @@
 import React from "react";
-import QRCode from "qrcode.react";
 import axios from "axios";
 import { Row, Col, Card, Spinner } from "react-bootstrap";
 import { GET_WAITING_LIST, JWT_HEADER } from "constants/urls";
 import { Link } from "react-router-dom";
+import ModalShowQR from "../../components/pasien/ModalShowQR";
 
 const HistoryWaitingList = () => {
   const [currentWaitingLists, setCurrentWaitingLists] = React.useState([]);
   const [futureWaitingLists, setFutureWaitingLists] = React.useState([]);
   const [historyWaitingLists, setHistoryWaitingLists] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(0);
+  const [waitingList, setWaitingList] = React.useState();
+  const [modalShow, setModalShow] = React.useState();
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +32,11 @@ const HistoryWaitingList = () => {
     };
     fetchData();
   }, []);
+
+  const showModal = (waitingList) => event => {
+    setWaitingList(waitingList);
+    setModalShow(true);
+  }
 
   return (
     <div className="mx-4 mt-3">
@@ -65,6 +72,7 @@ const HistoryWaitingList = () => {
                                 backgroundColor: "#F0F5FE",
                                 borderRadius: "15px",
                               }}
+                              onClick={showModal(currentWaitingList)}
                             >
                               <Card.Body>
                                 <Row>
@@ -135,6 +143,7 @@ const HistoryWaitingList = () => {
                                 backgroundColor: "#F0F5FE",
                                 borderRadius: "15px",
                               }}
+                              onClick={showModal(futureWaitingList)}
                             >
                               <Card.Body>
                                 <Row>
@@ -246,6 +255,13 @@ const HistoryWaitingList = () => {
             </Card.Body>
           </Col>
         </Row>
+        {modalShow && <ModalShowQR
+          waitingList={waitingList}
+          show={modalShow}
+          closable={true}
+          message="Antrian Anda"
+          onHide={() => setModalShow(false)}
+        />}
       </Card>
     </div>
   );

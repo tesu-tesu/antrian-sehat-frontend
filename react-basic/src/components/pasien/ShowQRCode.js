@@ -15,12 +15,12 @@ const ShowQRCode = (props) => {
   return (
     <div>
         <QRCodes value={props.waitingList.barcode}/>
-        <div>
-          <h6>{formattedDate}</h6>
+        <div className="my-3">
+          <h5>{formattedDate}</h5>
         </div>
-        <p className="my-0">No. Antrian :{" "}<b>{props.waitingList.order_number}</b></p>
-        <p>Saat ini :{" "}<b>{dateString > today ? " - " : props.waitingList.current_number}/{props.waitingList.latest_number}</b></p>
-        <p className="bold my-0">{props.waitingList.residence_number}</p>
+        <p className="my-0">No. Antrian :{" "} <span>{props.waitingList.order_number}</span></p>
+        <p className="my-0">Saat ini :{" "} <span>{dateString > today ? " - " : props.waitingList.current_number}/{props.waitingList.latest_number}</span></p>
+        <b className="my-0">{props.waitingList.residence_number}</b>
         <p className="my-0">{props.waitingList.health_agency}</p>
         <p className="my-0">{props.waitingList.polyclinic}</p>
     </div>
