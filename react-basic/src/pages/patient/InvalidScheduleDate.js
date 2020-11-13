@@ -4,7 +4,6 @@ import {FaRegSadTear} from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const InvalidScheduleDate = (props) => {
-    
     return (
             <Card.Body className="d-flex align-items-center justify-content-center bg-white rounded">
                 <Row className="justify-content-md-center">
