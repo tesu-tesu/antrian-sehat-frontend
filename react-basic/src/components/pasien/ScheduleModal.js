@@ -97,14 +97,14 @@ const ScheduleModal = (props) => {
       <Modal.Body>
         <Row className="mt-2">
           <Col md="6">
-            <div>
+            <div className="d-flex justify-content-center">
               <Card.Img
+                style={{ width: "200px" }}
                 src={
                   props?.healthAgency?.image
                     ? props?.healthAgency?.image
                     : defaultHA
                 }
-                width="40%"
               />
             </div>
           </Col>
