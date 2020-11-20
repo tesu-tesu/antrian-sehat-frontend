@@ -77,7 +77,6 @@ const NavBar = () => {
           </Nav>
         </Navbar.Collapse>
         <NavDropdown
-          fluid
           title={<Image src={logoUser} width="20%" fluid />}
           id="collasible-nav-dropdown"
         >

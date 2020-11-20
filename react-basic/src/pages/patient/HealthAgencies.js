@@ -8,9 +8,9 @@ import Pagination from "react-js-pagination";
 
 const HealthAgencies = () => {
   const [healthAgencies, setHealthAgencies] = React.useState([]);
-  const [currentPage, setCurrentPage] = React.useState("");
-  const [perPage, setPerPage] = React.useState("");
-  const [total, setTotal] = React.useState("");
+  const [currentPage, setCurrentPage] = React.useState(0);
+  const [perPage, setPerPage] = React.useState(0);
+  const [total, setTotal] = React.useState(0);
   const [isLoading, setIsLoading] = React.useState(0);
 
   React.useEffect(() => {
@@ -37,11 +37,9 @@ const HealthAgencies = () => {
 
   const renderData = () => {
     return healthAgencies.map((healthAgency, key) => {
-      // console.log("key: ", healthAgency.id); //use id to send selected HA card
       return (
-        <Col md="3" className="mb-3">
+        <Col md="3" className="mb-3" key={key}>
           <Card
-            key={key}
             className="text-center mx-auto"
             style={{
               backgroundColor: "#F0F5FE",
