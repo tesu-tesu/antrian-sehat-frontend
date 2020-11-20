@@ -27,7 +27,7 @@ const Polymasters = () => {
         setCurrentPage(res.data.current_page);
         setPerPage(res.data.per_page);
         setTotal(res.data.total);
-        setPolymasters(res.data.data);
+        setPolymasters(res.data.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -52,15 +52,15 @@ const Polymasters = () => {
             }}
           >
             <Link to={`/pasien/puskesmas/${polymaster.id}`}>
-            <Card.Body>
-              <FaReact
-                style={{
-                  fontSize: "30px",
-                }}
-              />
-              <p className="mt-3">{polymaster.name}</p>
-            </Card.Body>
-          </Link>
+              <Card.Body>
+                <FaReact
+                  style={{
+                    fontSize: "30px",
+                  }}
+                />
+                <p className="mt-3">{polymaster.name}</p>
+              </Card.Body>
+            </Link>
           </Card>
         </Col>
       );
