@@ -138,7 +138,6 @@ const ScheduleModal = (props) => {
                 </thead>
                 <tbody>
                   {polyclinics.map((polyclinic, key) => {
-                    console.log(polyclinic.poly_master_id == props.poly_id);
                     if (polyclinic.poly_master_id == props.poly_id) {
                       return (
                         <tr>
