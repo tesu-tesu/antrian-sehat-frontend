@@ -24,10 +24,10 @@ const HealthAgencies = () => {
         headers: { Authorization: `Bearer ${JWT_HEADER}` },
       })
       .then((res) => {
-        setCurrentPage(res.data.current_page);
-        setPerPage(res.data.per_page);
-        setTotal(res.data.total);
-        setHealthAgencies(res.data.data);
+        setCurrentPage(res.data.data.current_page);
+        setPerPage(res.data.data.per_page);
+        setTotal(res.data.data.total);
+        setHealthAgencies(res.data.data.data);
       })
       .catch((err) => {
         console.log(err);
