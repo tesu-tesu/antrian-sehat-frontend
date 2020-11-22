@@ -21,9 +21,9 @@ const HistoryWaitingList = () => {
           headers: { Authorization: `Bearer ${JWT_HEADER}` },
         })
         .then((res) => {
-          setCurrentWaitingLists(res.data.currentWaitingList);
-          setFutureWaitingLists(res.data.futureWaitingList);
-          setHistoryWaitingLists(res.data.historyWaitingList);
+          setCurrentWaitingLists(res.data.waitingList.currentWaitingList);
+          setFutureWaitingLists(res.data.waitingList.futureWaitingList);
+          setHistoryWaitingLists(res.data.waitingList.historyWaitingList);
         })
         .catch((err) => {
           console.log(err);
@@ -60,6 +60,14 @@ const HistoryWaitingList = () => {
               ) : (
                 <div>
                   {currentWaitingLists.map((currentWaitingList, key) => {
+                    let dateString = new Date(currentWaitingList.registered_date);
+                    let formattedDate = dateString
+                      .toLocaleDateString("id-ID", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                      })
+                      .replace(/ /g, " ");
                     return (
                       <Row key={key} className="mb-3">
                         <Col>
@@ -104,7 +112,7 @@ const HistoryWaitingList = () => {
                                     <b>{currentWaitingList.polyclinic}</b>
                                   </Col>
                                   <Col>
-                                    <p>{currentWaitingList.registered_date}</p>
+                                    <p>{formattedDate}</p>
                                   </Col>
                                 </Row>
                               </Card.Body>
@@ -131,6 +139,14 @@ const HistoryWaitingList = () => {
               ) : (
                 <div>
                   {futureWaitingLists.map((futureWaitingList, key) => {
+                    let dateString = new Date(futureWaitingList.registered_date);
+                    let formattedDate = dateString
+                      .toLocaleDateString("id-ID", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                      })
+                      .replace(/ /g, " ");
                     return (
                       <Row key={key} className="mb-3">
                         <Col>
@@ -173,7 +189,7 @@ const HistoryWaitingList = () => {
                                     <b>{futureWaitingList.polyclinic}</b>
                                   </Col>
                                   <Col>
-                                    <p>{futureWaitingList.registered_date}</p>
+                                    <p>{formattedDate}</p>
                                   </Col>
                                 </Row>
                               </Card.Body>
@@ -200,6 +216,14 @@ const HistoryWaitingList = () => {
               ) : (
                 <div>
                   {historyWaitingLists.map((historyWaitingList, key) => {
+                    let dateString = new Date(historyWaitingList.registered_date);
+                    let formattedDate = dateString
+                      .toLocaleDateString("id-ID", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                      })
+                      .replace(/ /g, " ");
                     return (
                       <Row key={key} className="mb-3">
                         <Col>
@@ -240,7 +264,7 @@ const HistoryWaitingList = () => {
                                     <b>{historyWaitingList.polyclinic}</b>
                                   </Col>
                                   <Col>
-                                    <p>{historyWaitingList.registered_date}</p>
+                                    <p>{formattedDate}</p>
                                   </Col>
                                 </Row>
                               </Card.Body>
