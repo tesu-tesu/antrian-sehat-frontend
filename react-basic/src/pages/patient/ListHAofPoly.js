@@ -22,7 +22,8 @@ const ListHAofPoly = () => {
           headers: { Authorization: `Bearer ${JWT_HEADER}` },
         })
         .then((res) => {
-          setHealthAgencies(res.data);
+          console.log(res.data);
+          setHealthAgencies(res.data.data);
         })
         .catch((err) => {
           console.log(err);

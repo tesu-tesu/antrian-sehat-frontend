@@ -24,9 +24,9 @@ const Polymasters = () => {
         headers: { Authorization: `Bearer ${JWT_HEADER}` },
       })
       .then((res) => {
-        setCurrentPage(res.data.current_page);
-        setPerPage(res.data.per_page);
-        setTotal(res.data.total);
+        setCurrentPage(res.data.data.current_page);
+        setPerPage(res.data.data.per_page);
+        setTotal(res.data.data.total);
         setPolymasters(res.data.data.data);
       })
       .catch((err) => {

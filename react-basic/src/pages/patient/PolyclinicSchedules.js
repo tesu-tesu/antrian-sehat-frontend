@@ -36,18 +36,18 @@ const PolyclinicSchedules = () => {
           headers: { Authorization: `Bearer ${JWT_HEADER}` },
         })
         .then((res) => {
-          setHealthAgency(res.data);
+          setHealthAgency(res.data.data);
         })
         .catch((err) => {
           console.log(err);
         });
 
-      axios
+      await axios
         .get(GET_POLYCLINIC_OF_HA(id_health_agency), {
           headers: { Authorization: `Bearer ${JWT_HEADER}` },
         })
         .then((res) => {
-          setPolyclinics(res.data);
+          setPolyclinics(res.data.data);
         })
         .catch((err) => {
           console.log(err);
@@ -82,6 +82,50 @@ const PolyclinicSchedules = () => {
           <div>{formattedDate}</div>
         </th>
       );
+    });
+  };
+
+  const printPolyclinics = () => {
+    return polyclinics.map((polyclinic, key) => {
+      if (polyclinic) {
+        return (
+          <tr>
+            <td className="font-weight-600">{polyclinic.poly_master.name}</td>
+            {days.map((day, index) => {
+              var sign = 0;
+              return polyclinic.sorted.map((schedule, idx) => {
+                if (schedule.day === index) {
+                  sign = 1;
+                  return (
+                    <td className="text-center">
+                      <div>
+                        <Link
+                          to={`/pasien/book-waiting-list/${schedule.id}/${schedule.date}`}
+                        >
+                          <Button size="sm" variant="primary">
+                            Daftar
+                          </Button>
+                        </Link>
+                      </div>
+                      <div>{schedule.time_open}</div>
+                    </td>
+                  );
+                }
+
+                if (
+                  //match value with last item of polyclinic.sorted in index 'day'
+                  schedule.day ==
+                  polyclinic.sorted[polyclinic.sorted.length - 1].day
+                ) {
+                  if (sign == 0) {
+                    return <td className="text-center">-</td>;
+                  }
+                }
+              });
+            })}
+          </tr>
+        );
+      }
     });
   };
 
@@ -129,60 +173,7 @@ const PolyclinicSchedules = () => {
                         {currentDate && printDays()}
                       </tr>
                     </thead>
-                    <tbody>
-                      {polyclinics.map((polyclinic, key) => {
-                        if (polyclinic) {
-                          return (
-                            <tr>
-                              <td className="font-weight-600">
-                                {polyclinic.poly_master.name}
-                              </td>
-                              {days.map((day, index) => {
-                                var sign = 0;
-                                return polyclinic.sorted.map(
-                                  (schedule, idx) => {
-                                    if (schedule.day === index) {
-                                      sign = 1;
-                                      return (
-                                        <td className="text-center">
-                                          <div>
-                                            <Link
-                                              to={`/pasien/book-waiting-list/${schedule.id}/${schedule.date}`}
-                                            >
-                                              <Button
-                                                size="sm"
-                                                variant="primary"
-                                              >
-                                                Daftar
-                                              </Button>
-                                            </Link>
-                                          </div>
-                                          <div>{schedule.time_open}</div>
-                                        </td>
-                                      );
-                                    }
-
-                                    if (
-                                      //match value with last item of polyclinic.sorted in index 'day'
-                                      schedule.day ==
-                                      polyclinic.sorted[
-                                        polyclinic.sorted.length - 1
-                                      ].day
-                                    ) {
-                                      if (sign == 0) {
-                                        return (
-                                          <td className="text-center">-</td>
-                                        );
-                                      }
-                                    }
-                                  }
-                                );
-                              })}
-                            </tr>
-                          );
-                        }
-                      })}
-                    </tbody>
+                    <tbody>{polyclinics && printPolyclinics()}</tbody>
                   </Table>
                 </Card>
               </Col>

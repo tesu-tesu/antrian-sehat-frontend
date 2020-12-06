@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { Modal, Button, Card, Table, Spinner, Row, Col } from "react-bootstrap";
 import {
-  GET_POLYCLINIC_NAME,
+  GET_POLYMASTER_OF_POLYCLINIC,
   GET_POLYCLINIC_OF_HA,
   JWT_HEADER,
 } from "constants/urls";
@@ -34,18 +34,18 @@ const ScheduleModal = (props) => {
           headers: { Authorization: `Bearer ${JWT_HEADER}` },
         })
         .then((res) => {
-          setPolyclinics(res.data);
+          setPolyclinics(res.data.data);
         })
         .catch((err) => {
           console.log(err);
         });
 
       await axios
-        .get(GET_POLYCLINIC_NAME(props.poly_id), {
+        .get(GET_POLYMASTER_OF_POLYCLINIC(props.poly_id), {
           headers: { Authorization: `Bearer ${JWT_HEADER}` },
         })
         .then((res) => {
-          setPolymaster(res.data);
+          setPolymaster(res.data.data);
           setIsLoading(false);
         })
         .catch((err) => {
