@@ -169,10 +169,12 @@ const BookWaitingList = () => {
               <div>
                 <p>Antrian Saat Ini</p>
                 <p style={{ marginTop: "0px" }}>
-                  Sedang Diperiksa/Antrian Terakhir
+                  Sedang Diperiksa/
+                  <span className="text-success">Antrian Terakhir</span>
                 </p>
                 <h3>
-                  {currentWaitingList}/{totalWaitingList}
+                  {currentWaitingList}/
+                  <span className="text-success">{totalWaitingList}</span>
                 </h3>
               </div>
             </div>
