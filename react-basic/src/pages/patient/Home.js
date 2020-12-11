@@ -30,13 +30,14 @@ const Home = () => {
           headers: { Authorization: `Bearer ${JWT_HEADER}` },
         })
         .then((res) => {
-          if (res.data.waiting_list == null)
+          console.log(res.data);
+          if (res.data.data == null)
             setCurrentWaitingList({
               current_number: 0,
               latest_number: 0,
               order_number: 0,
             });
-          else setCurrentWaitingList(res.data.waiting_list);
+          else setCurrentWaitingList(res.data.data);
         })
         .catch((err) => {
           console.log(err);
