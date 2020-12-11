@@ -77,7 +77,8 @@ const WaitingList = () => {
         headers: { Authorization: `Bearer ${JWT_HEADER}` },
       })
       .then((res) => {
-        const w_list = res.data.waiting_list;
+        console.log(res.data);
+        const w_list = res.data.data;
         setWaitingLists(w_list.data);
         setPagination({
           current_page: w_list.current_page,

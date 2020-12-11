@@ -21,6 +21,7 @@ const HistoryWaitingList = () => {
           headers: { Authorization: `Bearer ${JWT_HEADER}` },
         })
         .then((res) => {
+          console.log(res.data);
           setCurrentWaitingLists(res.data.waitingList.currentWaitingList);
           setFutureWaitingLists(res.data.waitingList.futureWaitingList);
           setHistoryWaitingLists(res.data.waitingList.historyWaitingList);
@@ -33,10 +34,10 @@ const HistoryWaitingList = () => {
     fetchData();
   }, []);
 
-  const showModal = (waitingList) => event => {
+  const showModal = (waitingList) => (event) => {
     setWaitingList(waitingList);
     setModalShow(true);
-  }
+  };
 
   return (
     <div className="mx-4 mt-3">
@@ -60,7 +61,9 @@ const HistoryWaitingList = () => {
               ) : (
                 <div>
                   {currentWaitingLists.map((currentWaitingList, key) => {
-                    let dateString = new Date(currentWaitingList.registered_date);
+                    let dateString = new Date(
+                      currentWaitingList.registered_date
+                    );
                     let formattedDate = dateString
                       .toLocaleDateString("id-ID", {
                         day: "numeric",
@@ -139,7 +142,9 @@ const HistoryWaitingList = () => {
               ) : (
                 <div>
                   {futureWaitingLists.map((futureWaitingList, key) => {
-                    let dateString = new Date(futureWaitingList.registered_date);
+                    let dateString = new Date(
+                      futureWaitingList.registered_date
+                    );
                     let formattedDate = dateString
                       .toLocaleDateString("id-ID", {
                         day: "numeric",
@@ -216,7 +221,9 @@ const HistoryWaitingList = () => {
               ) : (
                 <div>
                   {historyWaitingLists.map((historyWaitingList, key) => {
-                    let dateString = new Date(historyWaitingList.registered_date);
+                    let dateString = new Date(
+                      historyWaitingList.registered_date
+                    );
                     let formattedDate = dateString
                       .toLocaleDateString("id-ID", {
                         day: "numeric",
@@ -279,13 +286,15 @@ const HistoryWaitingList = () => {
             </Card.Body>
           </Col>
         </Row>
-        {modalShow && <ModalShowQR
-          waitingList={waitingList}
-          show={modalShow}
-          closable={true}
-          message="Antrian Anda"
-          onHide={() => setModalShow(false)}
-        />}
+        {modalShow && (
+          <ModalShowQR
+            waitingList={waitingList}
+            show={modalShow}
+            closable={true}
+            message="Antrian Anda"
+            onHide={() => setModalShow(false)}
+          />
+        )}
       </Card>
     </div>
   );
