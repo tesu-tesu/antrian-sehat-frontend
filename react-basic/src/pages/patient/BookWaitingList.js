@@ -87,6 +87,7 @@ const BookWaitingList = () => {
         headers: { Authorization: `Bearer ${JWT_HEADER}` },
       })
       .then((res) => {
+        console.log(res.data);
         setHealthAgency(res.data.data.health_agency);
         setPolyclinic(res.data.data.polyclinic);
         setDay(res.data.data.day);
@@ -97,8 +98,8 @@ const BookWaitingList = () => {
         setInvalidMessage("");
       })
       .catch((err) => {
-        console.log(err);
-        setInvalidMessage(err.response.data.data.message);
+        console.log(err.response);
+        setInvalidMessage(err.response.data.message);
       });
     setIsLoading(false);
   };
@@ -116,8 +117,8 @@ const BookWaitingList = () => {
       )
       .then((res) => {
         console.log(res.data);
-        setWaitingList(res.data.data.waiting_list);
-        setSuccessMessage(res.data.data.message);
+        setWaitingList(res.data.data);
+        setSuccessMessage(res.data.message);
         setIsSuccess(true);
       })
       .catch((err) => {
@@ -138,6 +139,8 @@ const BookWaitingList = () => {
             setErrorSchedule(
               err.response.data?.schedule ? err.response.data.schedule : ""
             );
+          } else {
+            setErrorResidenceNumber(errorResidenceNumber==""? err.response.data.message : "");
           }
         }
       });
@@ -232,17 +235,6 @@ const BookWaitingList = () => {
 
   return (
     <div className="mx-4 mt-3">
-      {isSuccess ? (
-        <ModalShowQR
-          waitingList={waitingList}
-          show={isSuccess}
-          closable={false}
-          message={successMessage}
-          linkto={`/pasien`}
-        />
-      ) : (
-        ""
-      )}
       <Container className="pasien-body py-2">
         <Card
           className="mx-lg-4 border border-0"
@@ -254,6 +246,17 @@ const BookWaitingList = () => {
           {toRender()}
         </Card>
       </Container>
+      {isSuccess ? (
+        <ModalShowQR
+          waitingList={waitingList}
+          show={isSuccess}
+          closable={false}
+          message={successMessage}
+          linkto={`/pasien`}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };
