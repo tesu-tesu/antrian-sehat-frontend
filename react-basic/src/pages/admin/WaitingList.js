@@ -70,7 +70,6 @@ const WaitingList = () => {
   };
 
   const fetchData = async (page_number = 1) => {
-    console.log(page_number);
     setIsLoading(true);
     await axios
       .get(GET_ADMIN_WAITING_LIST_OF_HA(page_number), {
@@ -121,6 +120,7 @@ const WaitingList = () => {
         { headers: { Authorization: `Bearer ${JWT_HEADER}` } }
       )
       .then((res) => {
+        console.log(res.data);
         setIsSuccess(res.data.success);
         setMessage(res.data.message);
       })
