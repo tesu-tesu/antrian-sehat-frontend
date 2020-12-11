@@ -73,22 +73,26 @@ const Register = () => {
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
-        if (err.response) {
-          if (err.response.data?.error) {
-            setErrorEmail(
-              err.response.data?.error ? err.response.data.error : ""
-            );
-          } else if (err.response.data?.email || err.response.data?.password) {
-            setErrorEmail(
-              err.response.data?.email ? err.response.data.email : ""
-            );
-            setErrorPassword(
-              err.response.data?.password ? err.response.data.password : ""
-            );
-          }
-        } else {
-          setErrorEmail(JSON.stringify(err));
+        console.log(err.response.data);
+        if (err.response.data) {
+          setErrorName(err.response.data?.name ? err.response.data.name : "");
+          setErrorEmail(
+            err.response.data?.email ? err.response.data.email : ""
+          );
+          setErrorPassword(
+            err.response.data?.password ? err.response.data.password : ""
+          );
+          setErrorPhone(
+            err.response.data?.phone ? err.response.data.phone : ""
+          );
+          setErrorPassword(
+            err.response.data?.password ? err.response.data.password : ""
+          );
+          setErrorPasswordConfirmation(
+            err.response.data?.password_confirmation
+              ? err.response.data.password_confirmation
+              : ""
+          );
         }
         setLoading(false);
       });

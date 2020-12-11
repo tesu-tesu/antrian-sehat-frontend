@@ -1,4 +1,3 @@
-
 /*eslint-disable*/
 import React from "react";
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
@@ -33,18 +32,16 @@ import {
   Table,
   Container,
   Row,
-  Col
+  Col,
 } from "reactstrap";
-import puskesmasIcon from 'images/admin/puskesmas.png';
-import clinicIcon from 'images/admin/clinic.png';
-import listIcon from 'images/admin/list.png';
-import qrScan from 'images/admin/search.png';
-
-var ps;
+import puskesmasIcon from "images/admin/puskesmas.png";
+import clinicIcon from "images/admin/clinic.png";
+import listIcon from "images/admin/list.png";
+import qrScan from "images/admin/search.png";
 
 class Sidebar extends React.Component {
   state = {
-    collapseOpen: false
+    collapseOpen: false,
   };
   constructor(props) {
     super(props);
@@ -57,17 +54,17 @@ class Sidebar extends React.Component {
   // toggles collapse between opened and closed (true/false)
   toggleCollapse = () => {
     this.setState({
-      collapseOpen: !this.state.collapseOpen
+      collapseOpen: !this.state.collapseOpen,
     });
   };
   // closes the collapse
   closeCollapse = () => {
     this.setState({
-      collapseOpen: false
+      collapseOpen: false,
     });
   };
   // creates the links that appear in the left menu / Sidebar
-  createLinks = routes => {
+  createLinks = (routes) => {
     return routes.map((prop, key) => {
       return (
         <NavItem key={key}>
@@ -90,12 +87,12 @@ class Sidebar extends React.Component {
     if (logo && logo.innerLink) {
       navbarBrandProps = {
         to: logo.innerLink,
-        tag: Link
+        tag: Link,
       };
     } else if (logo && logo.outterLink) {
       navbarBrandProps = {
         href: logo.outterLink,
-        target: "_blank"
+        target: "_blank",
       };
     }
     return (
@@ -117,7 +114,7 @@ class Sidebar extends React.Component {
           {logo ? (
             <NavbarBrand className="pt-0" {...navbarBrandProps}>
               <img
-                style={{width:"130px", height:"150px"}}
+                style={{ width: "130px", height: "150px" }}
                 alt={logo.imgAlt}
                 className="navbar-brand-img"
                 src={logo.imgSrc}
@@ -144,9 +141,7 @@ class Sidebar extends React.Component {
             <UncontrolledDropdown nav>
               <DropdownToggle nav>
                 <Media className="align-items-center">
-                  <span className="avatar avatar-sm rounded-circle">
-                    
-                  </span>
+                  <span className="avatar avatar-sm rounded-circle"></span>
                 </Media>
               </DropdownToggle>
               <DropdownMenu className="dropdown-menu-arrow" right>
@@ -158,7 +153,7 @@ class Sidebar extends React.Component {
                   <span>My profile</span>
                 </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+                <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
                   <i className="ni ni-user-run" />
                   <span>Logout</span>
                 </DropdownItem>
@@ -228,11 +223,14 @@ class Sidebar extends React.Component {
                 </NavLink>
               </NavItem> */}
               <NavItem>
-                <NavLink style={{fontWeight:"600"}} href="/admin/waiting-list">
-                <span className="">
-                  <img src={listIcon} fluid/>
-                </span>
-                <NavLink>Antrian Pasien</NavLink>
+                <NavLink
+                  style={{ fontWeight: "600" }}
+                  href="/admin/waiting-list"
+                >
+                  <span className="">
+                    <img src={listIcon} fluid />
+                  </span>
+                  <NavLink>Antrian Pasien</NavLink>
                 </NavLink>
               </NavItem>
               {/* <NavItem>
@@ -244,11 +242,11 @@ class Sidebar extends React.Component {
                 </NavLink>
               </NavItem> */}
               <NavItem>
-                <NavLink style={{fontWeight:"600"}} href="/admin/scan-qr">
-                <span className="">
-                  <img src={qrScan} fluid/>
-                </span>
-                <NavLink>Scan QR</NavLink>
+                <NavLink style={{ fontWeight: "600" }} href="/admin/scan-qr">
+                  <span className="">
+                    <img src={qrScan} fluid />
+                  </span>
+                  <NavLink>Scan QR</NavLink>
                 </NavLink>
               </NavItem>
             </Nav>
@@ -268,7 +266,7 @@ class Sidebar extends React.Component {
 }
 
 Sidebar.defaultProps = {
-  routes: [{}]
+  routes: [{}],
 };
 
 Sidebar.propTypes = {
@@ -284,8 +282,8 @@ Sidebar.propTypes = {
     // the image src of the logo
     imgSrc: PropTypes.string.isRequired,
     // the alt for the img
-    imgAlt: PropTypes.string.isRequired
-  })
+    imgAlt: PropTypes.string.isRequired,
+  }),
 };
 
 export default Sidebar;

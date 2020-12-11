@@ -8,6 +8,7 @@ import Sidebar from "components/admin/Sidebar.js";
 import { Link, Switch, Redirect } from "react-router-dom";
 import AdminRoute from "components/AdminRoute";
 import { APP_ADMIN_ROUTE } from "routes/admin_routes";
+import { FaHome } from "react-icons/fa";
 
 import "admin-assets/css/argon-dashboard-react.css";
 import "admin-assets/plugins/nucleo/css/nucleo.css";
@@ -25,7 +26,7 @@ class AdminContainer extends React.Component {
           }}
         />
         <div className="main-content" ref="mainContent">
-          <Header/>
+          <Header />
 
           <Container className="mt--8" fluid>
             <Row>
@@ -35,17 +36,17 @@ class AdminContainer extends React.Component {
               >
                 <Link className="text-white" to="/admin">
                   <span>
-                    <i className="ni ni-shop mr-2" />
+                    <FaHome />
                     Home
                   </span>
                 </Link>
-                <span className="mx-1">{">"}</span>
+                <span className="mx-1">{"/"}</span>
               </Col>
               <Col className="mb-5 mb-xl-0" xl="12">
                 <Card className="bg-gradient-white shadow">
-                <CardHeader className=" bg-transparent">
-                  <h3 className=" mb-0">Title</h3>
-                </CardHeader>
+                  <CardHeader className=" bg-transparent">
+                    <h3 className=" mb-0">Title</h3>
+                  </CardHeader>
                   <CardBody>
                     <Switch>
                       {APP_ADMIN_ROUTE.map((value, index) => {
