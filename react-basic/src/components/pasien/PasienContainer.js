@@ -13,6 +13,7 @@ import { Switch, useLocation, Redirect } from "react-router-dom";
 
 const PasienContainer = (props) => {
   const location = useLocation();
+  const [title, setTitle] = React.useState("");
 
   const getPathName = (path) => {
     let lastPart = path.split("/");
@@ -54,7 +55,7 @@ const PasienContainer = (props) => {
                 }}
               >
                 <span>
-                  <FaHome/>
+                  <FaHome />
                   <i className="mr-2" />
                   Home
                 </span>
@@ -68,17 +69,17 @@ const PasienContainer = (props) => {
                 {getPathName(location.pathname)}
               </Breadcrumb.Item>
             </Breadcrumb>
-            <div className="body-title ml-5 mt-2">
-              {getPathName(location.pathname)}
-            </div>
+            <div className="body-title ml-5 mt-2">{title}</div>
           </>
         )}
 
         <Switch>
-          {APP_PATIENT_ROUTE.map((value, index) => {
+          {APP_PATIENT_ROUTE.map((value, key) => {
             return (
               <PasienRoute
-                key={value.name}
+                key={key}
+                setTitle={setTitle}
+                pageName={value.name}
                 component={value.component}
                 path={value.path}
                 exact={value.exact}

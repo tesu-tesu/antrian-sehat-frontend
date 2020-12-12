@@ -19,7 +19,7 @@ export const APP_PATIENT_ROUTE = [
     isPasien: true,
   },
   {
-    name: "List Polyclinic of HA",
+    name: "List Polyclinic of Health Agency",
     path: "/pasien/list-poliklinik/:id_health_agency",
     exact: true,
     component: ListPolyclinic,
@@ -27,7 +27,7 @@ export const APP_PATIENT_ROUTE = [
     isPasien: true,
   },
   {
-    name: "List HA of Polyclinic",
+    name: "List Health Agency of Polyclinic",
     path: "/pasien/puskesmas/:id_polymaster",
     exact: true,
     component: ListHAofPoly,
@@ -43,7 +43,7 @@ export const APP_PATIENT_ROUTE = [
     isPasien: true,
   },
   {
-    name: "All Polymasters",
+    name: "All Polyclinics",
     path: "/pasien/polimaster",
     exact: true,
     component: Polymasters,
@@ -75,7 +75,7 @@ export const APP_PATIENT_ROUTE = [
     isPasien: true,
   },
   {
-    name: "Daftar Antrian",
+    name: "Book Waiting List",
     path: "/pasien/book-waiting-list/:schedule_id/:date",
     exact: true,
     component: BookWaitingList,
