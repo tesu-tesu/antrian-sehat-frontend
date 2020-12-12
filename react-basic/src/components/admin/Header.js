@@ -20,24 +20,23 @@ import axios from "axios";
 
 const Header = () => {
   const [role, setRole] = React.useState("");
+  const [name, setName] = React.useState("");
   const [healthAgency, setHealthAgency] = React.useState("");
   const history = useHistory();
 
   React.useEffect(() => {
-    const fetchDataSelf = () => {
-      axios
-        .get(GET_SELF(), {
-          headers: { Authorization: `Bearer ${JWT_HEADER}` },
-        })
-        .then((res) => {
-          console.log(res.data);
-          setRole(res.data.data.role);
-          setRole(res.data.data.health_agency.name);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+    axios
+      .get(GET_SELF(), {
+        headers: { Authorization: `Bearer ${JWT_HEADER}` },
+      })
+      .then((res) => {
+        setRole(res.data.data.role);
+        setName(res.data.data.name);
+        setHealthAgency(res.data.data.health_agency.name);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   const onLogout = () => {
@@ -55,7 +54,7 @@ const Header = () => {
           />
           <Form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
             <div className="text-white font-weight-bold mr-2">
-              Role - Nama Puskesmas
+              {role} at {healthAgency}
             </div>
             <FormGroup className="mb-0">
               {/* <InputGroup className="input-group-alternative">
@@ -91,7 +90,7 @@ const Header = () => {
                   </span>
                   <Media className="ml-2 d-none d-lg-block">
                     <span className="mb-0 text-sm font-weight-bold">
-                      {Cookies.getJSON("USER")?.email}
+                      {name}
                     </span>
                   </Media>
                 </Media>

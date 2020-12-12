@@ -17,7 +17,7 @@ export const JWT_HEADER = JWT;
 export const LOGIN_API = `${BASE_URL}/auth/login`;
 export const REGISTER_API = `${BASE_URL}/auth/register`;
 
-export const GET_SELF = `${BASE_URL}/auth/user/get-current-user`;
+export const GET_SELF = () => `${BASE_URL}/user/get-current-user`;
 
 //PATIENT API
 export const GET_ALL_HEALTH_AGENCIES = (page_number) =>

@@ -7,7 +7,12 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { isLogin, isAdmin } from "utils/auth";
 
-const AdminRoute = ({ component: Component, isNotFound, ...rest }) => {
+const AdminRoute = ({ component: Component, setTitle, setPath, ...rest }) => {
+  React.useEffect(() => {
+    setTitle(rest.nameRoute);
+    setPath(rest.path);
+  }, []);
+
   return (
     // Show the component only when the user is logged in
     // Otherwise, redirect the user to /signin page
@@ -16,19 +21,19 @@ const AdminRoute = ({ component: Component, isNotFound, ...rest }) => {
       render={(props) =>
         isLogin() ? (
           isAdmin() ? (
-              !isNotFound ? (
-                  <Component {...props} />
-                  ) : (
-                  <>
-                      <Redirect to="/error" />
-                      <Component {...props} />
-                  </>
-              )
-          ) : (
+            !rest.isNotFound ? (
+              <Component />
+            ) : (
               <>
-                  <Redirect to="/pasien" />
-                  <Component {...props} />
+                <Redirect to="/error" />
+                <Component />
               </>
+            )
+          ) : (
+            <>
+              <Redirect to="/pasien" />
+              <Component />
+            </>
           )
         ) : (
           <Redirect to="/login" />
