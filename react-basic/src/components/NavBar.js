@@ -16,15 +16,22 @@ import {
 import logoNavbar from "../images/navbar logo.png";
 import logoUser from "../images/user icon.png";
 import bell from "../images/bell.png";
-import { logout } from "utils/auth";
+import { logout, isPasien } from "utils/auth";
 
 const NavBar = () => {
   const history = useHistory();
+
 
   const _onLogout = () => {
     logout();
     history.replace("/");
   };
+
+  const _goToProfile = () =>{
+    if (isPasien()){
+
+    }
+  }
 
   return (
     <>
@@ -84,7 +91,7 @@ const NavBar = () => {
             {Cookies.getJSON("USER")?.email}
           </NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item href="#action/3.3">Profile</NavDropdown.Item>
+          <NavDropdown.Item href={_goToProfile(Cookies.getJSON("USER")?.id)}>Profile</NavDropdown.Item>
           <NavDropdown.Item onClick={_onLogout}>Logout</NavDropdown.Item>
         </NavDropdown>
       </Navbar>
