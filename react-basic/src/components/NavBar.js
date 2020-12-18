@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Cookies from "js-cookie";
 import { useHistory, Link } from "react-router-dom";
 import {
@@ -17,23 +17,43 @@ import logoNavbar from "../images/navbar logo.png";
 import logoUser from "../images/user icon.png";
 import bell from "../images/bell.png";
 import { logout, isPasien } from "utils/auth";
+import axios from "axios";
+import {GET_SELF, JWT_HEADER} from "../constants/urls";
 
 const NavBar = () => {
-  const history = useHistory();
-
+  let history = useHistory();
+  const [userId, setUserID] = React.useState(Cookies.getJSON("USER")?.id)
 
   const _onLogout = () => {
     logout();
     history.replace("/");
   };
 
-  const _goToProfile = () =>{
-    if (isPasien()){
+  React.useEffect(() => {
+    const fetchData = async () =>{
+      await axios
+          .get(GET_SELF(), {
+            headers: { Authorization: `Bearer ${JWT_HEADER}` },
+          })
+          .then((res) => {
+            setUserID(res.data.data.id);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+    };
+    fetchData()
+  }, []);
 
+  const _goToProfile = (props) =>{
+    if (isPasien()){
+      let path = `/profile/`
+          history.push(path)
     }
   }
 
   return (
+
     <>
       <Navbar className="navbar-user" expand="lg">
         <Navbar.Brand href="/pasien" className="mr-auto">
@@ -91,7 +111,7 @@ const NavBar = () => {
             {Cookies.getJSON("USER")?.email}
           </NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item href={_goToProfile(Cookies.getJSON("USER")?.id)}>Profile</NavDropdown.Item>
+          <NavDropdown.Item href={`/pasien/profile/${userId}`}>{userId}</NavDropdown.Item>
           <NavDropdown.Item onClick={_onLogout}>Logout</NavDropdown.Item>
         </NavDropdown>
       </Navbar>

@@ -219,7 +219,7 @@ const BookWaitingList = () => {
                     className="rounded"
                     variant="light"
                     block
-                    onClick={_onBook}
+                    onnClick={_onBook}
                   >
                     <Image width="80px" src={PlusImage} />
                     <span style={{ paddingLeft: "20px" }}>Daftar Antrian</span>

@@ -67,6 +67,22 @@ export const APP_PATIENT_ROUTE = [
     isPasien: true,
   },
   {
+    name: "Book Waiting List",
+    path: "/pasien/book-waiting-list/:schedule_id/:date",
+    exact: true,
+    component: BookWaitingList,
+    private: true,
+    isPasien: true,
+  },
+  {
+    name: "Profile",
+    path: "/pasien/profile/:user_id",
+    exact: true,
+    component: BookWaitingList,
+    private: true,
+    isPasien: true,
+  },
+  {
     name: "Polyclinic Schedules",
     path: "/pasien/polyclinic-schedule/:id_health_agency",
     exact: true,
