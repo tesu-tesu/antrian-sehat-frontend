@@ -29,21 +29,6 @@ const NavBar = () => {
     history.replace("/");
   };
 
-  React.useEffect(() => {
-    const fetchData = async () =>{
-      await axios
-          .get(GET_SELF(), {
-            headers: { Authorization: `Bearer ${JWT_HEADER}` },
-          })
-          .then((res) => {
-            setUserID(res.data.data.id);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-    };
-    fetchData()
-  }, []);
 
   const _goToProfile = (props) =>{
     if (isPasien()){
@@ -111,7 +96,7 @@ const NavBar = () => {
             {Cookies.getJSON("USER")?.email}
           </NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item href={`/pasien/profile/${userId}`}>{userId}</NavDropdown.Item>
+          <NavDropdown.Item href={`/pasien/profile`}>Profile</NavDropdown.Item>
           <NavDropdown.Item onClick={_onLogout}>Logout</NavDropdown.Item>
         </NavDropdown>
       </Navbar>

@@ -8,6 +8,7 @@ import PolyclinicSchedule from "pages/patient/PolyclinicSchedules";
 import BookWaitingList from "pages/patient/BookWaitingList";
 import ListHAofPoly from "pages/patient/ListHAofPoly";
 import ErrorPage from "../pages/404Pages/ErrorPage";
+import UserProfile from "../pages/patient/UserProfile";
 
 export const APP_PATIENT_ROUTE = [
   {
@@ -74,11 +75,19 @@ export const APP_PATIENT_ROUTE = [
     private: true,
     isPasien: true,
   },
-  {
+/*  {
     name: "Profile",
     path: "/pasien/profile/:user_id",
     exact: true,
-    component: BookWaitingList,
+    component: UserProfile,
+    private: true,
+    isPasien: true,
+  },*/
+  {
+    name: "Profile",
+    path: "/pasien/profile/",
+    exact: true,
+    component: UserProfile,
     private: true,
     isPasien: true,
   },
