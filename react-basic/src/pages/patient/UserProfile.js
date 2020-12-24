@@ -121,7 +121,7 @@ const UserProfile = (props) => {
                                 <h4 className="display-6 ml-4 mb-3">Kerabat yang pernah Anda Daftarkan</h4>
                                 <Row className="list-group">
                                     <ul>
-                                        <li className="list-group-item"><h5>123456</h5></li>
+                                        <li className="list-group-item"><h5>{residences.name}</h5></li>
                                         {
                                             Object.keys(residences).map(
                                                (residence, key) => {
