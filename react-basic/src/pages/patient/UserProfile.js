@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from "axios";
-import {GET_SELF, JWT_HEADER} from "../../constants/urls";
-import {Card, Spinner} from "react-bootstrap";
+import {GET_RESIDENCE_NUMBER, GET_SELF, JWT_HEADER} from "../../constants/urls";
+import {Row, Card, Spinner} from "react-bootstrap";
 import logoUser from "../../images/user-avatar.jpg"
 import {logout} from "../../utils/auth";
 import {useHistory} from "react-router-dom";
@@ -10,12 +10,30 @@ import {FaRegSun, FaDoorOpen} from "react-icons/fa";
 const UserProfile = (props) => {
     const [isLoading, setIsLoading] = React.useState(0);
     const [userID, setUserID] = React.useState(null);
-    const [userResidentialRegistered, setUserResidentialRegistered] = React.useState(null);
-    const [userImage, setUserImage] = React.useState(null);
-    const [userEmail, setUserEmail] = React.useState(null);
-    const [userName, setUserName] = React.useState(null);
+    const [residences, setResidences] = React.useState([]);
+    const [userImage, setUserImage] = React.useState("");
+    const [userEmail, setUserEmail] = React.useState("");
+    const [userName, setUserName] = React.useState("");
+    const [errorResidenceNumber, setErrorResidenceNumber] = React.useState("");
+
 
     let history = useHistory();
+
+    const getResidenceNumber = async () => {
+        await axios
+            .get(GET_RESIDENCE_NUMBER(), {
+                headers: { Authorization: `Bearer ${JWT_HEADER}` },
+            })
+            .then((res) => {
+                setResidences(res.data.data);
+            })
+            .catch((err) => {
+                /*setErrorResidenceNumber(
+                    err.response.data.data?.message ? err.response.data.data.message : ""
+                );*/
+                console.log(err);
+            });
+    };
 
     React.useEffect(() => {
         const fetchData = async () => {
@@ -35,9 +53,12 @@ const UserProfile = (props) => {
                 });
             setIsLoading(false)
         };
-
         fetchData()
+        getResidenceNumber()
     }, []);
+
+
+
 
     const onLogout = () => {
         logout();
@@ -58,10 +79,10 @@ const UserProfile = (props) => {
                     </Spinner>
                 ) : (
                     <Card.Body>
-                        <div className="row row-example">
+                        <div className="row">
                             <div className="col">
                                 <a href="#!">
-                                    {logoUser === null || logoUser === "" ? (
+                                    {userImage === undefined || userImage === "" || userImage.length === 0 ? (
                                         <img src={logoUser}
                                              className="rounded-circle img-center img-fluid shadow shadow-lg--hover"
                                              style={{
@@ -69,7 +90,7 @@ const UserProfile = (props) => {
                                              }}>
                                         </img>
                                     ) : (
-                                        <img src={logoUser}
+                                        <img src={userImage}
                                              className="rounded-circle img-center img-fluid shadow shadow-lg--hover"
                                              style={{
                                                  width: "140px",
@@ -84,20 +105,36 @@ const UserProfile = (props) => {
                                     </h5>
                                     <hr/>
                                 </div>
-                                <div className="text-center">
-                                    <button type="button" className="btn btn-primary btn-lg">
+                                <div className="text-center m-5">
+                                    <button type="button" className="btn btn-primary btn-lg btn-block">
                                         <i className="fab fa-cog"/>
                                         <FaRegSun/>  Pengaturan
                                     </button>
                                 </div>
-                                <div className="text-center m-1">
-                                    <button type="button" onClick={onLogout} className="btn btn-secondary btn-lg">
+                                <div className="text-center m-5">
+                                    <button type="button" onClick={onLogout} className="btn btn-secondary btn-lg btn-block">
                                         <FaDoorOpen/> Logout
                                     </button>
                                 </div>
                             </div>
-                            <div className="col-5 ml-3">
-                                <h4 className="display-6 mb--3 p--3">Kerabat yang pernah Anda Daftarkan</h4>
+                            <div className="col-5">
+                                <h4 className="display-6 ml-4 mb-3">Kerabat yang pernah Anda Daftarkan</h4>
+                                <Row className="row list-group">
+                                    <ul>
+                                        {/*<li className="list-group-item"><h5>{residences.name}</h5></li>*/}
+                                        {
+                                            Object.keys(residences).map(
+                                               (residence, key) => {
+                                                    return (
+                                                        <>
+                                                            <li className="list-group-item"><h5>{residence.number}</h5></li>
+                                                        </>
+                                                    )
+                                                }
+                                            )
+                                        }
+                                    </ul>
+                                </Row>
                             </div>
                             <div className="col">
                                 <span>
