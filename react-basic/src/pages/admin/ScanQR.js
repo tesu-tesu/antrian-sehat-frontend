@@ -7,7 +7,6 @@ import {
   JWT_HEADER,
 } from "constants/urls";
 import axios from "axios";
-import { faDatabase } from "@fortawesome/free-solid-svg-icons";
 
 const ScanQR = () => {
   const [delay, setDelay] = React.useState(100);

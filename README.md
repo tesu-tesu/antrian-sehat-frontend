@@ -68,6 +68,7 @@ Dengan menggunakan data dari props atau state, developer dapat melakukan conditi
 **Component Life Cycle** adalah siklus dari komponen yang digunakan untuk me-render tampilan dari web. Siklus ini memang terlihat agak rumit, beruntung nya sekarang sudah ada hooks yang salah satu kegunaannya adalah untuk menyederhanakan life cycle dari **React JS**.
 
 > https://medium.com/codeacademia/apa-itu-component-lifecycle-di-react-bfcb64f64e0e
+> Before Hooks exist, The best place to make calls to fetch data is within componentDidMount(). componentDidMount() is only called once, on the client, compared to componentWillMount() which is called twice, once to the server and once on the client, and componentWillMount() will NOT return before the first render of the component. ComponentDidMount() is called after the initial render when the client received data from the server and before the data is displayed in the browser.
 
 ### 7. List & Keys
 

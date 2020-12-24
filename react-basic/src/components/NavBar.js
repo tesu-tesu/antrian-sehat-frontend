@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import Cookies from "js-cookie";
 import { useHistory, Link } from "react-router-dom";
 import {
@@ -15,30 +15,22 @@ import {
 } from "react-bootstrap";
 import logoNavbar from "../images/navbar logo.png";
 import logoUser from "../images/user icon.png";
-import bell from "../images/bell.png";
-import { logout, isPasien } from "utils/auth";
-import axios from "axios";
-import {GET_SELF, JWT_HEADER} from "../constants/urls";
+import { logout } from "utils/auth";
+import ModalShowChangePassword from "../components/pasien/ModalChangePassword";
 
 const NavBar = () => {
   let history = useHistory();
-  const [userId, setUserID] = React.useState(Cookies.getJSON("USER")?.id)
+  const [modalShow, setModalShow] = React.useState();
 
+  const changePassword = () => {
+    setModalShow(true);
+  };
   const _onLogout = () => {
     logout();
     history.replace("/");
   };
 
-
-  const _goToProfile = (props) =>{
-    if (isPasien()){
-      let path = `/profile/`
-          history.push(path)
-    }
-  }
-
   return (
-
     <>
       <Navbar className="navbar-user" expand="lg">
         <Navbar.Brand href="/pasien" className="mr-auto">
@@ -97,9 +89,21 @@ const NavBar = () => {
           </NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item href={`/pasien/profile`}>Profile</NavDropdown.Item>
+          <NavDropdown.Item onClick={changePassword}>
+            Ganti Password
+          </NavDropdown.Item>
           <NavDropdown.Item onClick={_onLogout}>Logout</NavDropdown.Item>
         </NavDropdown>
       </Navbar>
+      {modalShow && (
+        <ModalShowChangePassword
+          centered
+          show={modalShow}
+          closable={true}
+          message="Ganti Password"
+          onHide={() => setModalShow(false)}
+        />
+      )}
     </>
   );
 };
