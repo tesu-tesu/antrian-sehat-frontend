@@ -5,8 +5,6 @@ import Cookies from "js-cookie";
 
 const BASE_URL = "http://localhost:8000/api";
 
-export const GET_FILMS = "https://ghibliapi.herokuapp.com/films";
-
 let JWT = null;
 if (Cookies.getJSON("USER") !== undefined) JWT = Cookies.getJSON("USER").token;
 
@@ -18,6 +16,8 @@ export const LOGIN_API = `${BASE_URL}/auth/login`;
 export const REGISTER_API = `${BASE_URL}/auth/register`;
 
 export const GET_SELF = () => `${BASE_URL}/user/get-current-user`;
+export const CHANGE_PASSWORD = (userId) =>
+  `${BASE_URL}/user/change-password/${userId}`;
 
 //PATIENT API
 export const GET_ALL_HEALTH_AGENCIES = (page_number) =>

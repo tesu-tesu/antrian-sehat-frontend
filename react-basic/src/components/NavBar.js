@@ -17,10 +17,15 @@ import logoNavbar from "../images/navbar logo.png";
 import logoUser from "../images/user icon.png";
 import bell from "../images/bell.png";
 import { logout } from "utils/auth";
+import ModalShowChangePassword from "../components/pasien/ModalChangePassword";
 
 const NavBar = () => {
   const history = useHistory();
+  const [modalShow, setModalShow] = React.useState();
 
+  const changePassword = () => {
+    setModalShow(true);
+  };
   const _onLogout = () => {
     logout();
     history.replace("/");
@@ -85,9 +90,21 @@ const NavBar = () => {
           </NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item href="#action/3.3">Profile</NavDropdown.Item>
+          <NavDropdown.Item onClick={changePassword}>
+            Ganti Password
+          </NavDropdown.Item>
           <NavDropdown.Item onClick={_onLogout}>Logout</NavDropdown.Item>
         </NavDropdown>
       </Navbar>
+      {modalShow && (
+        <ModalShowChangePassword
+          centered
+          show={modalShow}
+          closable={true}
+          message="Ganti Password"
+          onHide={() => setModalShow(false)}
+        />
+      )}
     </>
   );
 };
