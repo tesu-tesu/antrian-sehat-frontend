@@ -24,6 +24,7 @@
     "react-js-pagination": "^3.0.3",
     "react-loader-spinner": "^3.1.14",
     "react-qr-reader": "^2.2.1",
+    "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "reactstrap": "^8.6.0",
