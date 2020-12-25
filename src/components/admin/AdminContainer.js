@@ -9,6 +9,7 @@ import { Link, Switch, Redirect } from "react-router-dom";
 import AdminRoute from "components/AdminRoute";
 import { APP_ADMIN_ROUTE } from "routes/admin_routes";
 import { FaHome } from "react-icons/fa";
+import FooterBar from "../FooterBar";
 
 import "admin-assets/css/argon-dashboard-react.css";
 import "admin-assets/plugins/nucleo/css/nucleo.css";
@@ -72,6 +73,9 @@ const AdminContainer = (props) => {
             </Col>
           </Row>
         </Container>
+        <div className="footer">
+          <FooterBar />
+        </div>
       </div>
     </>
   );

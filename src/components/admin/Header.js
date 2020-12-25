@@ -1,5 +1,4 @@
 import React from "react";
-import Cookies from "js-cookie";
 // reactstrap components
 import {
   Container,
@@ -13,16 +12,25 @@ import {
   Navbar,
   UncontrolledDropdown,
 } from "reactstrap";
+import { MdHttps } from "react-icons/md";
+import { FaUserCircle } from "react-icons/fa";
+import { IoMdExit } from "react-icons/io";
 import { Link, useHistory } from "react-router-dom";
 import { logout } from "utils/auth";
 import { GET_SELF, JWT_HEADER } from "constants/urls";
 import axios from "axios";
+import ModalShowChangePassword from "components/ModalChangePassword";
 
 const Header = () => {
   const [role, setRole] = React.useState("");
   const [name, setName] = React.useState("");
   const [healthAgency, setHealthAgency] = React.useState("");
+  const [modalShow, setModalShow] = React.useState(false);
   const history = useHistory();
+
+  const changePassword = () => {
+    setModalShow(true);
+  };
 
   React.useEffect(() => {
     axios
@@ -100,12 +108,16 @@ const Header = () => {
                   <h6 className="text-overflow m-0">Welcome!</h6>
                 </DropdownItem>
                 <DropdownItem to="/admin/profile" tag={Link}>
-                  <i className="ni ni-single-02" />
-                  <span>My profile</span>
+                  <FaUserCircle />
+                  <span>Profilku</span>
+                </DropdownItem>
+                <DropdownItem onClick={changePassword}>
+                  <MdHttps />
+                  <span>Ganti Password</span>
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem onClick={onLogout}>
-                  <i className="ni ni-user-run" />
+                  <IoMdExit />
                   <span>Logout</span>
                 </DropdownItem>
               </DropdownMenu>
@@ -113,6 +125,15 @@ const Header = () => {
           </Nav>
         </Container>
       </Navbar>
+      {modalShow && (
+        <ModalShowChangePassword
+          centered
+          show={modalShow}
+          closable={true}
+          message="Ganti Password"
+          onHide={() => setModalShow(false)}
+        />
+      )}
       <div className="header navbar-admin pb-8 pt-8 pt-lg-8" style={{}}>
         <Container fluid>
           <div className="header-body">{/* Card stats */}</div>

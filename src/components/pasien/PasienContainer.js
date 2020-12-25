@@ -5,7 +5,7 @@
 import React from "react";
 import { FaHome, IconName } from "react-icons/fa";
 import { Card, Container, Row, Col, Breadcrumb } from "react-bootstrap";
-import NavBar from "components/NavBar";
+import NavBar from "components/pasien/NavBar";
 import FooterBar from "../FooterBar";
 import PasienRoute from "components/PasienRoute";
 import { APP_PATIENT_ROUTE } from "routes/patient_routes";

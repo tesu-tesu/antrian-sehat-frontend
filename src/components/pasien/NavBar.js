@@ -13,14 +13,17 @@ import {
   DropdownButton,
   Dropdown,
 } from "react-bootstrap";
-import logoNavbar from "../images/navbar logo.png";
-import logoUser from "../images/user icon.png";
+import { MdHttps } from "react-icons/md";
+import { FaUserCircle } from "react-icons/fa";
+import { IoMdExit } from "react-icons/io";
+import logoNavbar from "../../images/navbar logo.png";
+import logoUser from "../../images/user icon.png";
 import { logout } from "utils/auth";
-import ModalShowChangePassword from "../components/pasien/ModalChangePassword";
+import ModalShowChangePassword from "../ModalChangePassword";
 
 const NavBar = () => {
   let history = useHistory();
-  const [modalShow, setModalShow] = React.useState();
+  const [modalShow, setModalShow] = React.useState(false);
 
   const changePassword = () => {
     setModalShow(true);
@@ -88,11 +91,15 @@ const NavBar = () => {
             {Cookies.getJSON("USER")?.email}
           </NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item href={`/pasien/profile`}>Profile</NavDropdown.Item>
-          <NavDropdown.Item onClick={changePassword}>
-            Ganti Password
+          <NavDropdown.Item href={`/pasien/profile`}>
+            <FaUserCircle /> Profile
           </NavDropdown.Item>
-          <NavDropdown.Item onClick={_onLogout}>Logout</NavDropdown.Item>
+          <NavDropdown.Item onClick={changePassword}>
+            <MdHttps /> Ganti Password
+          </NavDropdown.Item>
+          <NavDropdown.Item onClick={_onLogout}>
+            <IoMdExit /> Logout
+          </NavDropdown.Item>
         </NavDropdown>
       </Navbar>
       {modalShow && (
