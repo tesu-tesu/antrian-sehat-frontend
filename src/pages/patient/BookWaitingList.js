@@ -140,7 +140,9 @@ const BookWaitingList = () => {
               err.response.data?.schedule ? err.response.data.schedule : ""
             );
           } else {
-            setErrorResidenceNumber(errorResidenceNumber==""? err.response.data.message : "");
+            setErrorResidenceNumber(
+              errorResidenceNumber == "" ? err.response.data.message : ""
+            );
           }
         }
       });
@@ -219,7 +221,7 @@ const BookWaitingList = () => {
                     className="rounded"
                     variant="light"
                     block
-                    onnClick={_onBook}
+                    onClick={_onBook}
                   >
                     <Image width="80px" src={PlusImage} />
                     <span style={{ paddingLeft: "20px" }}>Daftar Antrian</span>
