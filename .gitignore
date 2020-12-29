@@ -21,3 +21,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/react-basic/node_modules/
+/react-basic/yarn.lock
+/yarn.lock
+/.idea/

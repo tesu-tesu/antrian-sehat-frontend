@@ -107,7 +107,7 @@ const Header = () => {
                 <DropdownItem className="noti-title" header tag="div">
                   <h6 className="text-overflow m-0">Welcome!</h6>
                 </DropdownItem>
-                <DropdownItem href={`/admin/profile`} tag={Link}>
+                <DropdownItem href={`/admin/profile`}>
                   <FaUserCircle />
                   <span>Profile</span>
                 </DropdownItem>
