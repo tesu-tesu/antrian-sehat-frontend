@@ -25,26 +25,27 @@ const ScheduleModal = (props) => {
   ]);
 
   React.useEffect(() => {
-    const fetchDataModal = async () => {
-      console.log(props?.healthAgency);
+    const fetchDataModal = () => {
       setIsLoading(true);
 
-      await axios
+      axios
         .get(GET_POLYCLINIC_OF_HA(props?.healthAgency?.id), {
           headers: { Authorization: `Bearer ${JWT_HEADER}` },
         })
         .then((res) => {
+          console.log(res.data.data);
           setPolyclinics(res.data.data);
         })
         .catch((err) => {
           console.log(err);
         });
 
-      await axios
+      axios
         .get(GET_POLYMASTER_OF_POLYCLINIC(props.poly_id), {
           headers: { Authorization: `Bearer ${JWT_HEADER}` },
         })
         .then((res) => {
+          console.log(res.data.data);
           setPolymaster(res.data.data);
           setIsLoading(false);
         })

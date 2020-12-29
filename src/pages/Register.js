@@ -1,9 +1,3 @@
-/*
-  Ini halaman login, sebenernya gak sehat cara setstate kayak gini, harusnya pake useReducer
-  karena tiap setState itu komponennya rerender (ngefek ke performa nanti). 
-  Cuman karena biar simpel ya gini dulu aja gpp (useReducer agak mbingungi)
-*/
-
 import React from "react";
 import { Button, Row, Form, InputGroup, Image } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
