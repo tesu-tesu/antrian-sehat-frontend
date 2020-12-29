@@ -2,6 +2,7 @@ import AdminContainer from "components/admin/AdminContainer";
 import ScanQR from "pages/admin/ScanQR";
 import ErrorPage from "../pages/404Pages/ErrorPage";
 import WaitingList from "pages/admin/WaitingList";
+import AdminProfile from "../pages/admin/AdminProfile";
 
 export const APP_ADMIN_ROUTE = [
     {
@@ -17,6 +18,14 @@ export const APP_ADMIN_ROUTE = [
         path: "/admin/waiting-list",
         exact: true,
         component: WaitingList,
+        private: true,
+        isAdmin: true,
+    },
+    {
+        name: "Profile",
+        path: "/admin/profile",
+        exact: true,
+        component: AdminProfile,
         private: true,
         isAdmin: true,
     },

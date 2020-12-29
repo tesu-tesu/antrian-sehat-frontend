@@ -91,7 +91,7 @@ const NavBar = () => {
             {Cookies.getJSON("USER")?.email}
           </NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item href={`/pasien/profile`}>
+          <NavDropdown.Item href={`/pasien/profile`} tag={Link}>
             <FaUserCircle /> Profile
           </NavDropdown.Item>
           <NavDropdown.Item onClick={changePassword}>
