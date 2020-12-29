@@ -108,10 +108,14 @@ const AdminProfile = (props) => {
                                 </div>
                             </div>
                             <div className="col-5">
-                                <h4 className="display-6 ml-4 mb-3">
-                                    Selamat Datang,
-                                </h4>
-                                <h1>Admin {healthAgency}</h1>
+                                <div className="card">
+                                    <div className="card-body">
+                                        <h4 className="card-title display-6">
+                                            Selamat Datang, di <span>antrian sehat</span>
+                                        </h4>
+                                        <h1>Admin {healthAgency}</h1>
+                                    </div>
+                                </div>
                             </div>
                             <div className="col">
                                 <span/>
