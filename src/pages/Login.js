@@ -47,14 +47,18 @@ const Login = () => {
         password: password,
       })
       .then((res) => {
-        setUserLogin({
-          token: res.data.access_token,
-          email: res.data.user.email,
-          role: res.data.user.role,
-        });
-        setIsLoggedIn(true);
-        setLoading(false);
-        window.location = "/";
+        if (res.data.user.role == "Pasien" || res.data.user.role == "Admin") {
+          setUserLogin({
+            token: res.data.access_token,
+            email: res.data.user.email,
+            role: res.data.user.role,
+          });
+          setIsLoggedIn(true);
+          setLoading(false);
+          window.location = "/";
+        } else {
+          setErrorEmail("You're not and Admin or Pasien");
+        }
       })
       .catch((err) => {
         console.log(err);
