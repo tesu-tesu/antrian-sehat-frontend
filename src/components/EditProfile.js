@@ -9,6 +9,8 @@ const EditProfile = (props) => {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [phone, setPhone] = React.useState("");
+  const [role, setRole] = React.useState("");
+  const [healthAgency, setHealthAgency] = React.useState("");
   const [residenceNumber, setResidenceNumber] = React.useState("");
   const [image, setImage] = React.useState("");
   const [errorName, setErrorName] = React.useState("");
@@ -17,23 +19,25 @@ const EditProfile = (props) => {
   const [errorResidenceNumber, setErrorResidenceNumber] = React.useState("");
   const [errorImage, setErrorImage] = React.useState("");
 
-React.useEffect(() => {
+  React.useEffect(() => {
     axios
       .get(GET_SELF(), {
         headers: { Authorization: `Bearer ${JWT_HEADER}` },
       })
       .then((res) => {
-        setId(res.data.data.id)
-        setName(res.data.data.name)
-        setEmail(res.data.data.email)
-        setPhone(res.data.data.phone)
-        setResidenceNumber(res.data.data.residence_number)
+        console.log(res.data.data);
+        setId(res.data.data.id);
+        setName(res.data.data.name);
+        setEmail(res.data.data.email);
+        setPhone(res.data.data.phone);
+        setRole(res.data.data.role);
+        setHealthAgency(res.data.data.health_agency_id);
+        setResidenceNumber(res.data.data.residence_number);
       })
       .catch((err) => {
         console.log(err);
       });
-    }, [props.show]
-)
+  }, [props.show]);
 
   const submitEdit = () => {
     setBtnDisabled(true);
@@ -41,11 +45,12 @@ React.useEffect(() => {
       .patch(
         EDIT_PROFILE(id),
         {
-            name : name,
-            email :email,
-            phone :phone,
-            role : "Pasien",
-            residence_number :residenceNumber
+          name: name,
+          email: email,
+          phone: phone,
+          role: role,
+          health_agency: healthAgency,
+          residence_number: residenceNumber,
         },
         { headers: { Authorization: `Bearer ${JWT_HEADER}` } }
       )
@@ -71,7 +76,7 @@ React.useEffect(() => {
 
   const changePict = (userId) => {
     setBtnDisabled(true);
-    
+
     setBtnDisabled(false);
   };
 
@@ -117,9 +122,7 @@ React.useEffect(() => {
                   type="text"
                 />
                 {errorEmail !== "" ? (
-                  <span className="text-danger font-smaller">
-                    {errorEmail}
-                  </span>
+                  <span className="text-danger font-smaller">{errorEmail}</span>
                 ) : (
                   ""
                 )}
@@ -139,36 +142,36 @@ React.useEffect(() => {
                   type="text"
                 />
                 {errorPhone !== "" ? (
-                  <span className="text-danger font-smaller">
-                    {errorPhone}
-                  </span>
+                  <span className="text-danger font-smaller">{errorPhone}</span>
                 ) : (
                   ""
                 )}
               </Col>
             </Form.Row>
-            <Form.Row className="mt-1">
-              <Form.Label column lg={4}>
-                NIK
-              </Form.Label>
-              <Col lg="" className="mt-2">
-                <Form.Control
-                  value={residenceNumber}
-                  onChange={(e) => {
-                    setResidenceNumber(e.target.value);
-                    setErrorResidenceNumber("");
-                  }}
-                  type="text"
-                />
-                {errorResidenceNumber !== "" ? (
-                  <span className="text-danger font-smaller">
-                    {errorResidenceNumber}
-                  </span>
-                ) : (
-                  ""
-                )}
-              </Col>
-            </Form.Row>
+            {role === "Pasien" && (
+              <Form.Row className="mt-1">
+                <Form.Label column lg={4}>
+                  NIK
+                </Form.Label>
+                <Col lg="" className="mt-2">
+                  <Form.Control
+                    value={residenceNumber}
+                    onChange={(e) => {
+                      setResidenceNumber(e.target.value);
+                      setErrorResidenceNumber("");
+                    }}
+                    type="text"
+                  />
+                  {errorResidenceNumber !== "" ? (
+                    <span className="text-danger font-smaller">
+                      {errorResidenceNumber}
+                    </span>
+                  ) : (
+                    ""
+                  )}
+                </Col>
+              </Form.Row>
+            )}
           </Form.Group>
         </Modal.Body>
         <Modal.Footer className="d-flex align-items-center">

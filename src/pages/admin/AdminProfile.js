@@ -5,7 +5,7 @@ import { Card, Row, Spinner } from "react-bootstrap";
 import logoUser from "../../images/user-avatar.jpg";
 import { FaDoorOpen, FaRegSun } from "react-icons/fa";
 import { GET_SELF, JWT_HEADER } from "../../constants/urls";
-import { logout } from "../../utils/auth";
+import EditProfile from "../../components/EditProfile";
 
 const AdminProfile = (props) => {
   const [isLoading, setIsLoading] = React.useState(0);
@@ -14,6 +14,7 @@ const AdminProfile = (props) => {
   const [userEmail, setUserEmail] = React.useState("");
   const [userName, setUserName] = React.useState("");
   const [healthAgency, setHealthAgency] = React.useState("");
+  const [modalShow, setModalShow] = React.useState(false);
 
   let history = useHistory();
 
@@ -37,9 +38,8 @@ const AdminProfile = (props) => {
     fetchData();
   }, []);
 
-  const onLogout = () => {
-    logout();
-    history.replace("/");
+  const onEditProfile = () => {
+    setModalShow(true);
   };
 
   return (
@@ -93,19 +93,11 @@ const AdminProfile = (props) => {
                 <div className="text-center m-5">
                   <button
                     type="button"
+                    onClick={onEditProfile}
                     className="btn btn-primary btn-lg btn-block"
                   >
                     <i className="fab fa-cog" />
                     <FaRegSun /> Edit
-                  </button>
-                </div>
-                <div className="text-center m-5">
-                  <button
-                    type="button"
-                    onClick={onLogout}
-                    className="btn btn-secondary btn-lg btn-block"
-                  >
-                    <FaDoorOpen /> Logout
                   </button>
                 </div>
               </div>
@@ -126,6 +118,15 @@ const AdminProfile = (props) => {
           </Card.Body>
         )}
       </Card>
+      {modalShow && (
+        <EditProfile
+          centered
+          show={modalShow}
+          closable={true}
+          message="Edit Profile"
+          onHide={() => setModalShow(false)}
+        />
+      )}
     </div>
   );
 };

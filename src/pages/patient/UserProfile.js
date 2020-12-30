@@ -7,7 +7,6 @@ import {
 } from "../../constants/urls";
 import { Card, Row, Spinner } from "react-bootstrap";
 import logoUser from "../../images/user-avatar.jpg";
-import { logout } from "../../utils/auth";
 import { useHistory } from "react-router-dom";
 import { FaDoorOpen, FaRegSun } from "react-icons/fa";
 import EditProfile from "../../components/EditProfile";
@@ -59,11 +58,6 @@ const UserProfile = (props) => {
     fetchData();
     getResidenceNumber();
   }, []);
-
-  const onLogout = () => {
-    logout();
-    history.replace("/");
-  };
 
   const onEditProfile = () => {
     setModalShow(true);
@@ -125,15 +119,6 @@ const UserProfile = (props) => {
                   >
                     <i className="fab fa-cog" />
                     <FaRegSun /> Edit
-                  </button>
-                </div>
-                <div className="text-center m-5">
-                  <button
-                    type="button"
-                    onClick={onLogout}
-                    className="btn btn-secondary btn-lg btn-block"
-                  >
-                    <FaDoorOpen /> Logout
                   </button>
                 </div>
               </div>
