@@ -5,7 +5,7 @@
 */
 
 import React from "react";
-import { Button, Row, InputGroup, Form, Image } from "react-bootstrap";
+import { Button, Row, InputGroup, Form, Image, Col } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import { setUserLogin } from "utils/auth";
 import headerImage from "../images/pasien/LOGIN.png";
@@ -91,8 +91,8 @@ const Login = () => {
           </Link>
         </Container>
       </Navbar> */}
-      <Row xs="auto">
-        <div className="col-lg-9 px-0 d-none d-sm-block">
+      <Row xs="auto" className="d-flex align-items-center">
+        <Col lg="9" className="px-0 d-none d-sm-block">
           <Image
             src={headerImage}
             style={{
@@ -101,8 +101,8 @@ const Login = () => {
               objectPosition: "cover",
             }}
           />
-        </div>
-        <div className="col-lg-3 pl-4" fluid>
+        </Col>
+        <Col lg="3" className="pl-4" fluid>
           <div className="mt-5 mb-5 text-center">
             <Image src={logo} width="50%" />
           </div>
@@ -208,7 +208,7 @@ const Login = () => {
               </span>
             </div>
           </div>
-        </div>
+        </Col>
       </Row>
     </div>
   );

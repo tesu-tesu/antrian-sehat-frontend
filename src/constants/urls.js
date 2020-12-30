@@ -18,6 +18,8 @@ export const REGISTER_API = `${BASE_URL}/auth/register`;
 export const GET_SELF = () => `${BASE_URL}/user/get-current-user`;
 export const CHANGE_PASSWORD = (userId) =>
   `${BASE_URL}/user/change-password/${userId}`;
+export const EDIT_PROFILE = (userId) =>
+  `${BASE_URL}/user/${userId}`;
 
 //PATIENT API
 export const GET_ALL_HEALTH_AGENCIES = (page_number) =>
