@@ -28,12 +28,10 @@ const UserProfile = (props) => {
         headers: { Authorization: `Bearer ${JWT_HEADER}` },
       })
       .then((res) => {
+        console.log(res.data);
         setResidences(res.data.data);
       })
       .catch((err) => {
-        /*setErrorResidenceNumber(
-                            err.response.data.data?.message ? err.response.data.data.message : ""
-                        );*/
         console.log(err);
       });
   };
@@ -163,15 +161,16 @@ const UserProfile = (props) => {
                 </h4>
                 <Row className="list-group">
                   <ul>
-                    {residences.map((residence, key) => {
-                      return (
-                        <>
-                          <li className="list-group-item">
-                            <h5>{residence}</h5>
-                          </li>
-                        </>
-                      );
-                    })}
+                    {residences &&
+                      residences.map((residence, key) => {
+                        return (
+                          <>
+                            <li className="list-group-item">
+                              <h5>{residence}</h5>
+                            </li>
+                          </>
+                        );
+                      })}
                   </ul>
                 </Row>
               </Col>

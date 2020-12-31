@@ -38,7 +38,7 @@ export const GET_WAITING_LIST_BY_SCHEDULE = (schedule, date) =>
   `${BASE_URL}/user/get-waiting-list/${schedule}/${date}`;
 export const BOOK_WAITING_LIST = () => `${BASE_URL}/admin/waiting-list`;
 export const GET_RESIDENCE_NUMBER = () =>
-  `${BASE_URL}/user/get-residence-number`;
+  `${BASE_URL}/user/get-booked-residence-number`;
 
 //ADMIN API
 
