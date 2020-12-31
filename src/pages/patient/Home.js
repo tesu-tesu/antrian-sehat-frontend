@@ -57,21 +57,25 @@ const Home = () => {
         </Container>
       ) : (
         <Container className="pasien-body py-2">
-          <div className="mt-4 mb-3">
+          <div className="mt-6 mb-6" >
             <Container>
-              <Card
+              <Card 
+                border="light"
                 className="mx-lg-4"
                 style={{
-                  borderRadius: "15px",
+                  borderRadius: "20px",
+                  padding: "40px",
                 }}
               >
                 <Card.Body className="justify-content-between text-capitalize bg-white">
                   <Row>
                     <Col lg="3">
                       <Card
+                        border="light"
                         body
                         style={{ fontSize: "29pt" }}
                         className="shadow text-center"
+                        borderradius="16px"
                       >
                         <div className="card-body">Daftar antrian</div>
                         <div>
@@ -103,7 +107,9 @@ const Home = () => {
                           </span>
                         </Row>
                       </Col>
-                      <Card body>
+                      <Card 
+                      body
+                      border="light">
                         <Row className="p-0 mt-4 align-items-center">
                           <Col md="8" style={{ fontSize: "25pt" }}>
                             antrian anda
@@ -145,13 +151,16 @@ const Home = () => {
               </Card>
             </Container>
           </div>
-          <div className="mt-3 mb-3">
+          <div className="mt-6 mb-6">
             <Container>
-              <Card className="mx-lg-4" style={{ borderRadius: "15px" }}>
+              <Card 
+              border="light"
+              className="mx-lg-4" style={{ borderRadius: "15px" }}>
                 <Card.Body>
                   <div
                     className="d-flex justify-content-end mr-4 pr-4"
-                    style={{ fontSize: "50px" }}
+                    style={{ fontSize: "50px",
+                  padding: "40px" }}
                   >
                     Cari Jadwal?
                   </div>
@@ -188,9 +197,12 @@ const Home = () => {
               </Card>
             </Container>
           </div>
-          <div className="mt-3 mb-4">
+          <div className="mt-6 mb-6">
             <Container>
-              <Card className="mx-lg-4" style={{ borderRadius: "15px" }}>
+              <Card 
+              border="light"
+              className="mx-lg-4" style={{ borderRadius: "20px",
+              padding: "40px" }}>
                 <Card.Body>
                   <div
                     className="d-flex justify-content-end mr-4 pr-4"
