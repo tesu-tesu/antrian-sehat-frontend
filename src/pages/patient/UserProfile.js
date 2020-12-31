@@ -57,10 +57,34 @@ const UserProfile = (props) => {
     };
     fetchData();
     getResidenceNumber();
-  }, []);
+  }, [userImage]);
 
   const onEditProfile = () => {
     setModalShow(true);
+  };
+
+  const handleChange = (e) => {
+    if (e.target.files.length) {
+      console.log(e.target?.files);
+      setUserImage({
+        preview: URL.createObjectURL(e.target.files[0]),
+        raw: e.target.files[0],
+      });
+    }
+  };
+
+  const handleUpload = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", userImage.raw);
+
+    // await fetch("YOUR_URL", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "multipart/form-data",
+    //   },
+    //   body: formData,
+    // });
   };
 
   return (
@@ -79,29 +103,40 @@ const UserProfile = (props) => {
           <Card.Body>
             <Row>
               <Col md={4} lg={3} xl={3}>
-                <a href="#!">
-                  {userImage === undefined ||
-                  userImage === "" ||
-                  userImage.length === 0 ? (
-                    <img
-                      src={logoUser}
-                      className="rounded-circle img-center img-fluid shadow shadow-lg--hover"
-                      style={{
-                        width: "180px",
-                      }}
-                      alt={logoUser.alt}
-                    />
-                  ) : (
-                    <img
-                      src={userImage}
-                      className="rounded-circle img-center img-fluid shadow shadow-lg--hover"
-                      style={{
-                        width: "180px",
-                      }}
-                      alt={userImage.alt}
-                    />
-                  )}
-                </a>
+                <div className="pb-2 d-flex justify-content-center">
+                  <label htmlFor="upload-button">
+                    {userImage === undefined ||
+                    userImage === "" ||
+                    userImage.length === 0 ? (
+                      <img
+                        src={logoUser}
+                        className="rounded-circle img-center img-fluid shadow shadow-lg--hover"
+                        style={{
+                          width: "180px",
+                        }}
+                        alt={logoUser.alt}
+                      />
+                    ) : (
+                      <>
+                        <img
+                          src={userImage}
+                          className="rounded-circle img-center img-fluid shadow shadow-lg--hover"
+                          style={{
+                            width: "180px",
+                          }}
+                          alt={userImage.alt}
+                        />
+                      </>
+                    )}
+                  </label>
+                  <input
+                    type="file"
+                    id="upload-button"
+                    style={{ display: "none" }}
+                    onChange={handleChange}
+                  />
+                </div>
+
                 <div className="pt-4 text-center">
                   <h5 className="h3 title">
                     <span className="d-block mb-1">{userName}</span>
@@ -115,7 +150,7 @@ const UserProfile = (props) => {
                   <button
                     type="button"
                     onClick={onEditProfile}
-                    className="btn btn-primary btn-lg btn-block"
+                    className="btn btn-info btn-lg btn-block"
                   >
                     <i className="fab fa-cog" />
                     <FaRegSun /> Edit

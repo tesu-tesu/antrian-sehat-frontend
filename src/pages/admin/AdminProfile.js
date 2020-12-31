@@ -94,7 +94,7 @@ const AdminProfile = (props) => {
                   <button
                     type="button"
                     onClick={onEditProfile}
-                    className="btn btn-primary btn-lg btn-block"
+                    className="btn btn-info btn-lg btn-block"
                   >
                     <i className="fab fa-cog" />
                     <FaRegSun /> Edit
