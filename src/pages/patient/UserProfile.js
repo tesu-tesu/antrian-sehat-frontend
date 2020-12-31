@@ -5,7 +5,7 @@ import {
   GET_SELF,
   JWT_HEADER,
 } from "../../constants/urls";
-import { Card, Row, Spinner } from "react-bootstrap";
+import { Card, Row, Spinner, Col } from "react-bootstrap";
 import logoUser from "../../images/user-avatar.jpg";
 import { useHistory } from "react-router-dom";
 import { FaDoorOpen, FaRegSun } from "react-icons/fa";
@@ -77,8 +77,8 @@ const UserProfile = (props) => {
           </Spinner>
         ) : (
           <Card.Body>
-            <div className="row">
-              <div className="col">
+            <Row>
+              <Col md={4} lg={3} xl={3}>
                 <a href="#!">
                   {userImage === undefined ||
                   userImage === "" ||
@@ -87,7 +87,7 @@ const UserProfile = (props) => {
                       src={logoUser}
                       className="rounded-circle img-center img-fluid shadow shadow-lg--hover"
                       style={{
-                        width: "140px",
+                        width: "180px",
                       }}
                       alt={logoUser.alt}
                     />
@@ -96,7 +96,7 @@ const UserProfile = (props) => {
                       src={userImage}
                       className="rounded-circle img-center img-fluid shadow shadow-lg--hover"
                       style={{
-                        width: "140px",
+                        width: "180px",
                       }}
                       alt={userImage.alt}
                     />
@@ -121,32 +121,26 @@ const UserProfile = (props) => {
                     <FaRegSun /> Edit
                   </button>
                 </div>
-              </div>
-              <div className="col-5">
+              </Col>
+              <Col md={6} lg={6} xl={6}>
                 <h4 className="display-6 ml-4 mb-3">
                   Kerabat yang pernah Anda Daftarkan
                 </h4>
                 <Row className="list-group">
                   <ul>
-                    <li className="list-group-item">
-                      <h5>{residences.name}</h5>
-                    </li>
-                    {Object.keys(residences).map((residence, key) => {
+                    {residences.map((residence, key) => {
                       return (
                         <>
                           <li className="list-group-item">
-                            <h5>{residence.number}</h5>
+                            <h5>{residence}</h5>
                           </li>
                         </>
                       );
                     })}
                   </ul>
                 </Row>
-              </div>
-              <div className="col">
-                <span />
-              </div>
-            </div>
+              </Col>
+            </Row>
           </Card.Body>
         )}
       </Card>
