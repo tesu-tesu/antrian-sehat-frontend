@@ -55,7 +55,7 @@ const HistoryWaitingList = () => {
             }}
         >
           <Nav
-              className="nav-fill nav-fill-warning flex-column flex-sm-row"
+              className="nav-fill flex-column flex-sm-row"
               id="tabs-text"
               pills
               role="tablist"
