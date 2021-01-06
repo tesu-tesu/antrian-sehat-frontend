@@ -3,17 +3,18 @@ import axios from "axios";
 import {
   GET_RESIDENCE_NUMBER,
   CHANGE_IMAGE,
-  READ_IMAGE,
   SERVER_NAME,
   GET_SELF,
   JWT_HEADER,
 } from "../../constants/urls";
-import { Card, Row, Spinner, Col, Toast } from "react-bootstrap";
+import { Card, Row, Spinner, Col } from "react-bootstrap";
 import logoUser from "../../images/user-avatar.jpg";
 import { useHistory } from "react-router-dom";
 import { Tooltip } from "reactstrap";
 import { FaDoorOpen, FaRegSun } from "react-icons/fa";
 import EditProfile from "../../components/EditProfile";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const UserProfile = (props) => {
   const [isLoading, setIsLoading] = React.useState(false);
@@ -26,10 +27,9 @@ const UserProfile = (props) => {
   const [errorResidenceNumber, setErrorResidenceNumber] = React.useState("");
   const [modalShow, setModalShow] = React.useState(false);
   const [tooltipOpen, setTooltipOpen] = React.useState(false);
-  const [showToast, setShowToast] = React.useState(false);
 
   const toggle = () => setTooltipOpen(!tooltipOpen);
-  const toggleToast = () => setShowToast(!showToast);
+  const editSwal = withReactContent(Swal);
 
   let history = useHistory();
 
@@ -91,34 +91,31 @@ const UserProfile = (props) => {
         })
         .then((res) => {
           fetchData();
-          toggleToast();
+          editSwal.fire({
+            title: "Edit success",
+            text: "Your profile image updated successfully!",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
         })
         .catch((err) => {
           console.log(err.response);
+          let errString = "";
+          err.response.data.image.map((error, key) => {
+            errString += error + " ";
+          });
+          editSwal.fire({
+            title: "Edit failed",
+            text: errString,
+            icon: "error",
+            confirmButtonText: "Ok",
+          });
         });
     }
   };
 
   return (
     <div className="mx-4 mt-3">
-      <Toast
-        style={{
-          position: "absolute",
-          top: 10,
-          right: 10,
-        }}
-        onClose={() => setShowToast(false)}
-        show={showToast}
-        delay={4000}
-        autohide
-      >
-        <Toast.Header>
-          <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
-          <strong className="mr-auto">Edit successfully</strong>
-          <small>11 mins ago</small>
-        </Toast.Header>
-        <Toast.Body>Your profile data updated successfully!</Toast.Body>
-      </Toast>
       <Card
         className="border-light"
         style={{
@@ -222,7 +219,6 @@ const UserProfile = (props) => {
           show={modalShow}
           closable={true}
           message="Edit Profile"
-          setShowToast={setShowToast}
           onHide={() => setModalShow(false)}
         />
       )}

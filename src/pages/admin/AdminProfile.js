@@ -1,45 +1,100 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import { Card, Row, Spinner } from "react-bootstrap";
+import { Card, Row, Spinner, Col } from "react-bootstrap";
+import { Tooltip } from "reactstrap";
 import logoUser from "../../images/user-avatar.jpg";
 import { FaDoorOpen, FaRegSun } from "react-icons/fa";
-import { GET_SELF, JWT_HEADER } from "../../constants/urls";
+import {
+  CHANGE_IMAGE,
+  SERVER_NAME,
+  JWT_HEADER,
+  GET_SELF,
+} from "../../constants/urls";
 import EditProfile from "../../components/EditProfile";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const AdminProfile = (props) => {
   const [isLoading, setIsLoading] = React.useState(0);
-  const [userID, setUserID] = React.useState(null);
-  const [userImage, setUserImage] = React.useState("");
+  const [userId, setUserId] = React.useState("");
+  const [userImage, setUserImage] = React.useState(null);
+  const [fileName, setFileName] = React.useState("");
   const [userEmail, setUserEmail] = React.useState("");
   const [userName, setUserName] = React.useState("");
   const [healthAgency, setHealthAgency] = React.useState("");
   const [modalShow, setModalShow] = React.useState(false);
+  const [tooltipOpen, setTooltipOpen] = React.useState(false);
+
+  const toggle = () => setTooltipOpen(!tooltipOpen);
+  const editSwal = withReactContent(Swal);
 
   let history = useHistory();
 
   React.useEffect(() => {
-    const fetchData = async () => {
-      await axios
-        .get(GET_SELF(), {
-          headers: { Authorization: `Bearer ${JWT_HEADER}` },
-        })
-        .then((res) => {
-          setUserName(res.data.data.name);
-          setUserImage(res.data.data.image);
-          setUserEmail(res.data.data.email);
-          setHealthAgency(res.data.data.health_agency.name);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      setIsLoading(false);
-    };
+    setIsLoading(true);
     fetchData();
   }, []);
 
+  const fetchData = () => {
+    axios
+      .get(GET_SELF(), {
+        headers: { Authorization: `Bearer ${JWT_HEADER}` },
+      })
+      .then((res) => {
+        setUserId(res.data.data.id);
+        setUserEmail(res.data.data.email);
+        setUserName(res.data.data.name);
+        setUserImage(res.data.data.profile_img);
+        setFileName(SERVER_NAME + res.data.data.imagePath);
+
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const onEditProfile = () => {
     setModalShow(true);
+  };
+
+  const handleChange = (e) => {
+    if (e.target.files.length) {
+      console.log(e.target.files[0]);
+
+      const formData = new FormData();
+      formData.append("image", e.target.files[0], e.target.files[0].name);
+
+      axios
+        .post(CHANGE_IMAGE(userId), formData, {
+          headers: {
+            Authorization: `Bearer ${JWT_HEADER}`,
+          },
+        })
+        .then((res) => {
+          fetchData();
+          editSwal.fire({
+            title: "Edit success",
+            text: "Your profile image updated successfully!",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+        })
+        .catch((err) => {
+          console.log(err.response);
+          let errString = "";
+          err.response.data.image.map((error, key) => {
+            errString += error + " ";
+          });
+          editSwal.fire({
+            title: "Edit failed",
+            text: errString,
+            icon: "error",
+            confirmButtonText: "Ok",
+          });
+        });
+    }
   };
 
   return (
@@ -56,31 +111,50 @@ const AdminProfile = (props) => {
           </Spinner>
         ) : (
           <Card.Body>
-            <div className="row">
-              <div className="col">
-                <a href="#!">
-                  {userImage === undefined ||
-                  userImage === "" ||
-                  userImage.length === 0 ? (
-                    <img
-                      src={logoUser}
-                      className="rounded-circle img-center img-fluid shadow shadow-lg--hover"
-                      style={{
-                        width: "140px",
-                      }}
-                      alt={logoUser.alt}
-                    />
-                  ) : (
-                    <img
-                      src={userImage}
-                      className="rounded-circle img-center img-fluid shadow shadow-lg--hover"
-                      style={{
-                        width: "140px",
-                      }}
-                      alt={userImage.alt}
-                    />
-                  )}
-                </a>
+            <Row>
+              <Col md={4} lg={3} xl={3}>
+                <div className="pb-2 d-flex justify-content-center">
+                  <label htmlFor="upload-button" id="labelImage">
+                    {userImage == null ? (
+                      <img
+                        src={logoUser}
+                        className="rounded-circle img-center img-fluid shadow shadow-lg--hover"
+                        style={{
+                          width: "180px",
+                          cursor: "pointer",
+                        }}
+                        alt={logoUser.alt}
+                      />
+                    ) : (
+                      <>
+                        <img
+                          src={fileName}
+                          className="rounded-circle img-center img-fluid shadow shadow-lg--hover"
+                          style={{
+                            width: "180px",
+                            cursor: "pointer",
+                          }}
+                          alt={fileName}
+                        />
+                      </>
+                    )}
+                  </label>
+                  <Tooltip
+                    placement="top"
+                    isOpen={tooltipOpen}
+                    target="labelImage"
+                    toggle={toggle}
+                  >
+                    Change your profil image
+                  </Tooltip>
+                  <input
+                    type="file"
+                    id="upload-button"
+                    style={{ display: "none" }}
+                    onChange={handleChange}
+                  />
+                </div>
+
                 <div className="pt-4 text-center">
                   <h5 className="h3 title">
                     <span className="d-block mb-1">{userName}</span>
@@ -100,8 +174,8 @@ const AdminProfile = (props) => {
                     <FaRegSun /> Edit
                   </button>
                 </div>
-              </div>
-              <div className="col-5">
+              </Col>
+              <Col md={6} lg={6} xl={6}>
                 <div className="card">
                   <div className="card-body">
                     <h4 className="card-title display-6">
@@ -110,11 +184,8 @@ const AdminProfile = (props) => {
                     <h1>Admin {healthAgency}</h1>
                   </div>
                 </div>
-              </div>
-              <div className="col">
-                <span />
-              </div>
-            </div>
+              </Col>
+            </Row>
           </Card.Body>
         )}
       </Card>
