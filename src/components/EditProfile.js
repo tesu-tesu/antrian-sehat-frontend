@@ -56,8 +56,10 @@ const EditProfile = (props) => {
       )
       .then((res) => {
         props.onHide(false);
+        props.setShowToast(true);
       })
       .catch((err) => {
+        console.log(err.response);
         if (err.response.data?.name) {
           setErrorName(err.response.data?.name[0]);
         }

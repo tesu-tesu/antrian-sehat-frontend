@@ -1,6 +1,7 @@
 import Cookies from "js-cookie";
 
 const BASE_URL = "http://localhost:8000/api";
+export const SERVER_NAME = "http://localhost:8000";
 
 let JWT = null;
 if (Cookies.getJSON("USER") !== undefined) JWT = Cookies.getJSON("USER").token;
@@ -15,6 +16,10 @@ export const REGISTER_API = `${BASE_URL}/auth/register`;
 export const GET_SELF = () => `${BASE_URL}/user/get-current-user`;
 export const CHANGE_PASSWORD = (userId) =>
   `${BASE_URL}/user/change-password/${userId}`;
+export const CHANGE_IMAGE = (userId) =>
+  `${BASE_URL}/user/change-image/${userId}`;
+export const READ_IMAGE = (filename) =>
+  `${BASE_URL}/user/read-image/${filename}`;
 export const EDIT_PROFILE = (userId) => `${BASE_URL}/user/${userId}`;
 
 //PATIENT API

@@ -2,33 +2,43 @@ import React from "react";
 import axios from "axios";
 import {
   GET_RESIDENCE_NUMBER,
+  CHANGE_IMAGE,
+  READ_IMAGE,
+  SERVER_NAME,
   GET_SELF,
   JWT_HEADER,
 } from "../../constants/urls";
-import { Card, Row, Spinner, Col } from "react-bootstrap";
+import { Card, Row, Spinner, Col, Toast } from "react-bootstrap";
 import logoUser from "../../images/user-avatar.jpg";
 import { useHistory } from "react-router-dom";
+import { Tooltip } from "reactstrap";
 import { FaDoorOpen, FaRegSun } from "react-icons/fa";
 import EditProfile from "../../components/EditProfile";
 
 const UserProfile = (props) => {
-  const [isLoading, setIsLoading] = React.useState(0);
+  const [isLoading, setIsLoading] = React.useState(false);
   const [residences, setResidences] = React.useState([]);
-  const [userImage, setUserImage] = React.useState("");
+  const [userId, setUserId] = React.useState("");
+  const [userImage, setUserImage] = React.useState(null);
+  const [fileName, setFileName] = React.useState("");
   const [userEmail, setUserEmail] = React.useState("");
   const [userName, setUserName] = React.useState("");
   const [errorResidenceNumber, setErrorResidenceNumber] = React.useState("");
   const [modalShow, setModalShow] = React.useState(false);
+  const [tooltipOpen, setTooltipOpen] = React.useState(false);
+  const [showToast, setShowToast] = React.useState(false);
+
+  const toggle = () => setTooltipOpen(!tooltipOpen);
+  const toggleToast = () => setShowToast(!showToast);
 
   let history = useHistory();
 
-  const getResidenceNumber = async () => {
-    await axios
+  const getResidenceNumber = () => {
+    axios
       .get(GET_RESIDENCE_NUMBER(), {
         headers: { Authorization: `Bearer ${JWT_HEADER}` },
       })
       .then((res) => {
-        console.log(res.data);
         setResidences(res.data.data);
       })
       .catch((err) => {
@@ -36,26 +46,31 @@ const UserProfile = (props) => {
       });
   };
 
+  const fetchData = () => {
+    axios
+      .get(GET_SELF(), {
+        headers: { Authorization: `Bearer ${JWT_HEADER}` },
+      })
+      .then((res) => {
+        setUserId(res.data.data.id);
+        setUserEmail(res.data.data.email);
+        setUserName(res.data.data.name);
+        setUserImage(res.data.data.profile_img);
+        setFileName(SERVER_NAME + res.data.data.imagePath);
+
+        getResidenceNumber();
+
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   React.useEffect(() => {
-    const fetchData = async () => {
-      await axios
-        .get(GET_SELF(), {
-          headers: { Authorization: `Bearer ${JWT_HEADER}` },
-        })
-        .then((res) => {
-          setUserImage(res.data.data.image);
-          setUserEmail(res.data.data.email);
-          setUserName(res.data.data.name);
-        })
-        .catch((err) => {
-          setUserImage(logoUser);
-          console.log(err);
-        });
-      setIsLoading(false);
-    };
+    setIsLoading(true);
     fetchData();
-    getResidenceNumber();
-  }, [userImage]);
+  }, []);
 
   const onEditProfile = () => {
     setModalShow(true);
@@ -63,30 +78,47 @@ const UserProfile = (props) => {
 
   const handleChange = (e) => {
     if (e.target.files.length) {
-      console.log(e.target?.files);
-      setUserImage({
-        preview: URL.createObjectURL(e.target.files[0]),
-        raw: e.target.files[0],
-      });
+      console.log(e.target.files[0]);
+
+      const formData = new FormData();
+      formData.append("image", e.target.files[0], e.target.files[0].name);
+
+      axios
+        .post(CHANGE_IMAGE(userId), formData, {
+          headers: {
+            Authorization: `Bearer ${JWT_HEADER}`,
+          },
+        })
+        .then((res) => {
+          fetchData();
+          toggleToast();
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
     }
-  };
-
-  const handleUpload = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("image", userImage.raw);
-
-    // await fetch("YOUR_URL", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "multipart/form-data",
-    //   },
-    //   body: formData,
-    // });
   };
 
   return (
     <div className="mx-4 mt-3">
+      <Toast
+        style={{
+          position: "absolute",
+          top: 10,
+          right: 10,
+        }}
+        onClose={() => setShowToast(false)}
+        show={showToast}
+        delay={4000}
+        autohide
+      >
+        <Toast.Header>
+          <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
+          <strong className="mr-auto">Edit successfully</strong>
+          <small>11 mins ago</small>
+        </Toast.Header>
+        <Toast.Body>Your profile data updated successfully!</Toast.Body>
+      </Toast>
       <Card
         className="border-light"
         style={{
@@ -102,31 +134,39 @@ const UserProfile = (props) => {
             <Row>
               <Col md={4} lg={3} xl={3}>
                 <div className="pb-2 d-flex justify-content-center">
-                  <label htmlFor="upload-button">
-                    {userImage === undefined ||
-                    userImage === "" ||
-                    userImage.length === 0 ? (
+                  <label htmlFor="upload-button" id="labelImage">
+                    {userImage == null ? (
                       <img
                         src={logoUser}
                         className="rounded-circle img-center img-fluid shadow shadow-lg--hover"
                         style={{
                           width: "180px",
+                          cursor: "pointer",
                         }}
                         alt={logoUser.alt}
                       />
                     ) : (
                       <>
                         <img
-                          src={userImage}
+                          src={fileName}
                           className="rounded-circle img-center img-fluid shadow shadow-lg--hover"
                           style={{
                             width: "180px",
+                            cursor: "pointer",
                           }}
-                          alt={userImage.alt}
+                          alt={fileName}
                         />
                       </>
                     )}
                   </label>
+                  <Tooltip
+                    placement="top"
+                    isOpen={tooltipOpen}
+                    target="labelImage"
+                    toggle={toggle}
+                  >
+                    Change your profil image
+                  </Tooltip>
                   <input
                     type="file"
                     id="upload-button"
@@ -164,11 +204,9 @@ const UserProfile = (props) => {
                     {residences &&
                       residences.map((residence, key) => {
                         return (
-                          <>
-                            <li className="list-group-item">
-                              <h5>{residence}</h5>
-                            </li>
-                          </>
+                          <li className="list-group-item">
+                            <h5>{residence}</h5>
+                          </li>
                         );
                       })}
                   </ul>
@@ -184,6 +222,7 @@ const UserProfile = (props) => {
           show={modalShow}
           closable={true}
           message="Edit Profile"
+          setShowToast={setShowToast}
           onHide={() => setModalShow(false)}
         />
       )}

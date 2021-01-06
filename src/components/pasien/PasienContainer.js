@@ -1,10 +1,6 @@
-/*
-  Ini halaman home, gak ada yg istimewa disini
-*/
-
 import React from "react";
 import { FaHome, IconName } from "react-icons/fa";
-import { Card, Container, Row, Col, Breadcrumb } from "react-bootstrap";
+import { Card, Container, Row, Col, Breadcrumb, Toast } from "react-bootstrap";
 import NavBar from "components/pasien/NavBar";
 import FooterBar from "../FooterBar";
 import PasienRoute from "components/PasienRoute";
@@ -35,6 +31,7 @@ const PasienContainer = (props) => {
       <div className="header">
         <NavBar />
       </div>
+
       <div className="pasien-body">
         {location.pathname !== "/pasien" && (
           <>
