@@ -2,6 +2,8 @@ import React from "react";
 import { Modal, Button, Form, Col } from "react-bootstrap";
 import axios from "axios";
 import { EDIT_PROFILE, JWT_HEADER, GET_SELF } from "constants/urls";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const EditProfile = (props) => {
   const [btnDisabled, setBtnDisabled] = React.useState(false);
@@ -18,6 +20,8 @@ const EditProfile = (props) => {
   const [errorPhone, setErrorPhone] = React.useState("");
   const [errorResidenceNumber, setErrorResidenceNumber] = React.useState("");
   const [errorImage, setErrorImage] = React.useState("");
+
+  const editSwal = withReactContent(Swal);
 
   React.useEffect(() => {
     axios
@@ -56,7 +60,12 @@ const EditProfile = (props) => {
       )
       .then((res) => {
         props.onHide(false);
-        props.setShowToast(true);
+        editSwal.fire({
+          title: "Edit notification",
+          text: "Your profile data updated successfully!",
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
       })
       .catch((err) => {
         console.log(err.response);
@@ -73,12 +82,6 @@ const EditProfile = (props) => {
           setErrorResidenceNumber(err.response.data?.residence_number[0]);
         }
       });
-    setBtnDisabled(false);
-  };
-
-  const changePict = (userId) => {
-    setBtnDisabled(true);
-
     setBtnDisabled(false);
   };
 
