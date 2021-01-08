@@ -1,8 +1,8 @@
 import React from "react";
-import { GET_ALL_POLYMASTERS, JWT_HEADER } from "constants/urls";
+import { GET_ALL_POLYMASTERS, JWT_HEADER, SERVER_NAME } from "constants/urls";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Row, Col, Card, Spinner } from "react-bootstrap";
+import { Row, Col, Card, Spinner, Image } from "react-bootstrap";
 import { FaReact } from "react-icons/fa";
 import Pagination from "react-js-pagination";
 
@@ -53,10 +53,16 @@ const Polymasters = () => {
           >
             <Link to={`/pasien/puskesmas/${polymaster.id}`}>
               <Card.Body>
-                <FaReact
+                <Image
+                  src={
+                    SERVER_NAME + "/storage/img/polymasters/" + polymaster.image
+                  }
+                  className="rounded-sm img-center img-fluid shadow shadow-lg--hover"
                   style={{
-                    fontSize: "30px",
+                    width: "50px",
+                    cursor: "pointer",
                   }}
+                  alt={polymaster.image}
                 />
                 <p className="mt-3">{polymaster.name}</p>
               </Card.Body>

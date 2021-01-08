@@ -3,6 +3,7 @@ import {
   GET_POLYCLINIC_OF_HA,
   JWT_HEADER,
   GET_ONE_HEALTH_AGENCY,
+  SERVER_NAME,
 } from "constants/urls";
 import axios from "axios";
 import { Row, Col, Card, Table, Button, Spinner } from "react-bootstrap";
@@ -148,7 +149,13 @@ const PolyclinicSchedules = () => {
                 <div>
                   <Card.Img
                     variant="top"
-                    src={healthAgency.image ? healthAgency.image : defaultHA}
+                    src={
+                      healthAgency.image
+                        ? SERVER_NAME +
+                          "/storage/img/health_agencies/" +
+                          healthAgency.image
+                        : defaultHA
+                    }
                     width="100px"
                   />
                 </div>

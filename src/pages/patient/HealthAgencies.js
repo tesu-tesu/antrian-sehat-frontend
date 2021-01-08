@@ -1,8 +1,12 @@
 import React from "react";
-import { GET_ALL_HEALTH_AGENCIES, JWT_HEADER } from "constants/urls";
+import {
+  GET_ALL_HEALTH_AGENCIES,
+  JWT_HEADER,
+  SERVER_NAME,
+} from "constants/urls";
 import axios from "axios";
 import { Link, Redirect } from "react-router-dom";
-import { Row, Col, Card, Spinner } from "react-bootstrap";
+import { Row, Col, Card, Spinner, Image } from "react-bootstrap";
 import { FaHospital } from "react-icons/fa";
 import Pagination from "react-js-pagination";
 
@@ -49,11 +53,28 @@ const HealthAgencies = () => {
           >
             <Link to={`/pasien/polyclinic-schedule/${healthAgency.id}`}>
               <Card.Body>
-                <FaHospital
-                  style={{
-                    fontSize: "30px",
-                  }}
-                />
+                {healthAgency.image == null ? (
+                  <FaHospital
+                    style={{
+                      fontSize: "30px",
+                    }}
+                  />
+                ) : (
+                  <Image
+                    src={
+                      SERVER_NAME +
+                      "/storage/img/health_agencies/" +
+                      healthAgency.image
+                    }
+                    className="round img-center img-fluid shadow shadow-lg--hover"
+                    style={{
+                      width: "100px",
+                      cursor: "pointer",
+                    }}
+                    alt={healthAgency.image}
+                  />
+                )}
+
                 <p className="mt-3">{healthAgency.name}</p>
               </Card.Body>
             </Link>

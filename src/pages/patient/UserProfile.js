@@ -7,7 +7,7 @@ import {
   GET_SELF,
   JWT_HEADER,
 } from "../../constants/urls";
-import { Card, Row, Spinner, Col } from "react-bootstrap";
+import { Card, Row, Spinner, Col, Image } from "react-bootstrap";
 import logoUser from "../../images/user-avatar.jpg";
 import { useHistory } from "react-router-dom";
 import { Tooltip } from "reactstrap";
@@ -133,7 +133,7 @@ const UserProfile = (props) => {
                 <div className="pb-2 d-flex justify-content-center">
                   <label htmlFor="upload-button" id="labelImage">
                     {userImage == null ? (
-                      <img
+                      <Image
                         src={logoUser}
                         className="rounded-circle img-center img-fluid shadow shadow-lg--hover"
                         style={{
@@ -143,17 +143,15 @@ const UserProfile = (props) => {
                         alt={logoUser.alt}
                       />
                     ) : (
-                      <>
-                        <img
-                          src={fileName}
-                          className="rounded-circle img-center img-fluid shadow shadow-lg--hover"
-                          style={{
-                            width: "180px",
-                            cursor: "pointer",
-                          }}
-                          alt={fileName}
-                        />
-                      </>
+                      <Image
+                        src={fileName}
+                        className="rounded-circle img-center img-fluid shadow shadow-lg--hover"
+                        style={{
+                          width: "180px",
+                          cursor: "pointer",
+                        }}
+                        alt={fileName}
+                      />
                     )}
                   </label>
                   <Tooltip

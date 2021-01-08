@@ -1,7 +1,7 @@
 import React from "react";
-import { GET_HA_OF_POLYCLINIC, JWT_HEADER } from "constants/urls";
+import { GET_HA_OF_POLYCLINIC, JWT_HEADER, SERVER_NAME } from "constants/urls";
 import axios from "axios";
-import { Row, Col, Card, Spinner, Modal, Button } from "react-bootstrap";
+import { Row, Col, Card, Spinner, Modal, Button, Image } from "react-bootstrap";
 import { FaHospital } from "react-icons/fa";
 import { useParams } from "react-router";
 import ScheduleModal from "components/pasien/ScheduleModal";
@@ -66,11 +66,27 @@ const ListHAofPoly = () => {
                       }}
                     >
                       <Card.Body>
-                        <FaHospital
-                          style={{
-                            fontSize: "30px",
-                          }}
-                        />
+                        {healthAgency.image == null ? (
+                          <FaHospital
+                            style={{
+                              fontSize: "30px",
+                            }}
+                          />
+                        ) : (
+                          <Image
+                            src={
+                              SERVER_NAME +
+                              "/storage/img/health_agencies/" +
+                              healthAgency.image
+                            }
+                            className="rounded-sm img-center img-fluid shadow shadow-lg--hover"
+                            style={{
+                              width: "75px",
+                              cursor: "pointer",
+                            }}
+                            alt={healthAgency.image}
+                          />
+                        )}
                         <p className="mt-3">{healthAgency.name}</p>
                         <Button
                           variant="light"

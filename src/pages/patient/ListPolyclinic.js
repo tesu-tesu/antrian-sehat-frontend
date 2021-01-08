@@ -1,7 +1,7 @@
 import React from "react";
-import { GET_POLYCLINIC_OF_HA, JWT_HEADER } from "constants/urls";
+import { GET_POLYCLINIC_OF_HA, JWT_HEADER, SERVER_NAME } from "constants/urls";
 import axios from "axios";
-import { Row, Col, Card, Spinner } from "react-bootstrap";
+import { Row, Col, Card, Spinner, Image } from "react-bootstrap";
 import { FaReact } from "react-icons/fa";
 import { useParams } from "react-router";
 
@@ -17,15 +17,16 @@ const ListPolyclinic = () => {
     const fetchData = async () => {
       setIsLoading(true);
       await axios
-      .get(GET_POLYCLINIC_OF_HA(id_health_agency), {
-        headers: { Authorization: `Bearer ${JWT_HEADER}` },
-      })
-      .then((res) => {
-        setPolyclinics(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .get(GET_POLYCLINIC_OF_HA(id_health_agency), {
+          headers: { Authorization: `Bearer ${JWT_HEADER}` },
+        })
+        .then((res) => {
+          console.log(res.data);
+          setPolyclinics(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       setIsLoading(false);
     };
     fetchData();
@@ -58,10 +59,18 @@ const ListPolyclinic = () => {
                     }}
                   >
                     <Card.Body>
-                      <FaReact
+                      <Image
+                        src={
+                          SERVER_NAME +
+                          "/storage/img/polymasters/" +
+                          polyclinic.polymaster.image
+                        }
+                        className="rounded-sm img-center img-fluid shadow shadow-lg--hover"
                         style={{
-                          fontSize: "30px",
+                          width: "50px",
+                          cursor: "pointer",
                         }}
+                        alt={polyclinic.polymaster.image}
                       />
                       <p className="mt-3">{polyclinic.poly_master.name}</p>
                     </Card.Body>
