@@ -9,6 +9,7 @@ import BookWaitingList from "pages/patient/BookWaitingList";
 import ListHAofPoly from "pages/patient/ListHAofPoly";
 import ErrorPage from "../pages/404Pages/ErrorPage";
 import UserProfile from "../pages/patient/UserProfile";
+import SearchPageResult from "../pages/patient/SearchPageResult";
 
 export const APP_PATIENT_ROUTE = [
   {
@@ -75,7 +76,7 @@ export const APP_PATIENT_ROUTE = [
     private: true,
     isPasien: true,
   },
-/*  {
+  /*  {
     name: "Profile",
     path: "/pasien/profile/:user_id",
     exact: true,
@@ -104,6 +105,14 @@ export const APP_PATIENT_ROUTE = [
     path: "/pasien/book-waiting-list/:schedule_id/:date",
     exact: true,
     component: BookWaitingList,
+    private: true,
+    isPasien: true,
+  },
+  {
+    name: "",
+    path: "/pasien/search/puskesmas/",
+    exact: true,
+    component: SearchPageResult,
     private: true,
     isPasien: true,
   },
