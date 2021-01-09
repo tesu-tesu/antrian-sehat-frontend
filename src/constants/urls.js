@@ -44,6 +44,8 @@ export const GET_WAITING_LIST_BY_SCHEDULE = (schedule, date) =>
 export const BOOK_WAITING_LIST = () => `${BASE_URL}/admin/waiting-list`;
 export const GET_RESIDENCE_NUMBER = () =>
   `${BASE_URL}/user/get-booked-residence-number`;
+export const SEARCH_HEALTH_AGENCY = () =>
+  `${BASE_URL}/user/health-agency/search/`;
 
 //ADMIN API
 

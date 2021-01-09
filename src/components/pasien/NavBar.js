@@ -21,9 +21,10 @@ import logoUser from "../../images/user icon.png";
 import { logout } from "utils/auth";
 import ModalShowChangePassword from "../ModalChangePassword";
 
-const NavBar = () => {
+const NavBar = (props) => {
   let history = useHistory();
   const [modalShow, setModalShow] = React.useState(false);
+  const [searchWord, setSearchWord] = React.useState("");
 
   const changePassword = () => {
     setModalShow(true);
@@ -31,6 +32,20 @@ const NavBar = () => {
   const _onLogout = () => {
     logout();
     history.replace("/");
+  };
+
+  const _enterPressed = (event) => {
+    if (event.key === "Enter") {
+      _onEnterSearch();
+    }
+  };
+
+  const _onEnterSearch = () => {
+    history.push({
+      pathname: "/pasien/search/puskesmas/",
+      search: searchWord,
+      // state: { detail: 'some_value' }
+    });
   };
 
   return (
@@ -57,29 +72,43 @@ const NavBar = () => {
               className="text-light nav-link font-weight-bold mr-5"
               to="/pasien/polimaster"
             >
-              List Poly
+              Poliklinik
             </Link>
             <Link
               className="text-light nav-link font-weight-bold mr-5"
               to="/pasien/riwayat-antrian"
             >
-              History
+              Riwayat
             </Link>
             <Link
               className="text-light nav-link font-weight-bold mr-5"
-              to="/pasien/artikel"
+              to="/pasien/about-us"
             >
-              Artikel
+              Tentang Kami
             </Link>
           </Nav>
           <Nav className="mx-auto">
-            <Form inline className="text-light font-weight-bold">
+            <Form
+              inline
+              className="text-light font-weight-bold"
+              onSubmit={(e) => {
+                e.preventDefault();
+              }}
+            >
               <Form.Control
                 type="text"
-                placeholder="Search"
-                className="mr-sm-2"
+                placeholder="Cari puskesmas..."
+                onChange={(e) => {
+                  setSearchWord(e.target.value);
+                }}
+                onKeyPress={(e) => {
+                  _enterPressed(e);
+                }}
+                classNames="mr-sm-2"
               />
-              <Button variant="outline-light">Search</Button>
+              <Button onClick={_onEnterSearch} variant="outline-light">
+                Cari
+              </Button>
             </Form>
           </Nav>
         </Navbar.Collapse>
