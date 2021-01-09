@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Row, Col, Card, Spinner, Image } from "react-bootstrap";
 import { FaReact } from "react-icons/fa";
 import Pagination from "react-js-pagination";
+import styled from "styled-components";
 
 const Polymasters = () => {
   const [polymasters, setPolymasters] = React.useState([]);
@@ -35,6 +36,19 @@ const Polymasters = () => {
     setIsLoading(false);
   };
 
+  const PolyclinicsText = styled.p`
+    color: black;
+    text-decoration: none;
+
+    &:focus,
+    &:hover,
+    &:visited,
+    &:link,
+    &:active {
+      text-decoration: none;
+    }
+  `;
+
   const renderData = () => {
     // var { data, current_page, per_page, total } = healthAgencies;
 
@@ -64,7 +78,9 @@ const Polymasters = () => {
                   }}
                   alt={polymaster.image}
                 />
-                <p className="mt-3">{polymaster.name}</p>
+                <PolyclinicsText className="mt-3">
+                  {polymaster.name}
+                </PolyclinicsText>
               </Card.Body>
             </Link>
           </Card>
