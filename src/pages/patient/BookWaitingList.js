@@ -3,7 +3,7 @@ import {
   GET_WAITING_LIST_BY_SCHEDULE,
   BOOK_WAITING_LIST,
   JWT_HEADER,
-  GET_RESIDENCE_NUMBER,
+  GET_SELF,
 } from "constants/urls";
 import axios from "axios";
 import {
@@ -51,17 +51,18 @@ const BookWaitingList = () => {
   const [errorDate, setErrorDate] = React.useState("");
   const [errorSchedule, setErrorSchedule] = React.useState("");
   const [errorResidenceNumber, setErrorResidenceNumber] = React.useState("");
-  const [isSelf, setIsSelf] = React.useState(0);
-  const [isLoading, setIsLoading] = React.useState(0);
+  const [isSelf, setIsSelf] = React.useState(false);
+  const [isButtonDisable, setIsButtonDisable] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
   const [isSuccess, setIsSuccess] = React.useState(0);
 
   const getResidenceNumber = async () => {
     await axios
-      .get(GET_RESIDENCE_NUMBER(), {
+      .get(GET_SELF(), {
         headers: { Authorization: `Bearer ${JWT_HEADER}` },
       })
       .then((res) => {
-        setResidenceNumber(res.data.data);
+        setResidenceNumber(res.data.data.residence_number);
       })
       .catch((err) => {
         setErrorResidenceNumber(
@@ -87,7 +88,6 @@ const BookWaitingList = () => {
         headers: { Authorization: `Bearer ${JWT_HEADER}` },
       })
       .then((res) => {
-        console.log(res.data);
         setHealthAgency(res.data.data.health_agency);
         setPolyclinic(res.data.data.polyclinic);
         setDay(res.data.data.day);
@@ -105,6 +105,7 @@ const BookWaitingList = () => {
   };
 
   const _onBook = () => {
+    setIsButtonDisable(true);
     axios
       .post(
         BOOK_WAITING_LIST(),
@@ -116,7 +117,6 @@ const BookWaitingList = () => {
         { headers: { Authorization: `Bearer ${JWT_HEADER}` } }
       )
       .then((res) => {
-        console.log(res.data);
         setWaitingList(res.data.data);
         setSuccessMessage(res.data.message);
         setIsSuccess(true);
@@ -146,6 +146,7 @@ const BookWaitingList = () => {
           }
         }
       });
+    setIsButtonDisable(false);
   };
 
   const toRender = () => {
@@ -194,9 +195,8 @@ const BookWaitingList = () => {
               <Form.Group controlId="exampleForm.ControlSelect1">
                 <Form.Label>Pilih Pendaftar</Form.Label>
                 <Form.Control as="select" onChange={onChooseSelf.bind(this)}>
-                  <option>Pilih Pendaftar</option>
-                  <option value="1">Diri Sendiri</option>
                   <option value="2">Orang Lain</option>
+                  <option value="1">Diri Sendiri</option>
                 </Form.Control>
               </Form.Group>
 
@@ -218,6 +218,7 @@ const BookWaitingList = () => {
               <div className="row justify-content-center mb-5 mt-4">
                 <div className="col-md-12">
                   <Button
+                    disabled={isButtonDisable ? true : false}
                     className="rounded"
                     variant="light"
                     block
