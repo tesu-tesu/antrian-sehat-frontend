@@ -3,39 +3,48 @@ import ScanQR from "pages/admin/ScanQR";
 import ErrorPage from "../pages/404Pages/ErrorPage";
 import WaitingList from "pages/admin/WaitingList";
 import AdminProfile from "../pages/admin/AdminProfile";
+import AboutUsPage from "../pages/AboutUsPage";
 
 export const APP_ADMIN_ROUTE = [
-    {
-      name: "QR Scan",
-      path: "/admin/scan-qr",
-      exact: true,
-      component: ScanQR,
-      private: true,
-      isAdmin: true,
-    },
-    {
-        name: "Waiting List",
-        path: "/admin/waiting-list",
-        exact: true,
-        component: WaitingList,
-        private: true,
-        isAdmin: true,
-    },
-    {
-        name: "Profile",
-        path: "/admin/profile",
-        exact: true,
-        component: AdminProfile,
-        private: true,
-        isAdmin: true,
-    },
-    {
-        name: "Error Page",
-        path: "/admin/*",
-        exact: true,
-        component: ErrorPage,
-        private: true,
-        isAdmin: true,
-        isNotFound: true,
-    },
+  {
+    name: "QR Scan",
+    path: "/admin/scan-qr",
+    exact: true,
+    component: ScanQR,
+    private: true,
+    isAdmin: true,
+  },
+  {
+    name: "Waiting List",
+    path: "/admin/waiting-list",
+    exact: true,
+    component: WaitingList,
+    private: true,
+    isAdmin: true,
+  },
+  {
+    name: "Profile",
+    path: "/admin/profile",
+    exact: true,
+    component: AdminProfile,
+    private: true,
+    isAdmin: true,
+  },
+  {
+    name: "About Us",
+    path: "/admin/about-us/",
+    exact: true,
+    component: AboutUsPage,
+    private: true,
+    isAdmin: true,
+  },
+  {
+    name: "Error Page",
+    path: "/admin/*",
+    exact: true,
+    component: ErrorPage,
+    private: true,
+    isAdmin: true,
+    isNotFound: true,
+  },
 ];

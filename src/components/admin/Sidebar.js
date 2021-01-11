@@ -38,6 +38,7 @@ import puskesmasIcon from "images/admin/puskesmas.png";
 import clinicIcon from "images/admin/clinic.png";
 import listIcon from "images/admin/list.png";
 import qrScan from "images/admin/search.png";
+import infoAbout from "images/admin/info.png";
 
 class Sidebar extends React.Component {
   state = {
@@ -54,7 +55,7 @@ class Sidebar extends React.Component {
   // toggles collapse between opened and closed (true/false)
   toggleCollapse = () => {
     this.setState({
-      collapseOpen: !this.state.collapseOpen,
+      collapseOpen: this.state.collapseOpen == true ? false : true,
     });
   };
   // closes the collapse
@@ -112,9 +113,9 @@ class Sidebar extends React.Component {
           </button>
           {/* Brand */}
           {logo ? (
-            <NavbarBrand className="pt-0" {...navbarBrandProps}>
+            <NavbarBrand className="pt--4" {...navbarBrandProps}>
               <img
-                style={{ width: "130px", height: "150px" }}
+                style={{ width: "150px", height: "200px" }}
                 alt={logo.imgAlt}
                 className="navbar-brand-img"
                 src={logo.imgSrc}
@@ -122,7 +123,7 @@ class Sidebar extends React.Component {
             </NavbarBrand>
           ) : null}
           {/* User */}
-          <Nav className="align-items-center d-md-none">
+          {/* <Nav className="align-items-center d-md-none">
             <UncontrolledDropdown nav>
               <DropdownToggle nav className="nav-link-icon">
                 <i className="ni ni-bell-55" />
@@ -159,11 +160,11 @@ class Sidebar extends React.Component {
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
-          </Nav>
+          </Nav> */}
           {/* Collapse */}
           <Collapse navbar isOpen={this.state.collapseOpen}>
             {/* Collapse header */}
-            <div className="navbar-collapse-header d-md-none">
+            <div className="navbar-collapse-header d-md-none pt--4">
               <Row>
                 {logo ? (
                   <Col className="collapse-brand" xs="6">
@@ -184,7 +185,6 @@ class Sidebar extends React.Component {
                     type="button"
                     onClick={this.toggleCollapse}
                   >
-                    <span />
                     <span />
                   </button>
                 </Col>
@@ -249,15 +249,23 @@ class Sidebar extends React.Component {
                   <NavLink>Scan QR</NavLink>
                 </NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink style={{ fontWeight: "600" }} href="/admin/about-us">
+                  <span className="">
+                    <img src={infoAbout} fluid />
+                  </span>
+                  <NavLink>Tentang Kami</NavLink>
+                </NavLink>
+              </NavItem>
             </Nav>
-            <Nav className="mb-md-3" navbar>
-              {/* <NavItem className="active-pro active">
+            {/* <Nav className="mb-md-3" navbar>
+              <NavItem className="active-pro active">
                 <NavLink href="https://www.creative-tim.com/product/argon-dashboard-pro-react?ref=adr-admin-sidebar">
                   <i className="ni ni-spaceship" />
                   Upgrade to PRO
                 </NavLink>
-              </NavItem> */}
-            </Nav>
+              </NavItem>
+            </Nav> */}
           </Collapse>
         </Container>
       </Navbar>

@@ -10,24 +10,24 @@ import {
   Container,
 } from "react-bootstrap";
 import { FaHospital } from "react-icons/fa";
-import fotoUser03 from "../../images/dev-team/03.png";
-import fotoUser04 from "../../images/dev-team/04.png";
-import fotoUser15 from "../../images/dev-team/15.jpg";
-import fotoUser21 from "../../images/dev-team/21.png";
-import fotoUser22 from "../../images/dev-team/22.png";
-import fotoUser27 from "../../images/dev-team/27.png";
+import fotoUser03 from "../images/dev-team/03.png";
+import fotoUser04 from "../images/dev-team/04.png";
+import fotoUser15 from "../images/dev-team/15.jpg";
+import fotoUser21 from "../images/dev-team/21.png";
+import fotoUser22 from "../images/dev-team/22.png";
+import fotoUser27 from "../images/dev-team/27.png";
 
-import alterra from "../../images/sponsor/alterra.png";
-import maulidangames from "../../images/sponsor/maulidangames.png";
-import profilku from "../../images/sponsor/profilku.png";
-import PTI from "../../images/sponsor/PTI.png";
-import rasyidinstitute from "../../images/sponsor/rasyidinstitute.png";
-import rasyidtechnologies from "../../images/sponsor/rasyidtechnologies.png";
-import sindika from "../../images/sponsor/sindika.png";
-import trustmedis from "../../images/sponsor/trustmedis.png";
-import virtuahive from "../../images/sponsor/virtuahive.png";
+import alterra from "../images/sponsor/alterra.png";
+import maulidangames from "../images/sponsor/maulidangames.png";
+import profilku from "../images/sponsor/profilku.png";
+import PTI from "../images/sponsor/PTI.png";
+import rasyidinstitute from "../images/sponsor/rasyidinstitute.png";
+import rasyidtechnologies from "../images/sponsor/rasyidtechnologies.png";
+import sindika from "../images/sponsor/sindika.png";
+import trustmedis from "../images/sponsor/trustmedis.png";
+import virtuahive from "../images/sponsor/virtuahive.png";
 
-import Mentors from "./../../components/Mentors";
+import Mentors from "../components/Mentors";
 
 const AboutUsPage = () => {
   const [isLoading, setIsLoading] = React.useState(false);
@@ -190,7 +190,7 @@ const AboutUsPage = () => {
                         src={alterra}
                         className="img-center img-fluid shadow-lg--hover"
                         style={{
-                          height: "45px",
+                          width: "65px",
                         }}
                         alt={alterra.alt}
                       />
