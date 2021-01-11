@@ -37,7 +37,7 @@ const AdminContainer = (props) => {
               className="ml-3 mb-2 bg-transparent font-weight-bold text-white"
               xl="12"
             >
-              <Link className="text-white" to="/admin">
+              <Link className="text-white" to="/">
                 <span className="mx-1">
                   <FaHome />
                   Home

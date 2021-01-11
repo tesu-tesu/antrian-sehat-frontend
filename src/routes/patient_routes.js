@@ -9,7 +9,7 @@ import BookWaitingList from "pages/patient/BookWaitingList";
 import ListHAofPoly from "pages/patient/ListHAofPoly";
 import ErrorPage from "../pages/404Pages/ErrorPage";
 import UserProfile from "../pages/patient/UserProfile";
-import AboutUsPage from "../pages/patient/AboutUsPage";
+import AboutUsPage from "../pages/AboutUsPage";
 import SearchPageResult from "../pages/patient/SearchPageResult";
 
 export const APP_PATIENT_ROUTE = [
