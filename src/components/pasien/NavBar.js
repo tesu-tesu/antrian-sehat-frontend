@@ -76,7 +76,7 @@ const NavBar = (props) => {
             </Link>
             <Link
               className="text-light nav-link font-weight-bold mr-5"
-              to="/pasien/polimaster"
+              to="/pasien/poliklinik"
             >
               Poliklinik
             </Link>

@@ -151,7 +151,7 @@ const ScheduleModal = (props) => {
                                   <td className="text-center">
                                     <div>
                                       <Link
-                                        to={`/pasien/book-waiting-list/${schedule.id}/${schedule.date}`}
+                                        to={`/pasien/regis-antrian/${schedule.id}/${schedule.date}`}
                                       >
                                         <Button size="sm" variant="primary">
                                           Daftar

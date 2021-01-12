@@ -22,7 +22,7 @@ export const APP_PATIENT_ROUTE = [
     isPasien: true,
   },
   {
-    name: "List Polyclinic of Health Agency",
+    name: "Daftar Poliklinik dari Puskesmas Terpilih",
     path: "/pasien/list-poliklinik/:id_health_agency",
     exact: true,
     component: ListPolyclinic,
@@ -30,7 +30,7 @@ export const APP_PATIENT_ROUTE = [
     isPasien: true,
   },
   {
-    name: "List Health Agency of Polyclinic",
+    name: "Daftar Puskesmas dari Poliklinik Terpilih",
     path: "/pasien/puskesmas/:id_polymaster",
     exact: true,
     component: ListHAofPoly,
@@ -38,7 +38,7 @@ export const APP_PATIENT_ROUTE = [
     isPasien: true,
   },
   {
-    name: "All Health Agencies",
+    name: "Daftar Semua Puskesmas",
     path: "/pasien/puskesmas",
     exact: true,
     component: HealthAgencies,
@@ -46,8 +46,8 @@ export const APP_PATIENT_ROUTE = [
     isPasien: true,
   },
   {
-    name: "All Polyclinics",
-    path: "/pasien/polimaster",
+    name: "Daftar Semua Poliklinik",
+    path: "/pasien/poliklinik",
     exact: true,
     component: Polymasters,
     private: true,
@@ -62,7 +62,7 @@ export const APP_PATIENT_ROUTE = [
   //   isPasien: true,
   // },
   {
-    name: "Show Ticket",
+    name: "Riwayat Antrian",
     path: "/pasien/riwayat-antrian",
     exact: true,
     component: HistoryWaitingList,
@@ -70,8 +70,8 @@ export const APP_PATIENT_ROUTE = [
     isPasien: true,
   },
   {
-    name: "Book Waiting List",
-    path: "/pasien/book-waiting-list/:schedule_id/:date",
+    name: "Registrasi Antrian",
+    path: "/pasien/regis-antrian/:schedule_id/:date",
     exact: true,
     component: BookWaitingList,
     private: true,
@@ -94,18 +94,10 @@ export const APP_PATIENT_ROUTE = [
     isPasien: true,
   },
   {
-    name: "Polyclinic Schedules",
-    path: "/pasien/polyclinic-schedule/:id_health_agency",
+    name: "Jadwal Poliklinik",
+    path: "/pasien/jadwal-poliklinik/:id_health_agency",
     exact: true,
     component: PolyclinicSchedule,
-    private: true,
-    isPasien: true,
-  },
-  {
-    name: "Book Waiting List",
-    path: "/pasien/book-waiting-list/:schedule_id/:date",
-    exact: true,
-    component: BookWaitingList,
     private: true,
     isPasien: true,
   },
@@ -118,7 +110,7 @@ export const APP_PATIENT_ROUTE = [
     isPasien: true,
   },
   {
-    name: "About Us",
+    name: "Tentang Kami",
     path: "/pasien/about-us/",
     exact: true,
     component: AboutUsPage,

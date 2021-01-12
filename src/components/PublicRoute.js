@@ -25,7 +25,7 @@ const PublicRoute = ({
             isPasien() ? (
               <Redirect to="/pasien" />
             ) : (
-              <Redirect to="/admin/waiting-list" />
+              <Redirect to="/admin/antrian-pasien" />
             )
           ) : (
             <>

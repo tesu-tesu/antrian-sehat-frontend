@@ -15,8 +15,8 @@ export const APP_ADMIN_ROUTE = [
     isAdmin: true,
   },
   {
-    name: "Waiting List",
-    path: "/admin/waiting-list",
+    name: "Data Antrian",
+    path: "/admin/antrian-pasien",
     exact: true,
     component: WaitingList,
     private: true,
@@ -31,7 +31,7 @@ export const APP_ADMIN_ROUTE = [
     isAdmin: true,
   },
   {
-    name: "About Us",
+    name: "Tentang Kami",
     path: "/admin/about-us/",
     exact: true,
     component: AboutUsPage,
@@ -39,7 +39,7 @@ export const APP_ADMIN_ROUTE = [
     isAdmin: true,
   },
   {
-    name: "Error Page",
+    name: "Halaman Error",
     path: "/admin/*",
     exact: true,
     component: ErrorPage,

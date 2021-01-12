@@ -226,7 +226,7 @@ class Sidebar extends React.Component {
                 <Link
                   className=" nav-link"
                   style={{ fontWeight: "600" }}
-                  to="/admin/waiting-list"
+                  to="/admin/antrian-pasien"
                 >
                   <span className="">
                     <img src={listIcon} fluid />
