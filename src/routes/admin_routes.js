@@ -15,7 +15,7 @@ export const APP_ADMIN_ROUTE = [
     isAdmin: true,
   },
   {
-    name: "Data Antrian",
+    name: "Data Antrian Pasien",
     path: "/admin/antrian-pasien",
     exact: true,
     component: WaitingList,
