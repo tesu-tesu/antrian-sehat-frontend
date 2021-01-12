@@ -65,6 +65,7 @@ const Register = () => {
         });
         setIsLoggedIn(true);
         setLoading(false);
+        window.location = "/";
       })
       .catch((err) => {
         console.log(err.response.data);
@@ -94,7 +95,6 @@ const Register = () => {
 
   return (
     <div className="bg-app pr-3">
-      {isLoggedIn && <Redirect to="/" />}
       <Row xs="auto">
         <div className="col-lg-9 px-0 d-none d-sm-block">
           <Image

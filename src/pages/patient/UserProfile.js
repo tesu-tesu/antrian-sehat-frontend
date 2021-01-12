@@ -59,12 +59,11 @@ const UserProfile = (props) => {
         setFileName(SERVER_NAME + res.data.data.imagePath);
 
         getResidenceNumber();
-
-        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
+    setIsLoading(false);
   };
 
   React.useEffect(() => {
