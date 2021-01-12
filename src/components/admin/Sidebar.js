@@ -223,15 +223,16 @@ class Sidebar extends React.Component {
                 </NavLink>
               </NavItem> */}
               <NavItem>
-                <NavLink
+                <Link
+                  className=" nav-link"
                   style={{ fontWeight: "600" }}
-                  href="/admin/waiting-list"
+                  to="/admin/waiting-list"
                 >
                   <span className="">
                     <img src={listIcon} fluid />
                   </span>
                   <NavLink>Antrian Pasien</NavLink>
-                </NavLink>
+                </Link>
               </NavItem>
               {/* <NavItem>
                 <NavLink style={{fontWeight:"600"}} href="/list-poly">
@@ -242,20 +243,28 @@ class Sidebar extends React.Component {
                 </NavLink>
               </NavItem> */}
               <NavItem>
-                <NavLink style={{ fontWeight: "600" }} href="/admin/scan-qr">
+                <Link
+                  className=" nav-link"
+                  style={{ fontWeight: "600" }}
+                  to="/admin/scan-qr"
+                >
                   <span className="">
                     <img src={qrScan} fluid />
                   </span>
                   <NavLink>Scan QR</NavLink>
-                </NavLink>
+                </Link>
               </NavItem>
               <NavItem>
-                <NavLink style={{ fontWeight: "600" }} href="/admin/about-us">
+                <Link
+                  className=" nav-link"
+                  style={{ fontWeight: "600" }}
+                  to="/admin/about-us"
+                >
                   <span className="">
                     <img src={infoAbout} fluid />
                   </span>
                   <NavLink>Tentang Kami</NavLink>
-                </NavLink>
+                </Link>
               </NavItem>
             </Nav>
             {/* <Nav className="mb-md-3" navbar>

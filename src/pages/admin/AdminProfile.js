@@ -164,7 +164,7 @@ const AdminProfile = (props) => {
                   </h5>
                   <hr />
                 </div>
-                <div className="text-center m-5">
+                <div className="text-center m-2">
                   <button
                     type="button"
                     onClick={onEditProfile}

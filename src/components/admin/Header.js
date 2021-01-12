@@ -51,6 +51,11 @@ const Header = () => {
     logout();
     history.replace("/");
   };
+  const toProfile = () => {
+    history.push({
+      pathname: "/admin/profile",
+    });
+  };
 
   return (
     <>
@@ -107,7 +112,7 @@ const Header = () => {
                 <DropdownItem className="noti-title" header tag="div">
                   <h6 className="text-overflow m-0">Welcome!</h6>
                 </DropdownItem>
-                <DropdownItem href={`/admin/profile`}>
+                <DropdownItem onClick={toProfile}>
                   <FaUserCircle />
                   <span>Profile</span>
                 </DropdownItem>

@@ -48,6 +48,12 @@ const NavBar = (props) => {
     });
   };
 
+  const toProfile = () => {
+    history.push({
+      pathname: "/pasien/profile",
+    });
+  };
+
   return (
     <>
       <Navbar className="navbar-user" expand="lg">
@@ -120,7 +126,7 @@ const NavBar = (props) => {
             {Cookies.getJSON("USER")?.email}
           </NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item href={`/pasien/profile`}>
+          <NavDropdown.Item onClick={toProfile}>
             <FaUserCircle /> Profile
           </NavDropdown.Item>
           <NavDropdown.Item onClick={changePassword}>
