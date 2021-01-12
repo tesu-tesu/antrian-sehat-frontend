@@ -1,7 +1,12 @@
 import React from "react";
 import axios from "axios";
 import { Card, Col, Row, Spinner, Container } from "react-bootstrap";
-import { GET_WAITING_LIST, JWT_HEADER } from "constants/urls";
+import {
+  GET_TODAY_WAITING_LIST,
+  GET_PAST_WAITING_LIST,
+  GET_FUTURE_WAITING_LIST,
+  JWT_HEADER,
+} from "constants/urls";
 import { Link } from "react-router-dom";
 import ModalShowQR from "../../components/pasien/ModalShowQR";
 import { Nav, NavItem, NavLink, TabContent, TabPane } from "reactstrap";
@@ -10,7 +15,7 @@ import { FaBell, FaCalendar, FaHistory } from "react-icons/all";
 const HistoryWaitingList = () => {
   const [currentWaitingLists, setCurrentWaitingLists] = React.useState([]);
   const [futureWaitingLists, setFutureWaitingLists] = React.useState([]);
-  const [historyWaitingLists, setHistoryWaitingLists] = React.useState([]);
+  const [pastWaitingLists, setPastWaitingLists] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(0);
   const [waitingList, setWaitingList] = React.useState();
   const [modalShow, setModalShow] = React.useState();
@@ -20,29 +25,73 @@ const HistoryWaitingList = () => {
   const [selected, setSelected] = React.useState("selected1");
 
   React.useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      await axios
-        .get(GET_WAITING_LIST(), {
-          headers: { Authorization: `Bearer ${JWT_HEADER}` },
-        })
-        .then((res) => {
-          console.log(res.data);
-          setCurrentWaitingLists(res.data.waitingList.currentWaitingList);
-          setFutureWaitingLists(res.data.waitingList.futureWaitingList);
-          setHistoryWaitingLists(res.data.waitingList.historyWaitingList);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      setIsLoading(false);
-    };
-    fetchData();
+    fetchDataToday();
   }, []);
+
+  const fetchDataToday = async () => {
+    setIsLoading(true);
+    await axios
+      .get(GET_TODAY_WAITING_LIST(), {
+        headers: { Authorization: `Bearer ${JWT_HEADER}` },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setCurrentWaitingLists(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setIsLoading(false);
+  };
+
+  const fetchDataPast = async () => {
+    setIsLoading(true);
+    await axios
+      .get(GET_PAST_WAITING_LIST(), {
+        headers: { Authorization: `Bearer ${JWT_HEADER}` },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setPastWaitingLists(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setIsLoading(false);
+  };
+
+  const fetchDataFuture = async () => {
+    setIsLoading(true);
+    await axios
+      .get(GET_FUTURE_WAITING_LIST(), {
+        headers: { Authorization: `Bearer ${JWT_HEADER}` },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setFutureWaitingLists(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setIsLoading(false);
+  };
 
   const showModal = (waitingList) => (event) => {
     setWaitingList(waitingList);
     setModalShow(true);
+  };
+
+  const getTodayHistory = () => {
+    setHTabsAntrian("hTabsToday");
+    fetchDataToday();
+  };
+  const getPastHistory = () => {
+    setHTabsAntrian("hTabsPast");
+    fetchDataPast();
+  };
+  const getFutureHistory = () => {
+    setHTabsAntrian("hTabsFuture");
+    fetchDataFuture();
   };
 
   return (
@@ -69,7 +118,7 @@ const HistoryWaitingList = () => {
                 href="#pablo"
                 onClick={(e) => {
                   e.preventDefault();
-                  setHTabsAntrian("hTabsToday");
+                  getTodayHistory();
                 }}
               >
                 <FaBell className="mr-2" />
@@ -87,7 +136,7 @@ const HistoryWaitingList = () => {
                 }
                 onClick={(e) => {
                   e.preventDefault();
-                  setHTabsAntrian("hTabsFuture");
+                  getFutureHistory();
                 }}
               >
                 <FaCalendar className="mr-2" />
@@ -101,11 +150,11 @@ const HistoryWaitingList = () => {
                 }}
                 className={
                   "mb-sm-3 mb-md-0 " +
-                  (hTabsAntrian === "hTabsHistory" ? "active" : "")
+                  (hTabsAntrian === "hTabsPast" ? "active" : "")
                 }
                 onClick={(e) => {
                   e.preventDefault();
-                  setHTabsAntrian("hTabsHistory");
+                  getPastHistory();
                 }}
               >
                 <FaHistory className="mr-2" />
@@ -314,7 +363,7 @@ const HistoryWaitingList = () => {
                         </div>
                       )}
                     </TabPane>
-                    <TabPane tabId="hTabsHistory" role="tabpanel">
+                    <TabPane tabId="hTabsPast" role="tabpanel">
                       <Card.Title>
                         <b>Riwayat antrian anda yang lalu</b>
                       </Card.Title>
@@ -328,84 +377,74 @@ const HistoryWaitingList = () => {
                         </Spinner>
                       ) : (
                         <div>
-                          {historyWaitingLists.map(
-                            (historyWaitingList, key) => {
-                              let dateString = new Date(
-                                historyWaitingList.registered_date
-                              );
-                              let formattedDate = dateString
-                                .toLocaleDateString("id-ID", {
-                                  day: "numeric",
-                                  month: "long",
-                                  year: "numeric",
-                                })
-                                .replace(/ /g, " ");
-                              return (
-                                <Row key={key} className="mb-3">
-                                  <Col>
-                                    <Link
-                                      to="#"
+                          {pastWaitingLists.map((pastWaitingList, key) => {
+                            let dateString = new Date(
+                              pastWaitingList.registered_date
+                            );
+                            let formattedDate = dateString
+                              .toLocaleDateString("id-ID", {
+                                day: "numeric",
+                                month: "long",
+                                year: "numeric",
+                              })
+                              .replace(/ /g, " ");
+                            return (
+                              <Row key={key} className="mb-3">
+                                <Col>
+                                  <Link
+                                    to="#"
+                                    style={{
+                                      textDecoration: "none",
+                                      color: "black",
+                                    }}
+                                  >
+                                    <Card
                                       style={{
-                                        textDecoration: "none",
-                                        color: "black",
+                                        backgroundColor: "#F0F5FE",
+                                        borderRadius: "15px",
                                       }}
                                     >
-                                      <Card
-                                        style={{
-                                          backgroundColor: "#F0F5FE",
-                                          borderRadius: "15px",
-                                        }}
-                                      >
-                                        <Card.Body>
-                                          <Row>
-                                            <Col>
-                                              <b>
-                                                {
-                                                  historyWaitingList.residence_number
-                                                }
-                                              </b>
-                                            </Col>
-                                            <Col>
-                                              <p>
-                                                No Antrian :{" "}
-                                                {
-                                                  historyWaitingList.order_number
-                                                }
-                                              </p>
-                                            </Col>
-                                          </Row>
-                                          <Row>
-                                            <Col>
-                                              <b>
-                                                {
-                                                  historyWaitingList.health_agency
-                                                }
-                                              </b>
-                                            </Col>
-                                            <Col>
-                                              <span className="text-primary">
-                                                {historyWaitingList.status}
-                                              </span>
-                                            </Col>
-                                          </Row>
-                                          <Row>
-                                            <Col>
-                                              <b>
-                                                {historyWaitingList.polyclinic}
-                                              </b>
-                                            </Col>
-                                            <Col>
-                                              <p>{formattedDate}</p>
-                                            </Col>
-                                          </Row>
-                                        </Card.Body>
-                                      </Card>
-                                    </Link>
-                                  </Col>
-                                </Row>
-                              );
-                            }
-                          )}
+                                      <Card.Body>
+                                        <Row>
+                                          <Col>
+                                            <b>
+                                              {pastWaitingList.residence_number}
+                                            </b>
+                                          </Col>
+                                          <Col>
+                                            <p>
+                                              No Antrian :{" "}
+                                              {pastWaitingList.order_number}
+                                            </p>
+                                          </Col>
+                                        </Row>
+                                        <Row>
+                                          <Col>
+                                            <b>
+                                              {pastWaitingList.health_agency}
+                                            </b>
+                                          </Col>
+                                          <Col>
+                                            <span className="text-primary">
+                                              {pastWaitingList.status}
+                                            </span>
+                                          </Col>
+                                        </Row>
+                                        <Row>
+                                          <Col>
+                                            <b>{pastWaitingList.polyclinic}</b>
+                                          </Col>
+                                          <Col>
+                                            <p>{formattedDate}</p>
+                                          </Col>
+                                        </Row>
+                                      </Card.Body>
+                                    </Card>
+                                  </Link>
+                                </Col>
+                              </Row>
+                            );
+                          })}
                         </div>
                       )}
                     </TabPane>
