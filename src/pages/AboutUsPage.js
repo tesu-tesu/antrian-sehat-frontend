@@ -114,42 +114,42 @@ const AboutUsPage = () => {
                 </div>
                 <div>
                   <Row className="d-flex justify-content-around">
-                    <Col lg={6} md={6} className="text-center mb-3">
+                    <Col lg={6} md={6} className=" mb-3">
                       <Image
                         src={virtuahive}
                         className="img-center img-fluid shadow-lg--hover"
                         style={{
-                          height: "36px",
+                          height: "56px",
                         }}
                         alt={virtuahive.alt}
                       />
                     </Col>
-                    <Col lg={6} md={6} className="text-center mb-3">
+                    <Col lg={6} md={6} className=" mb-3">
                       <Image
                         src={maulidangames}
                         className="img-center img-fluid shadow-lg--hover"
                         style={{
-                          height: "35px",
+                          height: "58px",
                         }}
                         alt={maulidangames.alt}
                       />
                     </Col>
-                    <Col lg={6} md={6} className="text-center mb-3">
+                    <Col lg={6} md={6} className=" mb-3">
                       <Image
                         src={PTI}
                         className="img-center img-fluid shadow-lg--hover"
                         style={{
-                          height: "40px",
+                          height: "46px",
                         }}
                         alt={PTI.alt}
                       />
                     </Col>
-                    <Col lg={6} md={6} className="text-center mb-3">
+                    <Col lg={6} md={6} className=" mb-3">
                       <Image
                         src={rasyidtechnologies}
                         className="img-center img-fluid shadow-lg--hover"
                         style={{
-                          height: "36px",
+                          height: "54px",
                         }}
                         alt={rasyidtechnologies.alt}
                       />
