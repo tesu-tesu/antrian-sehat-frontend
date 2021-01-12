@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 
-const BASE_URL = "http://localhost:8000/api";
-export const SERVER_NAME = "http://localhost:8000";
+const BASE_URL = "https://api.antrian-sehat.me/api";
+export const SERVER_NAME = "https://api.antrian-sehat.me";
 
 let JWT = null;
 if (Cookies.getJSON("USER") !== undefined) JWT = Cookies.getJSON("USER").token;
