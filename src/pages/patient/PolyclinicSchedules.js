@@ -144,10 +144,11 @@ const PolyclinicSchedules = () => {
           </Spinner>
         ) : (
           <Card.Body>
-            <Row className="">
-              <Col className="mt-2" lg="3">
+            <Row className=" d-flex justify-content-center">
+              <Col className="mt-2 text-center" lg={3} md={3} xs={6}>
                 <div>
                   <Card.Img
+                    thumbnail
                     variant="top"
                     src={
                       healthAgency.image
@@ -156,14 +157,16 @@ const PolyclinicSchedules = () => {
                           healthAgency.image
                         : defaultHA
                     }
-                    width="100px"
+                    style={{
+                      width: "200px",
+                    }}
                   />
                 </div>
                 <div className="text-center">
                   Address: {healthAgency.address}
                 </div>
               </Col>
-              <Col lg="9">
+              <Col lg={9} md={9} xs={12}>
                 <Card
                   body
                   style={{

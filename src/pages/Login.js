@@ -98,7 +98,7 @@ const Login = () => {
         </Col>
         <Col lg="3" className="pl-4" fluid>
           <div className="mt-5 mb-5 text-center">
-            <Image src={logo} width="50%" />
+            <Image className="img-circle" src={logo} width="170" height="80" />
           </div>
           <Form>
             <Form.Group controlId="formBasicEmail">

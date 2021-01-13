@@ -65,7 +65,12 @@ const Polymasters = () => {
               borderRadius: "15px",
             }}
           >
-            <Link to={`/pasien/puskesmas/${polymaster.id}`}>
+            <Link
+              style={{
+                textDecoration: "none",
+              }}
+              to={`/pasien/puskesmas/${polymaster.id}`}
+            >
               <Card.Body>
                 <Image
                   src={

@@ -51,7 +51,13 @@ const HealthAgencies = () => {
               borderRadius: "15px",
             }}
           >
-            <Link to={`/pasien/jadwal-poliklinik/${healthAgency.id}`}>
+            <Link
+              style={{
+                textDecoration: "none",
+                color: "black",
+              }}
+              to={`/pasien/jadwal-poliklinik/${healthAgency.id}`}
+            >
               <Card.Body>
                 {healthAgency.image == null ? (
                   <FaHospital
