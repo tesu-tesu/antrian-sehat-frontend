@@ -1,18 +1,7 @@
 import React from "react";
 import Cookies from "js-cookie";
 import { useHistory, Link } from "react-router-dom";
-import {
-  Button,
-  NavDropdown,
-  Nav,
-  Navbar,
-  Form,
-  Image,
-  Row,
-  FormControl,
-  DropdownButton,
-  Dropdown,
-} from "react-bootstrap";
+import { Button, NavDropdown, Nav, Navbar, Form, Image } from "react-bootstrap";
 import { MdHttps } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 import { IoMdExit } from "react-icons/io";
@@ -56,8 +45,8 @@ const NavBar = (props) => {
 
   return (
     <>
-      <Navbar className="navbar-user" expand="lg">
-        <Navbar.Brand href="/pasien" className="mr-auto">
+      <Navbar collapseOnSelect sticky="top" className="navbar-user" expand="lg">
+        <Navbar.Brand href="/pasien">
           <img
             alt=""
             src={logoNavbar}
@@ -66,8 +55,8 @@ const NavBar = (props) => {
           />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="menu-navbar" />
-        <Navbar.Collapse id="menu-navbar" className="ml-5">
-          <Nav className="ml-auto">
+        <Navbar.Collapse id="menu-navbar">
+          <Nav className="ml-5">
             <Link
               className="text-light nav-link font-weight-bold mr-5"
               to="/pasien/puskesmas"
@@ -110,32 +99,32 @@ const NavBar = (props) => {
                 onKeyPress={(e) => {
                   _enterPressed(e);
                 }}
-                classNames="mr-sm-2"
+                className="mr-sm-2"
               />
               <Button onClick={_onEnterSearch} variant="outline-light">
                 Cari
               </Button>
             </Form>
           </Nav>
+          <NavDropdown
+            title={<Image src={logoUser} width="20%" fluid />}
+            id="collasible-nav-dropdown"
+          >
+            <NavDropdown.Item className="font-weight-bold" href="#">
+              {Cookies.getJSON("USER")?.email}
+            </NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item onClick={toProfile}>
+              <FaUserCircle /> Profile
+            </NavDropdown.Item>
+            <NavDropdown.Item onClick={changePassword}>
+              <MdHttps /> Ganti Password
+            </NavDropdown.Item>
+            <NavDropdown.Item onClick={_onLogout}>
+              <IoMdExit /> Logout
+            </NavDropdown.Item>
+          </NavDropdown>
         </Navbar.Collapse>
-        <NavDropdown
-          title={<Image src={logoUser} width="20%" fluid />}
-          id="collasible-nav-dropdown"
-        >
-          <NavDropdown.Item className="font-weight-bold" href="#action/3.1">
-            {Cookies.getJSON("USER")?.email}
-          </NavDropdown.Item>
-          <NavDropdown.Divider />
-          <NavDropdown.Item onClick={toProfile}>
-            <FaUserCircle /> Profile
-          </NavDropdown.Item>
-          <NavDropdown.Item onClick={changePassword}>
-            <MdHttps /> Ganti Password
-          </NavDropdown.Item>
-          <NavDropdown.Item onClick={_onLogout}>
-            <IoMdExit /> Logout
-          </NavDropdown.Item>
-        </NavDropdown>
       </Navbar>
       {modalShow && (
         <ModalShowChangePassword

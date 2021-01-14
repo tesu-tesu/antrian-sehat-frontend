@@ -39,6 +39,7 @@ const Polymasters = () => {
   const PolyclinicsText = styled.p`
     color: black;
     text-decoration: none;
+    font-weight: bold;
 
     &:focus,
     &:hover,
@@ -55,7 +56,7 @@ const Polymasters = () => {
     return polymasters.map((polymaster, key) => {
       // console.log("key: ", healthAgency.id); //use id to send selected HA card
       return (
-        <Col md="3" className="mb-3">
+        <Col xs={12} md={4} lg={3} className="mb-3">
           <Card
             key={key}
             className="text-center mx-auto"

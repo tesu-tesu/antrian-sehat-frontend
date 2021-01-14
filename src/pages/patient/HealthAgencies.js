@@ -42,7 +42,7 @@ const HealthAgencies = () => {
   const renderData = () => {
     return healthAgencies.map((healthAgency, key) => {
       return (
-        <Col md="3" className="mb-3" key={key}>
+        <Col xs={12} md={4} lg={3} className="mb-3" key={key}>
           <Card
             className="text-center mx-auto"
             style={{

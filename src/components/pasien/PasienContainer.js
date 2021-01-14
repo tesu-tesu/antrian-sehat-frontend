@@ -87,9 +87,7 @@ const PasienContainer = (props) => {
           })}
         </Switch>
       </div>
-      <div className="footer">
-        <FooterBar />
-      </div>
+      <FooterBar />
     </>
   );
 };

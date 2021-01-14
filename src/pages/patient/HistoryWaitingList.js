@@ -162,13 +162,13 @@ const HistoryWaitingList = () => {
               </NavLink>
             </NavItem>
           </Nav>
-          <Row>
-            <Col lg="12" md="12" sm="12">
+          <Row className="d-flex justify-content-center mt-2">
+            <Col xl={6} lg={6} md={8} sm={12}>
               <Card.Body>
                 <Container>
                   <TabContent activeTab={hTabsAntrian}>
                     <TabPane tabId="hTabsToday" role="tabpanel">
-                      <Card.Title>
+                      <Card.Title className="text-center">
                         <b>Antrian Anda pada hari ini</b>
                       </Card.Title>
                       {/*****  Current Day ******/}
