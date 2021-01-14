@@ -2,7 +2,8 @@ import React from "react";
 import axios from "axios";
 import { useLocation } from "react-router";
 import {
-  SEARCH_HEALTH_AGENCY,
+  SEARCH_HEALTH_AGENCY_NAME,
+  SEARCH_HEALTH_AGENCY_CONTAINS_POLY,
   JWT_HEADER,
   SERVER_NAME,
 } from "../../constants/urls";
@@ -18,8 +19,16 @@ import {
 import { useHistory } from "react-router-dom";
 import { FaHospital } from "react-icons/fa";
 import queryString from "query-string";
+import Pagination from "react-js-pagination";
 
 const SearchPageResult = () => {
+  const [searchQuery, setSearchQuery] = React.useState("");
+  const [currentPageName, setCurrentPageName] = React.useState(0);
+  const [perPageName, setPerPageName] = React.useState(0);
+  const [totalName, setTotalName] = React.useState(0);
+  const [currentPageContains, setCurrentPageContains] = React.useState(0);
+  const [perPageContains, setPerPageContains] = React.useState(0);
+  const [totalContains, setTotalContains] = React.useState(0);
   const [healthAgenciesName, setHealthAgenciesName] = React.useState([]);
   const [healthAgenciesContains, setHealthAgenciesContains] = React.useState(
     []
@@ -29,36 +38,71 @@ const SearchPageResult = () => {
   let history = useHistory();
   const location = useLocation();
 
-  const fetchData = async (searchKey) => {
+  const fetchData = (searchKey) => {
     setIsLoading(true);
+
+    fetchNameData(searchKey);
+    fetchContainsData(searchKey);
+
+    setIsLoading(false);
+  };
+
+  const fetchNameData = async (page_number, searchString) => {
     await axios
       .post(
-        SEARCH_HEALTH_AGENCY(),
+        SEARCH_HEALTH_AGENCY_NAME(page_number),
         {
-          search: searchKey,
+          search: searchString,
         },
         { headers: { Authorization: `Bearer ${JWT_HEADER}` } }
       )
       .then((res) => {
-        setHealthAgenciesName(res.data.name);
-        setHealthAgenciesContains(res.data.contains);
+        setCurrentPageName(res.data.current_page);
+        setPerPageName(res.data.per_page);
+        setTotalName(res.data.total);
+        setHealthAgenciesName(res.data.data);
       })
       .catch((err) => {
         console.log(err.response.data);
       });
-    setIsLoading(false);
+  };
+
+  const fetchContainsData = async (page_number, searchString) => {
+    await axios
+      .post(
+        SEARCH_HEALTH_AGENCY_CONTAINS_POLY(page_number),
+        {
+          search: searchString,
+        },
+        { headers: { Authorization: `Bearer ${JWT_HEADER}` } }
+      )
+      .then((res) => {
+        setCurrentPageContains(res.data.current_page);
+        setPerPageContains(res.data.per_page);
+        setTotalContains(res.data.total);
+        setHealthAgenciesContains(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
   };
 
   const toSchedule = (idHA) => {
     history.push({
-      pathname: "/pasien/polyclinic-schedule/" + idHA,
+      pathname: "/pasien/jadwal-poliklinik/" + idHA,
     });
   };
 
   React.useEffect(() => {
     let queryObj = queryString.parse(location.search);
     let queryArray = Object.keys(queryObj);
-    fetchData(queryArray[0]);
+
+    setSearchQuery(queryArray[0]);
+
+    setIsLoading(true);
+    fetchNameData(1, queryArray[0]);
+    fetchContainsData(1, queryArray[0]);
+    setIsLoading(false);
   }, [location]);
 
   const renderDataName = () => {
@@ -138,6 +182,16 @@ const SearchPageResult = () => {
                     </>
                   )}
                 </Row>
+                <Row className="float-right mt-4">
+                  <Pagination
+                    activePage={currentPageName}
+                    onChange={(e) => fetchNameData(e, searchQuery)}
+                    totalItemsCount={totalName}
+                    itemsCountPerPage={perPageName}
+                    itemClass="page-item"
+                    linkClass="page-link"
+                  />
+                </Row>
               </Card.Body>
             </Col>
             <Col
@@ -167,6 +221,16 @@ const SearchPageResult = () => {
                       {renderDataContains()}
                     </>
                   )}
+                </Row>
+                <Row className="float-right mt-4">
+                  <Pagination
+                    activePage={currentPageContains}
+                    onChange={(e) => fetchContainsData(e, searchQuery)}
+                    totalItemsCount={totalContains}
+                    itemsCountPerPage={perPageContains}
+                    itemClass="page-item"
+                    linkClass="page-link"
+                  />
                 </Row>
               </Card.Body>
             </Col>

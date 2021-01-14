@@ -47,7 +47,10 @@ export const GET_WAITING_LIST_BY_SCHEDULE = (schedule, date) =>
 export const BOOK_WAITING_LIST = () => `${BASE_URL}/waiting-list`;
 export const GET_RESIDENCE_NUMBER = () =>
   `${BASE_URL}/user/booked-residence-number`;
-export const SEARCH_HEALTH_AGENCY = () => `${BASE_URL}/health-agency/search/`;
+export const SEARCH_HEALTH_AGENCY_NAME = (page_number) =>
+  `${BASE_URL}/health-agency/search-name?page=${page_number}`;
+export const SEARCH_HEALTH_AGENCY_CONTAINS_POLY = (page_number) =>
+  `${BASE_URL}/health-agency/search-poly-contains?page=${page_number}`;
 
 //ADMIN API
 
