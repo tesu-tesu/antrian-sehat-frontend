@@ -59,27 +59,11 @@ const HealthAgencies = () => {
               to={`/pasien/jadwal-poliklinik/${healthAgency.id}`}
             >
               <Card.Body>
-                {healthAgency.image == null ? (
-                  <FaHospital
-                    style={{
-                      fontSize: "30px",
-                    }}
-                  />
-                ) : (
-                  <Image
-                    src={
-                      SERVER_NAME +
-                      "/storage/img/health_agencies/" +
-                      healthAgency.image
-                    }
-                    className="round img-center img-fluid shadow shadow-lg--hover"
-                    style={{
-                      width: "100px",
-                      cursor: "pointer",
-                    }}
-                    alt={healthAgency.image}
-                  />
-                )}
+                <FaHospital
+                  style={{
+                    fontSize: "30px",
+                  }}
+                />
 
                 <p className="mt-3">{healthAgency.name}</p>
               </Card.Body>
