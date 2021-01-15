@@ -3,6 +3,8 @@ import { Button, Row, InputGroup, Form, Image, Col } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import { setUserLogin } from "utils/auth";
 import headerImage from "../images/pasien/LOGIN.png";
+import desktopDownload from "../images/download/desktop.png";
+import playstoreDownload from "../images/download/playstore.png";
 import logo from "../images/pasien/logo.png";
 import axios from "axios";
 import { LOGIN_API } from "constants/urls";
@@ -78,15 +80,8 @@ const Login = () => {
 
   return (
     <div className="bg-app pr-3">
-      {/* <Navbar bg="light" expand="lg">
-        <Container>
-          <Link to="/pasien">
-            <Navbar.Brand color="white">Login</Navbar.Brand>
-          </Link>
-        </Container>
-      </Navbar> */}
-      <Row xs="auto" className="d-flex align-items-center">
-        <Col lg="9" className="px-0 d-none d-sm-block">
+      <Row xs="auto" className="d-flex align-items-align-items-start">
+        <Col xl={9} lg={9} className="px-0 d-none d-sm-block">
           <Image
             src={headerImage}
             style={{
@@ -96,88 +91,91 @@ const Login = () => {
             }}
           />
         </Col>
-        <Col lg="3" className="pl-4" fluid>
+        <Col xl={3} lg={3} className="pl-4" fluid>
           <div className="mt-5 mb-5 text-center">
             <Image className="img-circle" src={logo} width="170" height="80" />
           </div>
           <Form>
-            <Form.Group controlId="formBasicEmail">
-              <InputGroup
-                className="align-items-center"
-                style={{
-                  backgroundColor: "#fff",
-                  borderRadius: 10,
-                }}
-              >
-                <span className="px-2">
-                  <FaEnvelope />
-                </span>
-                <Form.Control
-                  style={{
-                    borderColor: "#fff",
-                    borderTopRightRadius: 10,
-                    borderBottomRightRadius: 10,
-                    paddingLeft: 4,
-                  }}
-                  type="email"
-                  placeholder="Email"
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    setErrorEmail("");
-                  }}
-                  onKeyPress={(e) => {
-                    _enterPressed(e);
-                  }}
-                />
-              </InputGroup>
+            <Row className="d-flex justify-content-center">
+              <Col xl={12} lg={12} md={8} sm={8} xs={10}>
+                <Form.Group controlId="formBasicEmail">
+                  <InputGroup
+                    className="align-items-center"
+                    style={{
+                      backgroundColor: "#fff",
+                      borderRadius: 10,
+                    }}
+                  >
+                    <span className="px-2">
+                      <FaEnvelope />
+                    </span>
+                    <Form.Control
+                      style={{
+                        borderColor: "#fff",
+                        borderTopRightRadius: 10,
+                        borderBottomRightRadius: 10,
+                        paddingLeft: 4,
+                      }}
+                      type="email"
+                      placeholder="Email"
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                        setErrorEmail("");
+                      }}
+                      onKeyPress={(e) => {
+                        _enterPressed(e);
+                      }}
+                    />
+                  </InputGroup>
 
-              {errorEmail !== "" ? (
-                <span className="text-danger ml-2">{errorEmail}</span>
-              ) : (
-                ""
-              )}
-            </Form.Group>
+                  {errorEmail !== "" ? (
+                    <span className="text-danger ml-2">{errorEmail}</span>
+                  ) : (
+                    ""
+                  )}
+                </Form.Group>
+              </Col>
+              <Col xl={12} lg={12} md={8} sm={8} xs={10}>
+                <Form.Group controlId="formBasicPassword">
+                  <InputGroup
+                    className="align-items-center"
+                    style={{
+                      backgroundColor: "#fff",
+                      borderRadius: 10,
+                    }}
+                  >
+                    <span className="px-2">
+                      <FaKey />
+                    </span>
+                    <Form.Control
+                      style={{
+                        borderColor: "#fff",
+                        borderTopRightRadius: 10,
+                        borderBottomRightRadius: 10,
+                        paddingLeft: 4,
+                      }}
+                      type="password"
+                      placeholder="Password"
+                      value={password}
+                      onChange={(e) => {
+                        setPassword(e.target.value);
+                        setErrorPassword("");
+                      }}
+                      onKeyPress={(e) => {
+                        _enterPressed(e);
+                      }}
+                    />
+                  </InputGroup>
 
-            <Form.Group controlId="formBasicPassword">
-              <InputGroup
-                className="align-items-center"
-                style={{
-                  backgroundColor: "#fff",
-                  borderRadius: 10,
-                }}
-              >
-                <span className="px-2">
-                  <FaKey />
-                </span>
-                <Form.Control
-                  style={{
-                    borderColor: "#fff",
-                    borderTopRightRadius: 10,
-                    borderBottomRightRadius: 10,
-                    paddingLeft: 4,
-                  }}
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                    setErrorPassword("");
-                  }}
-                  onKeyPress={(e) => {
-                    _enterPressed(e);
-                  }}
-                />
-              </InputGroup>
-
-              {errorPassword !== "" ? (
-                <span className="text-danger ml-2">{errorPassword}</span>
-              ) : (
-                ""
-              )}
-            </Form.Group>
-            <div className="row justify-content-center mb-5 mt-4">
-              <div className="col-md-12">
+                  {errorPassword !== "" ? (
+                    <span className="text-danger ml-2">{errorPassword}</span>
+                  ) : (
+                    ""
+                  )}
+                </Form.Group>
+              </Col>
+              <Col xl={12} lg={12} md={6} sm={8} xs={10}>
                 <Button
                   disabled={loading}
                   className="rounded-pill"
@@ -191,17 +189,37 @@ const Login = () => {
                     <span>Login</span>
                   )}
                 </Button>
-              </div>
-            </div>
+              </Col>
+            </Row>
           </Form>
-          <div className="row justify-content-center">
-            <div className="col-md-12 text-secondary text-center">
-              Belum punya akun?
-              <span className="font-weight-bold">
-                <Link to="/register"> daftar</Link>
-              </span>
-            </div>
-          </div>
+          <Col
+            xl={12}
+            lg={12}
+            md={8}
+            sm={8}
+            xs={10}
+            className="mt-3 text-center"
+          >
+            Belum punya akun?
+            <span className="font-weight-bold text-center">
+              <Link to="/register"> daftar</Link>
+            </span>
+          </Col>
+          <Col
+            xs={12}
+            sm={12}
+            md={12}
+            lg={12}
+            xl={12}
+            className="d-flex justify-content-center mt-6"
+          >
+            <Link to="/desktop">
+              <Image rounded src={desktopDownload} width="85%" />
+            </Link>
+            <Link to="/playstore">
+              <Image rounded src={playstoreDownload} width="80%" />
+            </Link>
+          </Col>
         </Col>
       </Row>
     </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Row, Form, InputGroup, Image } from "react-bootstrap";
+import { Button, Row, Col, Form, InputGroup, Image } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import { setUserLogin } from "utils/auth";
 import headerImage from "../images/pasien/REGISTER.png";
@@ -95,8 +95,8 @@ const Register = () => {
 
   return (
     <div className="bg-app pr-3">
-      <Row xs="auto">
-        <div className="col-lg-9 px-0 d-none d-sm-block">
+      <Row xs="auto" className="d-flex align-items-align-items-start">
+        <Col xl={9} lg={9} className="px-0 d-none d-sm-block">
           <Image
             src={headerImage}
             style={{
@@ -105,191 +105,198 @@ const Register = () => {
               objectPosition: "cover",
             }}
           />
-        </div>
-        <div className="col-lg-3 pl-4" fluid>
+        </Col>
+        <Col xl={3} lg={3} className="pl-4" fluid>
           <div className="mt-5 mb-5 text-center">
             <Image src={logo} width="50%" />
           </div>
           <Form>
-            <Form.Group controlId="formBasicName">
-              <InputGroup
-                className="align-items-center"
-                style={{
-                  backgroundColor: "#fff",
-                  borderRadius: 10,
-                }}
-              >
-                <span className="px-2">
-                  <FaUser />
-                </span>
-                <Form.Control
-                  style={{
-                    borderColor: "#fff",
-                    borderTopRightRadius: 10,
-                    borderBottomRightRadius: 10,
-                    paddingLeft: 4,
-                  }}
-                  type="text"
-                  placeholder="Name"
-                  value={name}
-                  onChange={(e) => {
-                    setName(e.target.value);
-                    setErrorName("");
-                  }}
-                />
-              </InputGroup>
+            <Row className="d-flex justify-content-center">
+              <Col xl={12} lg={12} md={8} sm={8} xs={10}>
+                <Form.Group controlId="formBasicName">
+                  <InputGroup
+                    className="align-items-center"
+                    style={{
+                      backgroundColor: "#fff",
+                      borderRadius: 10,
+                    }}
+                  >
+                    <span className="px-2">
+                      <FaUser />
+                    </span>
+                    <Form.Control
+                      style={{
+                        borderColor: "#fff",
+                        borderTopRightRadius: 10,
+                        borderBottomRightRadius: 10,
+                        paddingLeft: 4,
+                      }}
+                      type="text"
+                      placeholder="Name"
+                      value={name}
+                      onChange={(e) => {
+                        setName(e.target.value);
+                        setErrorName("");
+                      }}
+                    />
+                  </InputGroup>
 
-              {errorName !== "" ? (
-                <span className="text-danger ml-2">{errorName}</span>
-              ) : (
-                ""
-              )}
-            </Form.Group>
+                  {errorName !== "" ? (
+                    <span className="text-danger ml-2">{errorName}</span>
+                  ) : (
+                    ""
+                  )}
+                </Form.Group>
+              </Col>
 
-            <Form.Group controlId="formBasicPhone">
-              <InputGroup
-                className="align-items-center"
-                style={{
-                  backgroundColor: "#fff",
-                  borderRadius: 10,
-                }}
-              >
-                <span className="px-2">
-                  <FaPhone />
-                </span>
-                <Form.Control
-                  style={{
-                    borderColor: "#fff",
-                    borderTopRightRadius: 10,
-                    borderBottomRightRadius: 10,
-                    paddingLeft: 4,
-                  }}
-                  type="text"
-                  placeholder="Phone Number"
-                  value={phone}
-                  onChange={(e) => {
-                    setPhone(e.target.value);
-                    setErrorPhone("");
-                  }}
-                />
-              </InputGroup>
+              <Col xl={12} lg={12} md={8} sm={8} xs={10}>
+                <Form.Group controlId="formBasicPhone">
+                  <InputGroup
+                    className="align-items-center"
+                    style={{
+                      backgroundColor: "#fff",
+                      borderRadius: 10,
+                    }}
+                  >
+                    <span className="px-2">
+                      <FaPhone />
+                    </span>
+                    <Form.Control
+                      style={{
+                        borderColor: "#fff",
+                        borderTopRightRadius: 10,
+                        borderBottomRightRadius: 10,
+                        paddingLeft: 4,
+                      }}
+                      type="text"
+                      placeholder="Phone Number"
+                      value={phone}
+                      onChange={(e) => {
+                        setPhone(e.target.value);
+                        setErrorPhone("");
+                      }}
+                    />
+                  </InputGroup>
 
-              {errorPhone !== "" ? (
-                <span className="text-danger ml-2">{errorPhone}</span>
-              ) : (
-                ""
-              )}
-            </Form.Group>
+                  {errorPhone !== "" ? (
+                    <span className="text-danger ml-2">{errorPhone}</span>
+                  ) : (
+                    ""
+                  )}
+                </Form.Group>
+              </Col>
+              <Col xl={12} lg={12} md={8} sm={8} xs={10}>
+                <Form.Group controlId="formBasicEmail">
+                  <InputGroup
+                    className="align-items-center"
+                    style={{
+                      backgroundColor: "#fff",
+                      borderRadius: 10,
+                    }}
+                  >
+                    <span className="px-2">
+                      <FaEnvelope />
+                    </span>
+                    <Form.Control
+                      style={{
+                        borderColor: "#fff",
+                        borderTopRightRadius: 10,
+                        borderBottomRightRadius: 10,
+                        paddingLeft: 4,
+                      }}
+                      type="email"
+                      placeholder="Email"
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                        setErrorEmail("");
+                      }}
+                    />
+                  </InputGroup>
 
-            <Form.Group controlId="formBasicEmail">
-              <InputGroup
-                className="align-items-center"
-                style={{
-                  backgroundColor: "#fff",
-                  borderRadius: 10,
-                }}
-              >
-                <span className="px-2">
-                  <FaEnvelope />
-                </span>
-                <Form.Control
-                  style={{
-                    borderColor: "#fff",
-                    borderTopRightRadius: 10,
-                    borderBottomRightRadius: 10,
-                    paddingLeft: 4,
-                  }}
-                  type="email"
-                  placeholder="Email"
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    setErrorEmail("");
-                  }}
-                />
-              </InputGroup>
+                  {errorEmail !== "" ? (
+                    <span className="text-danger ml-2">{errorEmail}</span>
+                  ) : (
+                    ""
+                  )}
+                </Form.Group>
+              </Col>
+              <Col xl={12} lg={12} md={8} sm={8} xs={10}>
+                <Form.Group controlId="formBasicPassword">
+                  <InputGroup
+                    className="align-items-center"
+                    style={{
+                      backgroundColor: "#fff",
+                      borderRadius: 10,
+                    }}
+                  >
+                    <span className="px-2">
+                      <FaKey />
+                    </span>
+                    <Form.Control
+                      style={{
+                        borderColor: "#fff",
+                        borderTopRightRadius: 10,
+                        borderBottomRightRadius: 10,
+                        paddingLeft: 4,
+                      }}
+                      type="password"
+                      placeholder="Password"
+                      value={password}
+                      onChange={(e) => {
+                        setPassword(e.target.value);
+                        setErrorPassword("");
+                      }}
+                    />
+                  </InputGroup>
 
-              {errorEmail !== "" ? (
-                <span className="text-danger ml-2">{errorEmail}</span>
-              ) : (
-                ""
-              )}
-            </Form.Group>
+                  {errorPassword !== "" ? (
+                    <span className="text-danger ml-2">{errorPassword}</span>
+                  ) : (
+                    ""
+                  )}
+                </Form.Group>
+              </Col>
+              <Col xl={12} lg={12} md={8} sm={8} xs={10}>
+                <Form.Group controlId="formBasicPasswordConfirmation">
+                  <InputGroup
+                    className="align-items-center"
+                    style={{
+                      backgroundColor: "#fff",
+                      borderRadius: 10,
+                    }}
+                  >
+                    <span className="px-2">
+                      <FaKey />
+                    </span>
+                    <Form.Control
+                      style={{
+                        borderColor: "#fff",
+                        borderTopRightRadius: 10,
+                        borderBottomRightRadius: 10,
+                        paddingLeft: 4,
+                      }}
+                      type="password"
+                      placeholder="Password Confirmation"
+                      value={passwordConfirmation}
+                      onChange={(e) => {
+                        setPasswordConfirmation(e.target.value);
+                        setErrorPasswordConfirmation("");
+                      }}
+                    />
+                  </InputGroup>
 
-            <Form.Group controlId="formBasicPassword">
-              <InputGroup
-                className="align-items-center"
-                style={{
-                  backgroundColor: "#fff",
-                  borderRadius: 10,
-                }}
-              >
-                <span className="px-2">
-                  <FaKey />
-                </span>
-                <Form.Control
-                  style={{
-                    borderColor: "#fff",
-                    borderTopRightRadius: 10,
-                    borderBottomRightRadius: 10,
-                    paddingLeft: 4,
-                  }}
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                    setErrorPassword("");
-                  }}
-                />
-              </InputGroup>
+                  {errorPasswordConfirmation !== "" ? (
+                    <span className="text-danger ml-2">
+                      {errorPasswordConfirmation}
+                    </span>
+                  ) : (
+                    ""
+                  )}
+                </Form.Group>
+              </Col>
 
-              {errorPassword !== "" ? (
-                <span className="text-danger ml-2">{errorPassword}</span>
-              ) : (
-                ""
-              )}
-            </Form.Group>
-
-            <Form.Group controlId="formBasicPasswordConfirmation">
-              <InputGroup
-                className="align-items-center"
-                style={{
-                  backgroundColor: "#fff",
-                  borderRadius: 10,
-                }}
-              >
-                <span className="px-2">
-                  <FaKey />
-                </span>
-                <Form.Control
-                  style={{
-                    borderColor: "#fff",
-                    borderTopRightRadius: 10,
-                    borderBottomRightRadius: 10,
-                    paddingLeft: 4,
-                  }}
-                  type="password"
-                  placeholder="Password Confirmation"
-                  value={passwordConfirmation}
-                  onChange={(e) => {
-                    setPasswordConfirmation(e.target.value);
-                    setErrorPasswordConfirmation("");
-                  }}
-                />
-              </InputGroup>
-
-              {errorPasswordConfirmation !== "" ? (
-                <span className="text-danger ml-2">
-                  {errorPasswordConfirmation}
-                </span>
-              ) : (
-                ""
-              )}
-            </Form.Group>
-
-            <div className="row justify-content-center mb-5 mt-4">
-              <div className="col-md-12">
+              <Col xl={12} lg={12} md={6} sm={8} xs={10}>
                 <Button
                   disabled={loading}
                   className="rounded-pill"
@@ -303,18 +310,23 @@ const Register = () => {
                     <span>Register</span>
                   )}
                 </Button>
-              </div>
-            </div>
+              </Col>
+            </Row>
           </Form>
-          <div className="row justify-content-center">
-            <div className="col-md-12 text-secondary text-center">
-              Sudah punya akun?
-              <span className="font-weight-bold">
-                <Link to="/login"> Sign In</Link>
-              </span>
-            </div>
-          </div>
-        </div>
+          <Col
+            xl={12}
+            lg={12}
+            md={8}
+            sm={8}
+            xs={10}
+            className="mt-3 text-center"
+          >
+            Sudah punya akun?
+            <span className="font-weight-bold">
+              <Link to="/login"> Sign In</Link>
+            </span>
+          </Col>
+        </Col>
       </Row>
     </div>
   );
