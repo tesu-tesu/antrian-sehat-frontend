@@ -28,7 +28,7 @@ const PolyclinicSchedules = () => {
   const [isLoading, setIsLoading] = React.useState(0);
 
   let { id_health_agency } = useParams();
-
+  
   React.useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -90,7 +90,7 @@ const PolyclinicSchedules = () => {
     return polyclinics.map((polyclinic, key) => {
       if (polyclinic) {
         return (
-          <tr>
+          <tr key={key}>
             <td className="font-weight-600">{polyclinic.poly_master.name}</td>
             {days.map((day, index) => {
               var sign = 0;
@@ -98,7 +98,7 @@ const PolyclinicSchedules = () => {
                 if (schedule.day === index) {
                   sign = 1;
                   return (
-                    <td className="text-center">
+                    <td className="text-center" key={idx}>
                       <div>
                         <Link
                           to={`/pasien/regis-antrian/${schedule.id}/${schedule.date}`}

@@ -30,7 +30,6 @@ const Home = () => {
           headers: { Authorization: `Bearer ${JWT_HEADER}` },
         })
         .then((res) => {
-          console.log(res.data);
           if (res.data.data == null)
             setCurrentWaitingList({
               current_number: 0,
@@ -69,20 +68,20 @@ const Home = () => {
               <Card.Body className="justify-content-between text-capitalize bg-white">
                 <Row>
                   <Col lg="3">
-                    <Card
-                      body
-                      border="light"
-                      style={{ fontSize: "27pt" }}
-                      className="shadow text-center"
-                      borderradius="16px"
-                    >
-                      <div className="card-body">Daftar antrian</div>
-                      <div>
-                        <Link to="/pasien/puskesmas">
+                    <Link to="/pasien/puskesmas" style={{ textDecoration: "none"}}>
+                      <Card
+                        body
+                        border="light"
+                        style={{ fontSize: "27pt"}}
+                        className="shadow text-center"
+                        borderradius="16px"
+                      >
+                        <div className="card-body">Daftar antrian</div>
+                        <div>
                           <Image width="85px" src={PlusImage} />
-                        </Link>
-                      </div>
-                    </Card>
+                        </div>
+                      </Card>
+                    </Link>
                   </Col>
 
                   <Col lg="5" className="pl-6 py-1">
@@ -222,7 +221,7 @@ const Home = () => {
                         Lihat daftar poliklinik
                       </div>
                       <div>
-                        <Link to="/pasien/polimaster">
+                        <Link to="/pasien/poliklinik">
                           <Image
                             roundedCircle
                             className="float-right"

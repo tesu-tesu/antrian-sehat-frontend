@@ -229,7 +229,7 @@ class Sidebar extends React.Component {
                   to="/admin/antrian-pasien"
                 >
                   <span className="">
-                    <img src={listIcon} fluid />
+                    <img src={listIcon} fluid="true" />
                   </span>
                   <NavLink>Antrian Pasien</NavLink>
                 </Link>
@@ -249,7 +249,7 @@ class Sidebar extends React.Component {
                   to="/admin/scan-qr"
                 >
                   <span className="">
-                    <img src={qrScan} fluid />
+                    <img src={qrScan} fluid="true" />
                   </span>
                   <NavLink>Scan QR</NavLink>
                 </Link>
@@ -261,7 +261,7 @@ class Sidebar extends React.Component {
                   to="/admin/about-us"
                 >
                   <span className="">
-                    <img src={infoAbout} fluid />
+                    <img src={infoAbout} fluid="true" />
                   </span>
                   <NavLink>Tentang Kami</NavLink>
                 </Link>

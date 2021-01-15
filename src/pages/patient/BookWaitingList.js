@@ -130,11 +130,18 @@ const BookWaitingList = () => {
             err.response.data?.date ||
             err.response.data?.schedule
           ) {
-            setErrorResidenceNumber(
-              err.response.data?.residence_number
-                ? err.response.data.residence_number
-                : ""
-            );
+            if (isSelf)
+              setErrorResidenceNumber(
+                err.response.data?.residence_number
+                  ? "NIK is empty, please fill NIK in profile setting"
+                  : ""
+              );
+            else
+              setErrorResidenceNumber(
+                err.response.data?.residence_number
+                  ? err.response.data.residence_number
+                  : ""
+              );
             setErrorDate(err.response.data?.date ? err.response.data.date : "");
             setErrorSchedule(
               err.response.data?.schedule ? err.response.data.schedule : ""

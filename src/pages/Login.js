@@ -50,11 +50,13 @@ const Login = () => {
             role: res.data.user.role,
           });
           setIsLoggedIn(true);
-          setLoading(false);
+          
           window.location = "/";
         } else {
           setErrorEmail("You're not and Admin or Pasien");
+          
         }
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -213,12 +215,14 @@ const Login = () => {
             xl={12}
             className="d-flex justify-content-center mt-6"
           >
-            <Link to="/desktop">
+            <a target="_blank" href="https://rebrand.ly/4pz2f">
               <Image rounded src={desktopDownload} width="85%" />
-            </Link>
-            <Link to="/playstore">
+            </a>
+              
+            {/* </Link> */}
+            <a target="_blank" href="https://rebrand.ly/5g7he">
               <Image rounded src={playstoreDownload} width="80%" />
-            </Link>
+            </a>
           </Col>
         </Col>
       </Row>

@@ -41,7 +41,8 @@ const ScanQR = () => {
       .then((res) => {
         setIsSuccess(res.data.success);
         setMessage(res.data.message);
-        if (res.data.success) proccess(res.data.waiting_list.id);
+        if (res.data.success) 
+          proccess(res.data.data.id);
       })
       .catch((err) => {
         console.log(err);
