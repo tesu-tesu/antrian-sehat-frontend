@@ -73,9 +73,7 @@ const AdminContainer = (props) => {
             </Col>
           </Row>
         </Container>
-        <div className="footer">
-          <FooterBar />
-        </div>
+        <FooterBar />
       </div>
     </>
   );
