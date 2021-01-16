@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 
-export const SERVER_NAME = "http://localhost:8000";
+export const SERVER_NAME = "https://api.antrian-sehat.me";
 const BASE_URL = SERVER_NAME + "/api";
 
 let JWT = null;
