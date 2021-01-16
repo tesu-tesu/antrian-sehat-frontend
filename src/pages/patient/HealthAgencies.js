@@ -88,7 +88,7 @@ const HealthAgencies = () => {
           </Spinner>
         ) : (
           <Card.Body>
-            <Row className="d-flex align-items-center justify-content-around">
+            <Row className="d-flex align-items-center justify-content-around align-self-stretch">
               {healthAgencies && renderData()}
             </Row>
             <Row className="float-right mt-4">

@@ -45,7 +45,7 @@ const NavBar = (props) => {
 
   return (
     <>
-      <Navbar collapseOnSelect sticky="top" className="navbar-user" expand="lg">
+      <Navbar collapseOnSelect sticky="top" className="navbar-user" expand="xl">
         <Navbar.Brand href="/pasien">
           <img
             alt=""
@@ -54,8 +54,14 @@ const NavBar = (props) => {
             className="d-inline-block align-top"
           />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="menu-navbar" />
-        <Navbar.Collapse id="menu-navbar">
+        <Navbar.Toggle
+          className="d-lg-none"
+          aria-controls="pasien-navbar"
+          style={{
+            zIndex: "9999",
+          }}
+        />
+        <Navbar.Collapse id="pasien-navbar">
           <Nav className="ml-5">
             <Link
               className="text-light nav-link font-weight-bold mr-5"

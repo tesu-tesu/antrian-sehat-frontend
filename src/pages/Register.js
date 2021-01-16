@@ -95,7 +95,7 @@ const Register = () => {
 
   return (
     <div className="bg-app pr-3">
-      <Row xs="auto" className="d-flex align-items-align-items-start">
+      <Row xs="auto" className="d-flex align-items-center">
         <Col xl={9} lg={9} className="px-0 d-none d-sm-block">
           <Image
             src={headerImage}

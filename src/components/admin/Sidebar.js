@@ -34,11 +34,13 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import { logout } from "utils/auth";
 import puskesmasIcon from "images/admin/puskesmas.png";
 import clinicIcon from "images/admin/clinic.png";
 import listIcon from "images/admin/list.png";
 import qrScan from "images/admin/search.png";
 import infoAbout from "images/admin/info.png";
+import { ImExit } from "react-icons/im";
 
 class Sidebar extends React.Component {
   state = {
@@ -63,6 +65,10 @@ class Sidebar extends React.Component {
     this.setState({
       collapseOpen: false,
     });
+  };
+  onLogout = () => {
+    logout();
+    this.props.history.push("/");
   };
   // creates the links that appear in the left menu / Sidebar
   createLinks = (routes) => {
@@ -115,7 +121,7 @@ class Sidebar extends React.Component {
           {logo ? (
             <NavbarBrand className="pt--4" {...navbarBrandProps}>
               <img
-                style={{ width: "150px", height: "200px" }}
+                width="130"
                 alt={logo.imgAlt}
                 className="navbar-brand-img"
                 src={logo.imgSrc}
@@ -214,58 +220,64 @@ class Sidebar extends React.Component {
             <h6 className="navbar-heading text-muted">Menu</h6>
             {/* Navigation */}
             <Nav className="mb-md-3" navbar>
-              {/* <NavItem>
-                <NavLink style={{fontWeight:"600"}} href="/puskesmas">
-                <span className="">
-                  <img src={puskesmasIcon} fluid/>
-                </span>
-                <NavLink>Puskesmas</NavLink>
-                </NavLink>
-              </NavItem> */}
-              <NavItem>
-                <Link
-                  className=" nav-link"
-                  style={{ fontWeight: "600" }}
-                  to="/admin/antrian-pasien"
-                >
-                  <span className="">
-                    <img src={listIcon} fluid="true" />
-                  </span>
-                  <NavLink>Antrian Pasien</NavLink>
-                </Link>
-              </NavItem>
-              {/* <NavItem>
-                <NavLink style={{fontWeight:"600"}} href="/list-poly">
-                <span className="">
-                  <img src={clinicIcon} fluid/>
-                </span>
-                <NavLink>Poliklinik</NavLink>
-                </NavLink>
-              </NavItem> */}
-              <NavItem>
-                <Link
-                  className=" nav-link"
-                  style={{ fontWeight: "600" }}
-                  to="/admin/scan-qr"
-                >
-                  <span className="">
-                    <img src={qrScan} fluid="true" />
-                  </span>
-                  <NavLink>Scan QR</NavLink>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link
-                  className=" nav-link"
-                  style={{ fontWeight: "600" }}
-                  to="/admin/about-us"
-                >
-                  <span className="">
-                    <img src={infoAbout} fluid="true" />
-                  </span>
-                  <NavLink>Tentang Kami</NavLink>
-                </Link>
-              </NavItem>
+              <Row className="d-flex justify-content-center">
+                <Col lg={12} md={12} sm={12} xs={12}>
+                  <NavItem>
+                    <Link
+                      className=" nav-link"
+                      style={{ fontWeight: "600" }}
+                      to="/admin/antrian-pasien"
+                    >
+                      <span className="">
+                        <img src={listIcon} fluid="true" />
+                      </span>
+                      <NavLink>Antrian Pasien</NavLink>
+                    </Link>
+                  </NavItem>
+                </Col>
+                <Col lg={12} md={12} sm={12} xs={12}>
+                  <NavItem>
+                    <Link
+                      className=" nav-link"
+                      style={{ fontWeight: "600" }}
+                      to="/admin/scan-qr"
+                    >
+                      <span className="">
+                        <img src={qrScan} fluid="true" />
+                      </span>
+                      <NavLink>Scan QR</NavLink>
+                    </Link>
+                  </NavItem>
+                </Col>
+                <Col lg={12} md={12} sm={12} xs={12}>
+                  <NavItem>
+                    <Link
+                      className=" nav-link"
+                      style={{ fontWeight: "600" }}
+                      to="/admin/about-us"
+                    >
+                      <span className="">
+                        <img src={infoAbout} fluid="true" />
+                      </span>
+                      <NavLink>Tentang Kami</NavLink>
+                    </Link>
+                  </NavItem>
+                </Col>
+                <Col sm={12} xs={12}>
+                  <NavItem className="d-md-none">
+                    <Link
+                      className=" nav-link"
+                      style={{ fontWeight: "600" }}
+                      onClick={this.onLogout}
+                    >
+                      <span className="">
+                        <ImExit />
+                      </span>
+                      <NavLink>Logout</NavLink>
+                    </Link>
+                  </NavItem>
+                </Col>
+              </Row>
             </Nav>
             {/* <Nav className="mb-md-3" navbar>
               <NavItem className="active-pro active">

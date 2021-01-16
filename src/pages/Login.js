@@ -50,11 +50,10 @@ const Login = () => {
             role: res.data.user.role,
           });
           setIsLoggedIn(true);
-          
+
           window.location = "/";
         } else {
           setErrorEmail("You're not and Admin or Pasien");
-          
         }
         setLoading(false);
       })
@@ -82,7 +81,7 @@ const Login = () => {
 
   return (
     <div className="bg-app pr-3">
-      <Row xs="auto" className="d-flex align-items-align-items-start">
+      <Row xs="auto" className="d-flex align-items-center">
         <Col xl={9} lg={9} className="px-0 d-none d-sm-block">
           <Image
             src={headerImage}
@@ -197,9 +196,9 @@ const Login = () => {
           <Col
             xl={12}
             lg={12}
-            md={8}
-            sm={8}
-            xs={10}
+            md={12}
+            sm={12}
+            xs={12}
             className="mt-3 text-center"
           >
             Belum punya akun?
@@ -218,7 +217,7 @@ const Login = () => {
             <a target="_blank" href="https://rebrand.ly/4pz2f">
               <Image rounded src={desktopDownload} width="85%" />
             </a>
-              
+
             {/* </Link> */}
             <a target="_blank" href="https://rebrand.ly/5g7he">
               <Image rounded src={playstoreDownload} width="80%" />

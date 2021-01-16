@@ -68,17 +68,20 @@ const Home = () => {
               <Card.Body className="justify-content-between text-capitalize bg-white">
                 <Row>
                   <Col lg="3">
-                    <Link to="/pasien/puskesmas" style={{ textDecoration: "none"}}>
+                    <Link
+                      to="/pasien/puskesmas"
+                      style={{ textDecoration: "none" }}
+                    >
                       <Card
                         body
                         border="light"
-                        style={{ fontSize: "27pt"}}
+                        style={{ fontSize: "27pt" }}
                         className="shadow text-center"
                         borderradius="16px"
                       >
                         <div className="card-body">Daftar antrian</div>
                         <div>
-                          <Image width="85px" src={PlusImage} />
+                          <Image width="80" src={PlusImage} />
                         </div>
                       </Card>
                     </Link>
@@ -86,13 +89,13 @@ const Home = () => {
 
                   <Col lg="5" className="pl-6 py-1">
                     <Col style={{ fontSize: "22pt" }}>
-                      <Row className="ha-name">
+                      <div className="ha-name">
                         {currentWaitingList.health_agency}
-                      </Row>
-                      <Row className="poli-name">
+                      </div>
+                      <div className="poli-name">
                         {currentWaitingList.polyclinic}
-                      </Row>
-                      <Row className="waiting-list-number">
+                      </div>
+                      <div className="waiting-list-number">
                         {currentWaitingList.current_number} /
                         <span className="text-success">
                           {currentWaitingList.latest_number}
@@ -103,7 +106,7 @@ const Home = () => {
                         >
                           (sedang diperiksa / antrian terakhir)
                         </span>
-                      </Row>
+                      </div>
                     </Col>
                     <Card body border="light">
                       <Row className="p-0 mt-4 align-items-center">

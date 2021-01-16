@@ -67,7 +67,7 @@ const Header = () => {
           />
           <Form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
             <div className="text-white font-weight-bold mr-2">
-              {role} at {healthAgency}
+              {role ? role + " at " + healthAgency : ""}
             </div>
             <FormGroup className="mb-0">
               {/* <InputGroup className="input-group-alternative">
