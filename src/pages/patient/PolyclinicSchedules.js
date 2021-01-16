@@ -28,7 +28,7 @@ const PolyclinicSchedules = () => {
   const [isLoading, setIsLoading] = React.useState(0);
 
   let { id_health_agency } = useParams();
-  
+
   React.useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -108,7 +108,9 @@ const PolyclinicSchedules = () => {
                           </Button>
                         </Link>
                       </div>
-                      <div>{schedule.time_open}</div>
+                      <span>
+                        {schedule.time_open} - {schedule.time_close}
+                      </span>
                     </td>
                   );
                 }
@@ -145,11 +147,12 @@ const PolyclinicSchedules = () => {
         ) : (
           <Card.Body>
             <Row className=" d-flex justify-content-center">
-              <Col className="mt-2 text-center" lg={3} md={3} xs={6}>
+              <Col className="mt-2 text-center" lg={3} md={3} sm={8} xs={8}>
                 <div>
                   <Card.Img
                     thumbnail
                     variant="top"
+                    width="200"
                     src={
                       healthAgency.image
                         ? SERVER_NAME +
@@ -157,16 +160,13 @@ const PolyclinicSchedules = () => {
                           healthAgency.image
                         : defaultHA
                     }
-                    style={{
-                      width: "200px",
-                    }}
                   />
                 </div>
                 <div className="text-center">
                   Address: {healthAgency.address}
                 </div>
               </Col>
-              <Col lg={9} md={9} xs={12}>
+              <Col lg={9} md={9} sm={12} xs={12} className="mt-2">
                 <Card
                   body
                   style={{
