@@ -16,6 +16,13 @@ COPY ./package.json ./package-lock.json /var/www/antrian-sehat-frontend
 # install app dependencies
 RUN npm ci --silent
 RUN npm install --silent
+RUN npm install react-scripts@3.4.1 -g --silent
+RUN npm uninstall react-bootstrap --silent
+RUN npm uninstall reactstrap --silent
+RUN npm uninstall react-bootstrap bootstrap --silent
+RUN npm install react-bootstrap --save --silent
+RUN npm install reactstrap --save --silent
+RUN npm install react-bootstrap bootstrap --save --silent
 
 # add app
 COPY . /var/www/antrian-sehat-frontend
