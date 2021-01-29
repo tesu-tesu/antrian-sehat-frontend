@@ -58,7 +58,7 @@ const ListHAofPoly = () => {
                 return (
                   <>
                     <Card
-                      className="text-center mx-auto"
+                      className="text-center mx-auto my-auto"
                       style={{
                         backgroundColor: "#F0F5FE",
                         width: "180px",
