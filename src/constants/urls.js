@@ -1,6 +1,5 @@
 import Cookies from "js-cookie";
 
-console.log(process.env)
 export const SERVER_NAME = process.env.REACT_APP_BASE_URL_DEV;
 const BASE_URL = SERVER_NAME + "/api";
 
