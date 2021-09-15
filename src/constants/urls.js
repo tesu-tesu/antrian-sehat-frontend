@@ -1,6 +1,7 @@
 import Cookies from "js-cookie";
 
-export const SERVER_NAME = "https://api.antrian-sehat.me";
+console.log(process.env)
+export const SERVER_NAME = process.env.REACT_APP_BASE_URL_DEV;
 const BASE_URL = SERVER_NAME + "/api";
 
 let JWT = null;
